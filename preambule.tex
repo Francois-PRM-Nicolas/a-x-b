@@ -1,0 +1,815 @@
+% -*- mode: latex; eval: (flyspell-mode 1); ispell-local-dictionary: "american"; TeX-master: t; -*-
+
+\documentclass[12pt]{article}
+
+
+\usepackage{hyperref,amsthm,amsmath,amsfonts,enumerate,stmaryrd}
+
+\newcommand{\bZ}{\mathbb{Z}}
+
+\newcommand{\ttx}{\mathtt{x}}
+\newcommand{\tty}{\mathtt{y}}
+
+
+\newcommand{\bN}{\mathbb{N}} %{\bZ_{\ge 0}}
+\newcommand{\bNast}{\bN \setminus \{ 0 \}}
+\newcommand{\bNdeux}{\bN \setminus \{ 0, 1 \}}
+
+
+
+\newcommand{\seg}[2]{\left\llbracket#1, #2 \right\rrbracket}
+
+
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+
+ \theoremstyle{definition}
+ \newtheorem{exercise}{Exercise}
+% \newtheorem{example}{Example}
+
+
+ \begin{document}
+
+ For each $m \in \bNdeux$,
+ let $A(m)$ denote the set of those $a \in \bZ$ such that every prime factor of $m$ divides $a - 1$.
+
+ \begin{theorem}
+   Let $m \in \bNdeux$ and let $n \in \bNast$ be such that $m \le 2^n$.
+   For each $b \in \bZ$, 
+   every prime factor of $m$ divides $b$ if, and only if, $m$ divides $b^n$.
+   \end{theorem}
+
+   \begin{proof}
+     Since every prime factor of $b^r$ is a prime factor of $b$, the ``if part'' holds true.
+     Let us now prove the ``only if part''.
+     For each prime $p$,
+     we have 
+     $$
+     2^{\nu_p(m)} \le p^{\nu_p(m)} \le m \le 2^n \,, 
+     $$
+     whence the $p$-adic order of $m$ is not greater than~$n$.
+          the $p$-adic order of $b^n$ is either $0$ or at least $n$
+
+     For each prime  $p$ of $m$,
+     the $p$-adic order of $b^n$ is not less than~$n$.
+     Assume that every prime factor of $m$ divides~$b$.
+    
+     $$\nu_p(b^n) = n \nu_p(b) \ge n \ge \mu_p(m)
+     $$ for each $p \in P$.
+   \end{proof}
+
+   $$
+   S(n, \ttx) = \sum_{k = 0}^{n - 1} \ttx^k  = \frac{\ttx^n - 1}{\ttx - 1} 
+   $$
+   
+
+   $S(0, \ttx) = 0$, $S(1, \ttx) = 1$, $S(2, \ttx) = 1 + \ttx$, $S(3, \ttx) = 1 + \ttx + \ttx^2$.
+
+   $$
+   S(n + 1, \ttx) = \ttx S(n, \ttx) + 1
+   $$
+
+   $$
+   S(mn, \ttx) = S(m, \ttx^n) S(n, \ttx)
+   $$
+
+   \begin{theorem} \label{th:div-a-div-S-div-n}
+   Let $a$, $p \in \bZ$ be such that $p$ divides $a - 1$.
+   For each $n \in \bN$, $p$ divides $S(n, a)$ if, and only if, $p$ divides~$n$.
+ \end{theorem}
+
+ \begin{proof}
+   By assumption, $a$ is congruent to $1$ modulo $p$ and,  
+   by definition, $S(n, \ttx)$ is a polynomial with integer coefficients.
+   Therefore, $S(n, a)$ is congruent to $S(n, 1) = n$ modulo~$p$.
+ \end{proof}
+   
+ 
+   \begin{theorem} \label{thm:n-odd-ncarre}
+   Let $a \in \bZ$ and let $n \in \bN$.
+   If $n$ is odd and if $n$ divides $a  - 1$ then $S(n, a) \equiv n \pmod {n^2}$.
+   \end{theorem}
+
+
+   \begin{proof}
+   Put 
+    $$
+    f(\ttx) = \sum_{k = 3}^n \binom{n}{k} \ttx^{k - 3} \, .
+    $$
+   Since the case where $n = 1$ is trivial, we may assume $n \ge 3$.
+   Then, the binomial theorem yields
+   $$
+   {(1 + \ttx)}^n =  1 + n \ttx + \frac{n(n - 1)}{2} \ttx^2 +  \ttx^3 f(\ttx) \,, 
+   $$
+   whence
+   $$
+   S(n, 1 + \ttx) = \frac{{(1 + \ttx)}^n - 1}{\ttx} = n + \frac{n(n - 1)}{2} \ttx + \ttx^2 f(\ttx) \,, 
+   $$
+   and subsequently, 
+   $$
+   \frac{S(n, 1 + \ttx) - n}{n^2} = \frac{n - 1}{2} \cdot  \frac{\ttx}{n}  + \left( \frac{\ttx}{n} \right)^2 f(\ttx) \, . 
+   $$
+   Finally, remark that the right-hand side of the latter equation is an integer if we let $\ttx = a - 1$.  
+ \end{proof}
+
+ If $m$ is even then $a - 1$ is even.
+ If both $m$ and $a - 1$ are odd then $a - 1 + m$ is even 
+
+
+
+   % $$
+   % S(p^n q , \ttx)  = S(q, \ttx^{p^n}) \prod_{k = 0}^{n - 1}  S(p, \ttx^{p^k})
+   % $$
+
+% $p^{-1} S(n, a)  \equiv S(n p^{- 1}, a) \pmod p$
+ % $$
+ % S(p, a) \equiv p \pmod {p^2} 
+ % $$
+
+
+
+ \begin{theorem}
+   Let $a \in \bZ$ and let $p$ be a prime such that $S(p, a^m)$ factor of $a - 1$.
+   For each $n \in \bNast$, the $p$-adic order of $S(n, a)$ is equal to that of~$n$.
+ \end{theorem}
+
+ \begin{proof}
+   For each $n \in \bN$, let $\nu(n)$ denote the $p$-adic order of~$n$.
+   We proceed by induction on $\nu(n)$.
+   Theorem~\ref{th:div-a-div-S-div-n} ensures that $\nu(n) = 0$ is equivalent to  $\nu(S(n, a)) = 0$,
+   so the basis of our induction holds.
+   Let us now assume $\nu(n) \ge 1$.
+   Put $m =  p^{-1} n$.
+   The induction hypothesis yields
+   $$
+   \nu(S(m, a)) = \nu(n) - 1 \, .
+   $$
+%   because $\nu(n p^{-1})$ is one less than $\nu(n)$ and every factor of $a - 1$ is a factor of $a^p - 1$.
+   Moreover, we have 
+   $$
+   S(n, a) = S(p, a^m) S(m, a) 
+   $$
+   and Theorem~\ref{thm:n-odd-ncarre} yields 
+   $$\nu(S(p, a^m)) = 1 \, .$$
+   It follows
+   $$
+   \nu(S(n, a))
+   = \nu(S(p, a^m)) + \nu(S(m, a))
+   = 1 + (\nu(n) - 1)
+   = \nu(n) \,, 
+   $$
+   as desired.  
+ \end{proof}
+
+ \begin{exercise}
+   Let $a \in \bZ$, let $n \in \bNast$, and let $p$ be an odd prime factor of $a - 1$.
+   Let $\nu$ denote the $p$-adic order of $n$ and $S(n, a)$.
+   Prove that $p^{-\nu} S(n, a)$ and $S(p^{- \nu} n, a)$ are congruent modulo~$p$.   
+ \end{exercise}
+ 
+
+ \begin{theorem}
+   Let $a \in \bZ$  be such that $4$ divides $a - 1$.
+   For each $n \in \bN$, the $2$-adic order of $S(n, a)$ is equal to that of~$n$.
+ \end{theorem} 
+
+ \begin{proof}
+   For each $n \in \bN$, let $\nu(n)$ denote the $2$-adic order of~$n$.
+   We proceed by induction on $\nu(n)$.
+   Theorem~\ref{th:div-a-div-S-div-n} ensures that  $\nu(n) = 0$ is equivalent to  $\nu(S(n, a)) = 0$,
+   so the basis of our induction holds.
+   Let us now assume $\nu(n) \ge 1$.
+   Then, the induction hypothesis yields
+   $$
+   \nu(S(\tfrac{1}{2} n, a^2)) = \nu(n) - 1  \, .
+   $$
+   Besides,  $4$ divides $a - 1$ if, and only if, $\nu(1 + a)) = 1$
+   Since 
+   $$
+   S(n, a) = S(\tfrac{1}{2} n, a^2) (1 + a) \,, 
+   $$
+   It follows
+   $$
+   \nu(S(n, a))
+   = \nu(S(\tfrac{1}{2} n, a^2)) + \nu(1 + a)
+   = (\nu(n) - 1) + 1 = \nu(n) \,, 
+   $$
+   as desired.  
+  
+ \end{proof}
+ % \begin{theorem}
+%   Let $a \in \bZ$ and let $n$, $p \in \bN$.
+%   If $p$ is odd  and if $p \equiv 1 \pmod p$ then
+%   $\nu_p(S(n, a)) = \nu_p(n)$.
+% \end{theorem}
+
+% \begin{proof}
+% \end{proof}
+
+$$
+S(n, a) - S(n', a) = {(a + 1)}^n S(n - n', a)
+$$
+
+$$
+d = \gcd(m, n)
+$$
+
+$$
+S(n, a) = S(d, a^{n/d}) S(n/d, a)
+$$
+
+ 
+$$
+\frac{S(n, a)}{d}  = \frac{1}{p} \frac{S(n, a)}{d} d
+% \frac{S(d, a^{n\mathbin{/}d})}{d}
+% \frac{S(n\mathbin{/}d, a)}{m \mathbin{/} d} 
+$$
+
+
+$$
+\frac{S(n, a)}{m}  =
+\frac{S(d, a^{n\mathbin{/}d})}{d}
+\cdot 
+\frac{S(n\mathbin{/}d, a)}{n\mathbin{/}d}
+\cdot 
+\frac{n \mathbin{/} d}{m \mathbin{/} d}
+$$
+
+\begin{theorem}
+  For every $a \in \bZ$ and every  $m \in \bN$, 
+  every prime factor of $m$ divides $a - 1$ if, and only if, $m$ divides $S(m, a)$.
+\end{theorem}
+
+\begin{proof}
+  Assume that $m$ divides $S(m, a)$.
+  $p$ divides $m$.
+  $p$ divides $a^n - 1$
+\end{proof}
+
+
+
+Put $m = 3$ and $a = 5$.
+$$
+S(3, 2) = 7
+$$
+$$
+S(3, 5) = 31
+$$
+$$
+S(3, 4) = 21
+$$
+
+
+
+
+\begin{proof}
+  Since $0$ divides $0 = S(0, a)$,  we may assume $m \ge 1$ and proceed by induction on $\Omega(m)$.
+  Since  $\Omega(m) = 0$ is equivalent to $m = 1$ and since $1$ divides every integer,
+  the basis of the induction holds.
+  Let us now assume  $\Omega(m) \ge 1$.
+  Then, there exist $m'$, $p \in \bN$  such that  $p$ is prime and $m = m' p$.
+  Since every prime factor of $m'$ is a prime factor of $m$ and since every prime factor of , the induction hypothesis ensures that $n$ divides $S(n, a)$.
+  Moreover, if $p$ is odd then 
+  $$
+  S(n n', a) = S(n, a) S(n', a^n)
+  $$
+\end{proof}
+
+
+
+
+  
+ 
+
+ \begin{theorem}
+   Let $U$ be a finite set  and let $\left(u_n \right)_{n \in \bN} \in \bZ^\bN$.
+   Assume that there exists a function$f\colon U \to U$
+   such that  $u_{n + 1} = f(u_n)$ for every $n \in \bN$.
+   Let $m$ denote the cardinality of~$U$.
+   The following three assertions are equivalent
+   \begin{enumerate}
+     \item The sets  $U = \{ u_n : n \in \bN \}$ holds true.
+     \item The sequence $\left(u_n \right)_{n \in \bN}$ is $m$-periodic.
+      \item For every prime factor $p$ of $m$, $u_{m \mathbin{/} p}$ is distinct from $u_0$.
+    \end{enumerate}
+   \end{theorem}
+ 
+ \begin{theorem}
+   Let $m \in \bNast$ and let $\left(u_n \right)_{n \in \bN} \in \bZ^\bN$.
+   Assume that there exists $f \colon \bZ \to \bZ$ such that  $u_{n + 1} = f( u_n)$ for every $n \in \bN$.
+   The set $\left\{ u_n : n \in \bN \right\}$ contains a complete residue system modulo $m$
+   if, and only if,
+   the sequence $\left(u_n \bmod m \right)_{n \in \bN}$ is $m$-periodic.
+ \end{theorem}
+
+
+ \begin{theorem} \label{thm:a-and-m-coprime}
+   Let $m \in \bN \setminus \{ 0, 2 \}$,
+   let $a$, $b \in \bZ$, and
+   let $\left(u_n \right)_{n \in \bN} \in \bZ^\bN$ be such that
+   $$u_{n + 1} \equiv a u_n + b \pmod m$$
+   for every $n \in \bN$.
+   \begin{enumerate}
+     \item 
+       The set $\left\{ u_n : n \in \bN \right\}$ contains a complete residue system modulo~$m$.
+      \item 
+        The set $\left\{ u_0, u_1, \dotsc, u_{m - 1} \right\}$ is a complete residue system modulo~$m$.
+      \item
+        For every $i$, $j \in \bN$, $u_i \equiv u_j \pmod m$ is equivalent to $i - j \in m \bZ$.
+%        The sequence  $\left(u_n \bmod m  \right)_{n \in \bN}$ is periodic and its least period equals~$m$.
+    \end{enumerate} 
+ \end{theorem}
+
+ 
+ \begin{proof}
+   Since there is nothing to prove in the case where $m = 1$, we may assume $m \ge 3$ for the rest of the proof.
+   Then,
+   there exists $\varepsilon \in \{ -1, + 1 \}$ such that $\varepsilon \not \equiv u_0 - b \pmod m$,
+   and subsequently,
+   there exists $i \in \bN$ such that $u_i \equiv b + \varepsilon \pmod m$.
+   By construction, $i$ is positive.
+   Put $a' = - \varepsilon u_{i - 1}$.
+   We have  $a  u_{i - 1}  \equiv \varepsilon  \pmod m$, or equivalently,
+ 
+   
+   
+
+   
+
+  %  Then, there exist $i$, $j \in \bN$ such that
+  %  $u_i \ne u_0$,
+   
+  % $u_j \ne u_0$, and
+  % $u_i \ne u_j$.
+  % Let $k \in \bN$ be such that $u_k = u_ju_i^{-1}u_0$.
+  % By construction, $ijk$ is positive.
+  % Let $p \in \bN$ be such that $u_p = u_{i - 1} u_{j - 1}^{-1} u_{k - 1}$.
+   Assume that that there exists a prime number $p$ that divides both $b$ and~$m$.
+   First,  assume that $p$ divides $a$.
+   Then, $p$ divides $u_{n + 1}$ for every $n \in \bN$.
+   $$
+    u_k \equiv 0
+   $$
+
+ 
+   
+   
+   Put $d = \gcd(a, m)$.
+   $u_k \equiv 1$
+   A straightforward induction on $n$ shows that $d$ divides    Assume that there exists a pri
+   
+ \end{proof}
+ 
+
+ \begin{theorem} \label{thm:b-and-m-coprime}
+   Let the notation be as in Theorem~\ref{thm:a-and-m-coprime}.
+   If $\left\{ u_n : n \in \bN \right\}$ contains a complete residue system modulo $m$ then $b$ and $m$ are coprime.
+ \end{theorem} 
+
+ \begin{proof}
+ 
+
+    Assume that  $\left\{ x_n : n \in \bN \right\}$ contains a complete residue system modulo~$m$.
+    In particular, there  exists $k \in \bN$ such that $m$ divides $u_k$.
+    \end{proof}
+  
+ \begin{theorem} \label{thm:order-exponent}
+   Let $G$ be an abelian group and let $(\alpha, b)$ be a prout of~$G$.
+   The order of $b$ equals the exponent of~$G$.
+ \end{theorem}
+
+ \begin{proof}
+
+ \end{proof}
+
+ \section{Powers of $2$}
+   
+
+
+
+ \begin{theorem} \label{thm:4-in-the-middle}
+   For every $a \in \bZ$, the following three asertions are equivalent:
+%   $a$ is odd, $a^2 \equiv 1 \pmod 4$, and $\nu(a² - 2) = 1$.
+ \end{theorem}
+
+ \begin{proof}
+   For each $b \in \bZ$, the following three assertions are clearly equivalent:
+   $a - 2 = 2 (2b - 1)$,
+   $a = 4 b$, and
+   $a + 2 = 2 (2b + 1)$.
+ \end{proof}
+
+
+$$
+{(1 + x)}^p \equiv 1 + p x \pmod {x^2}
+$$
+$$
+{(1 + q x)}^p \equiv 1 + p q  x  \pmod{q^2 x^2}
+$$
+
+$$
+s(p, a)
+= \frac{a^p - 1}{a - 1}
+\equiv p \pmod{a - 1}
+$$
+
+
+
+$$
+S(np, a) = S(n, a^p) S(p, a)
+$$
+
+$$
+S(np, a) = S(n, a) S(p, a^n) 
+$$
+
+$$
+\frac{S(np, a)}{npq}  = \frac{S(n, a)}{nq} \frac{S(p, a^{nq})}{p} 
+$$
+
+
+
+$$
+{(1 + q x)}^p \equiv  1 + p q x + \frac{p(p - 1)}{2} q^2  x^2  \pmod{q^3 x^3}
+$$
+
+$$
+s(p, 1 + q x) = \frac{{(1 + q x)}^p - 1}{q x} \equiv  p  +   \frac{(p - 1)}{2} p q  x \pmod {q^2 x^2}
+$$
+
+
+$$
+\frac{s(p, 1 + p x)}{p}  \equiv  1 + p \frac{p - 1}{2} x   \pmod{p x^2}
+$$
+ 
+ 
+ 
+ \begin{theorem} \label{thm:nu-power-2}
+   Let $n \in \bN$ and let $a \in \bZ$.
+   If $a \ne 1$ and  $a \equiv 1 \pmod 4$ then $ \nu(a^{2^n} - 1) = \nu(a - 1)  + n$.
+ \end{theorem}
+
+
+ \begin{proof}
+   Let $n \in \bN$ be fixed.
+   Put $a_n = a^{2^n}$.
+   $$
+   a_n \equiv 1 \pmod 4
+   $$
+   and
+   $$
+   a_{n + 1} - 1 = (a_n - 1) (a_n + 1) \,. 
+   $$
+   The former equation 
+   Besides,  for every  $x \in \bZ$, $x \equiv 2 \pmod 4$ is equivalent to  $\nu(x) = 1$.
+   It follows 
+   $$
+   \nu(a_{n + 1} - 1) = \nu(a_n - 1) + \nu(a_n + 1) = \nu(a_n - 1) + 1
+   $$
+   
+   % A straightforward induc   tion on $n$ yields $a_n \equiv 1 \pmod 4$ for every $n \in \bN$.
+
+   Therefore, equality 
+   For each $n \in \bN$,
+   we thus have  $\nu(a_n + 1) = 1$, and consequently
+   $$
+   \nu(a_{n + 1} - 1) = \nu(a_n - 1) + 1 
+   $$
+   because
+   $$
+   a_{n + 1} - 1 = (a_n - 1) (a_n + 1) \,.
+   $$
+   The desired result follows from the latter equation and a straightforward induction on~$n$.
+ \end{proof}
+
+ 
+ \begin{theorem} \label{thm:nu-power-2}
+   For every $n \in \bNast$ and every odd $a \in \bZ$,
+   equality
+   $$
+   \nu(a^{2^n} - 1) = \nu(a - 1) + \nu(a + 1) - 1 + n 
+   $$
+   holds true.
+ \end{theorem}
+
+
+ \begin{proof}
+   Put $a_n = a^{2^n}$ for each $n \in \bN$.
+   Since 
+   \begin{equation} \label{eq:xn-rec-xn+1-1}
+   a_{n + 1} - 1 = (a_n - 1) (a_n + 1) 
+   \end{equation}
+   for every  $n \in \bN$,
+   a straightforward induction on $n$ yields
+   $$
+   a_n - 1 = (a - 1)(a + 1) \prod_{k = 1}^{n - 1} (a_k + 1) 
+   $$
+   for every $n \in \bNast$.
+   It remains to prove $\nu(a_k + 1) = 1$ for each $k \in \bNast$.
+   Let $n \in \bN$ be fixed.
+   Since the set of all odd integers is closed under multiplication,
+   $a_n$ is odd.
+   Therefore, both $a_n - 1$ and $a_n + 1$  are even,
+   and thus Equation~\eqref{eq:xn-rec-xn+1-1} ensures that $4$ divides
+   $a_{n + 1} - 1 = (a_{n + 1} + 1) - 2$.
+   % Besides,  for every $y \in \bZ$, $\nu(y)$ equals $1$ if, and only if, $4$ divides $y - 2$.
+   Therefore Theorem~\ref{thm:4-in-the-middle} ensures  $\nu(a_{n + 1} + 1) = 1$.
+ \end{proof}
+
+  \begin{theorem}
+    Let $n \in \bN$, let $a \in \bZ$, and let $\varepsilon \in \{ -1, + 1 \}$ be such that
+    $a \equiv \varepsilon \pmod 4$ and
+    $a \not \equiv \varepsilon \pmod{2^n}$.
+    The multiplicative order of $a$ modulo $2^n$ equals $2^{n - \nu(a - \varepsilon)}$.
+  \end{theorem}
+  
+  \begin{proof}
+    If $n < 3$ then there is nothing to prove.
+    Put $m = n - \nu(a - \varepsilon)$ and $M = 2^{m - 1}$.
+    Since $2^n$ does not divide $a - \varepsilon$,
+    $m$ is a positive integer, and thus
+    Theorem~\ref{thm:nu-power-2} ensures $\nu(a^{2M} - 1) = n$
+    It follows $a^{2M} \equiv 1 \pmod{2^n}$, or equivalently, 
+    the multiplicative order of $a$ modulo $2^n$ divides $2M = 2^m$.
+    It remains to prove $a^M \not \equiv 1 \pmod{2^n}$.
+    Let us first assume $\varepsilon = 1$ or $m > 1$.
+    Then, Theorem~\ref{thm:nu-power-2} ensures $\nu(a^M - 1) = n - 1$, whence $a^M \not \equiv 1 \pmod{2^n}$
+    Let us now assume $\varepsilon = - 1$ and $m = M = 1$.
+     $a \equiv - 1 \pmod 4$
+    $a \not \equiv 1 \pmod{2^n}$   
+    
+  \end{proof}
+
+ \begin{theorem}
+   Let $\phi\colon \bZ \times \bZ \to \bZ$ be defined by:
+   $\phi(x, y) = {(- 1)}^x 5^y$ for every $x$, $y \in \bZ$.
+   For each $n \in \bN$, $\phi$ induces an isomorphism
+   from the additive group $(\bZ / 2  \bZ) \times (\bZ / 2^n \bZ)$
+   onto
+   the multiplicative subgroup $\bZ / 2^{n + 2} \bZ$.
+ \end{theorem}
+
+ \begin{proof}
+   $$
+   \nu(5^{2^{n}} - 1) = \nu(4) + \nu(6) - 1  + n  = 2 + 1 - 1 + n = n + 2
+   $$
+   $$
+   \nu(5^{2^{n - 1}} - 1) = \nu(4) + \nu(6) - 1  + (n - 1)  = 2 + 1 - 1 + (n - 1) = n + 1
+   $$
+ \end{proof}
+
+
+
+  
+ \begin{theorem}
+   For every $n \in \bN \setminus \{ 0, 1 \}$ and every $a \in \bZ$,
+   $\left\{  s_k(a) : k \in \bN \right\}$ contains a complete residue system modulo $2^n$  if, and only if,
+   $4$ divides $a - 1$.
+ \end{theorem}
+
+ \begin{proof}
+   Let $n \in \bN \setminus \{ 0, 1 \}$ and let $a \in \bZ$ be fixed.
+   For each $x \in \bZ$, let $\bar x$ denote the residue class of $x$ modulo $2^n$.
+   Our task is to prove that the period of $\left\{  s_k(\bar a) : k \in \bN \right\} = \bZ / 2^n \bZ$
+   if, and only if, $4$ divides $a - 1$.    
+   
+ \end{proof}
+ 
+ 
+
+ \begin{theorem}
+   Let $n \in \bN$ and $x \in \bZ$ be odd.
+   \begin{enumerate}
+   \item $2^{n + 2}$ divides $x^{2^n} - 1$.
+   \item $2^{n + 1}$ does not divide $x^{2^n} - 1$ if, and only if, $8$ divides $x - 5$.
+   \end{enumerate}  
+ \end{theorem}
+
+
+ 
+
+ \begin{theorem}
+   For each $n \in \bN$, the  additive group  $(\bZ / 2^n \bZ) \times (\bZ / 2 \bZ)$ admits a prout
+   if, and only if, $n$ is not greater than~$1$.
+ \end{theorem}
+
+ \begin{proof}
+   Put $G = (\bZ / 2^n \bZ) \times (\bZ / 2 \bZ)$.
+   By Theorem~\ref{ } the order of $b$ equals $2^n$.
+   Let $u$, $v \in G$ be such that $G = \bZ u + \bZ v$ and $2^n u = 2 v = 0$.
+   $$
+   \left\{ g \in G : 2 g = 0 \right\}  = \left\{ 0, v, 2^{n - 1} u, 2^{n - 1} u + v  \right\} 
+   $$
+
+   $$
+   \left\{ g \in G : 2^{n - 1} g \ne 0 \right\}  = \left\{ (2 k + 1) u  \right\} 
+   $$
+   
+
+   Let $(\alpha, b)$ be a prout of~
+   $b = i u + j v$
+   
+   $\alpha(b) =  k u + v $
+    
+
+  
+   
+
+ 
+   
+   
+   % Let $\alpha\colon G \to G$ be defined by:
+ 
+   % Let $n \in \bN \setminus \{ 0, 1 \}$ be fixed.
+   % Put $G 
+   % For each $n
+   % Let $u$, $v \in G$ such that $G = \bZ u + \bZ v$
+
+ 
+   % The order of $k u + v$ (resp.~$k u$) equals $2^n$ if and only if, $k$ is odd.
+   
+
+   % Exactly $3$ elements of $G$ are of order $2$:
+   % $v$, $2^{n - 1} u$, and $2^{n - 1} u + v$.
+
+   % $$
+   % \alpha(2^{n - 1} u) = 2^{n - 1} \alpha(u) = 2^{n - 1} u
+   % $$
+   
+   % +  v                v
+   % + 2^{n - 1} u + v = 2^{n - 1} u 
+   % + v               = 2^{n - 1} u + v   
+   % + 2^{n - 1} u + v = 0
+   % + v               = v 
+   % + 2^{n - 1} u + v
+   % + v
+   % Assume $\alpha(v) = 2^{n - 1} u  + v$.
+   
+   % $$
+   % \alpha ( 2^{n - 1} u  + v) = \alpha(2^{n - 1} u) + \alpha(v) = 2^{n - 1} u + \alpha(v)
+   % $$
+
+   % $\alpha$ is not injective.
+
+   % $$
+   % \alpha(u) = m u + v
+   % $$
+
+   % $$
+   % \alpha^2(u) = m^2 u + v + \alpha(v)
+   % $$
+
+   % $$
+   % \alpha^k(u) = m^k u + \sum_{j = 0}^k \alpha^k(v) 
+   % $$
+
+   
+   
+ \end{proof}
+ 
+ 
+\begin{theorem} 
+  Let $G$ be a multiplicative monoid,
+  let $\alpha$ be an endomorphism of $G$,
+  let $b$, $c \in G$, and
+  let $\left( g_n \right)_{n \in \bN} \in G^\bN$ be such that $b \alpha(g_0) = g_0 c$.
+  Equality $g_{n + 1} = b \alpha(g_n)$ holds true for every $n \in \bN$ if, and only if, 
+  equality $g_{n + 1} = g_n \alpha^n(c)$ holds true for every $n \in \bN$.
+\end{theorem}
+
+\begin{proof}
+  Put $b_n  = b \alpha(g_n)$ and $c_n =  g_n \alpha^n(c)$ for each $n \in \bN$.
+  Equality $b_0  =  c_0$ holds true by assumption,
+  and for each $n \in \bN$ such that $g_{n + 1} = b_n = c_n$,
+  straightforward computations yield
+  $$
+  b_{n + 1} = b \alpha(g_{n + 1})
+  = b \alpha (g_n \alpha^n(c))
+  = b \alpha(g_n) \alpha^{n + 1}(c)
+  = g_{n + 1}  \alpha^{n + 1}(c) = c_{n + 1}  \,.
+  $$
+  Therefore,
+  if equality $g_{n + 1} = b_n$ holds true for every $n \in \bN$
+  then it follows from a simple induction on $n$  equality $g_{n + 1} = c_n$ holds true for every $n \in \bN$.
+  
+  % Let $\left( b_n \right)_{n \in \bN} \in G^\bN$ be given by:
+  % $b_0 = g_0$ and $b_{n + 1} = b \alpha(b_n)$ for every $n \in \bN$.
+  % Let $\left( c_n \right)_{n \in \bN} \in G^\bN$ be given by:
+  % $c_0 = g_0$ and $c_{n + 1} = c_n \alpha^n(c)$ for every $n \in \bN$.
+  Put $c_n =  \alpha^n(c)$ for each $n \in \bN$, 
+  $$
+  B = \left\{ n \in \bN :g_{n + 1} = b \alpha(g_n) \right\} \,,  
+  $$
+  and
+  $$
+  C = \left\{ n \in \bN :g_{n + 1} = g_n c_n \right\} \, .  
+  $$
+  % Let $B$ denote the set of those $n \in \bN$ such that $g_{n + 1} = b \alpha(g_n)$ and 
+  % let $C$ denote the set of those $n \in \bN$ such that $g_{n + 1} = g_n \alpha^n(c)$.
+  Our task is to prove that $B = \bN$ is equivalent to $C = \bN$.
+  Since $b \alpha(g_0) = g_0 c_0$ by assumption,
+  $0 \in B$ is equivalent to $0 \in C$.
+  Moreover, for each $n \in B \cap C$,
+  straightforward computations yield
+  $$
+  b \alpha(g_{n + 1})
+  = b \alpha (g_n c_n)
+  = b \alpha(g_n) c_{n + 1}
+  = g_{n + 1} c_{n + 1} \,, 
+  $$
+  whence $n + 1 \in B$ is equivalent to $n + 1 \in C$.
+  Moreover, for each $n \in C$ such that $\{ n, n + 1 \} \subseteq B$,
+  straightforward computations yield
+  $$
+  g_{n + 2}
+  = b \alpha(g_{n + 1})
+  = b \alpha (g_n c_n)
+  = b \alpha(g_n) c_{n + 1}
+  = g_{n + 1} c_{n + 1} \,, 
+  $$
+  whence $n + 1 \in C$.
+  Therefore, $B = \bN$ implies $C = \bN$.
+  It remains to prove the converse.
+  For each $n \in B$ such that $\{ n, n + 1 \} \subseteq C$, straightforward computations yield
+  $$
+  g_{n + 2}
+  = g_{n + 1} c_{n + 1} 
+  = b \alpha(g_n) c_{n + 1} 
+  = b \alpha\left(g_n c_n  \right)
+  = b \alpha(g_{n + 1}) \,, 
+  $$
+  whence $n + 1 \in B$.
+  Therefore, $C = \bN$ implies $B = \bN$.
+\end{proof}
+
+
+\begin{theorem}
+  Let $G$ be an additive commutative monoid,
+  let $\alpha$ be an endomorphism of $G$,
+  let $b$, $c \in G$, and
+  let $\left( g_n \right)_{n \in \bN} \in G^\bN$ be such that $\alpha(g_0) + b  = g_0 + c$.
+  Equality $g_{n + 1} = \alpha(g_n) + b$ holds true for every $n \in \bN$ if, and only if, 
+  equality
+  $$g_n = g_0 + \sum_{k = 0}^{n - 1}  \alpha^k(c)
+  $$
+  holds true for every $n \in \bN$.
+\end{theorem}
+
+
+
+Put $c_n = \alpha^n(c)$.
+
+
+$g_{n + 1} = b \alpha(g_n)$
+
+$h_{n + 1} = h_n c_n$
+
+Assume $g_n = h_n$ and $g_{n + 1} = h_{n + 1}$
+$$
+g_{n + 1} = h_n c_n 
+$$
+
+
+Put $b_n = \alpha^n(b)$ and $c_n = \alpha^n(c)$ for every $n \in \bN$.
+
+$$
+b_n \alpha^{n + 1}(g_0) = \alpha^n(g_0) c_n
+$$
+
+$$
+g_n = b_0 b_1 b_2 \dotsm b_{n - 1}  \alpha^n(g_0)
+$$
+
+$$
+g_n = g_0 c_0 c_1 c_2 \dotsm c_{n - 1} 
+$$
+
+
+
+
+
+$$
+S(\ttx) = \sum_{k = 0}^{q - 1} {(1 + \ttx)}^k 
+$$
+
+$$
+\ttx S(\ttx) = {(1 + \ttx)}^q - 1
+$$
+
+$$
+{(1 + \ttx)}^q = 1 + \ttx^q 
+$$
+
+$$
+\ttx S(\ttx)  = \ttx^q 
+$$
+
+$$
+S(\ttx)  = \ttx^{q - 1}  
+$$
+
+
+
+
+\end{document}
