@@ -12,8 +12,8 @@
 
 
 \newcommand{\bN}{\mathbb{N}} %{\bZ_{\ge 0}}
-\newcommand{\bNast}{\bN \setminus \{ 0 \}}
-\newcommand{\bNdeux}{\bN \setminus \{ 0, 1 \}}
+\newcommand{\bNast}{ \bZ_{> 0}} %{\bN \setminus \{ 0 \}}
+\newcommand{\bNdeux}{\bZ_{\ge 2}}
 
 
 
@@ -27,214 +27,135 @@
  \theoremstyle{definition}
  \newtheorem{exercise}{Exercise}
 % \newtheorem{example}{Example}
+\newenvironment{solution}{\begin{proof}[Solution.]}{\end{proof}}
 
+\begin{document}
 
- \begin{document}
+\include{maintheorem}
 
- For each $m \in \bNdeux$,
- let $A(m)$ denote the set of those $a \in \bZ$ such that every prime factor of $m$ divides $a - 1$.
+ \include{additional}
 
- \begin{theorem}
-   Let $m \in \bNdeux$ and let $n \in \bNast$ be such that $m \le 2^n$.
-   For each $b \in \bZ$, 
-   every prime factor of $m$ divides $b$ if, and only if, $m$ divides $b^n$.
-   \end{theorem}
+ For each $n \in \bZ \setminus \{ 0 \}$, let $\rho(n)$ denote the \emph{radical} of $n$:
+ $\rho(n)$ largest square-free divisor of $n$,
+ or equivalently,
+ $\rho(n)$ is the product of the distinct prime factors of~$n$.
+ For instance,  we have $\rho(243936) = 462$ because
+ $243936 = 2^5 \times 3^2 \times 7 \times {11}^2$ and
+ $462 = 2 \times 3 \times 7 \times 11$.
+  % $$
+ % \rho'(n) =
+ % \begin{cases}
+ %   \rho(n) & \text{if $4$ does not divide $n$}  \\
+ %   2 \rho(n) & \text{otherwise} 
+ % \end{cases}
+ % $$
+ 
+ For each $m \in \bNast$,
+ let $N(m)$ denote the set of those $n \in \bZ$ that satisfy the following two equivalent properties:
+ \begin{enumerate}
+ \item Every prime factor of $m$ divides $n$.
+ \item There exists $r \in \bN$ such that $m$ divides $n^r$.
+ \end{enumerate}
+ For each $m \in \bN$, put
+ $$
+ N'(m) =
+ \begin{cases}
+   N(m)& \text{if $4$ does not divide $m$} \\
+   2 N(m)& \text{if $4$ divides $m$} \\
+  \end{cases} 
+ $$ 
+ 
+ For each $m \in \bNast$,
+let $N(m)$ denote the set of those $n \in \bZ$ that satisfy the following two properties:
+  \begin{enumerate}
+     \item every prime factor of $m$ divides $n$ and
+     \item if $4$ divides $m$ then $4$ divides $n$.
+     \end{enumerate}
+     
+ \begin{exercise}
+   \begin{enumerate}
+   \item Prove that $N(m)$
+   \item Let $m \in \bNast$ be such that $4$ does not divide~$m$.
+     Find 
+   \item Let $m \in \bNast$, let $r\in \bN$ be such that $m \le 2^r$,  and let $n \in \bZ$.
+Prove that every prime factor of $m$ divides $n$ if, and only if, $m$ divides $n^r$.
+\item Find a efficient algorithm that  decides
+  $$\left\{ (m, n) \in \bNast \times \bZ  : n \in N(m) \right\}$$
+   \end{enumerate}  
+\end{exercise}
 
-   \begin{proof}
-     Since every prime factor of $b^r$ is a prime factor of $b$, the ``if part'' holds true.
-     Let us now prove the ``only if part''.
-     For each prime $p$,
-     we have 
-     $$
-     2^{\nu_p(m)} \le p^{\nu_p(m)} \le m \le 2^n \,, 
-     $$
-     whence the $p$-adic order of $m$ is not greater than~$n$.
-          the $p$-adic order of $b^n$ is either $0$ or at least $n$
+$$
+z^d = 0
+$$
 
-     For each prime  $p$ of $m$,
-     the $p$-adic order of $b^n$ is not less than~$n$.
-     Assume that every prime factor of $m$ divides~$b$.
-    
-     $$\nu_p(b^n) = n \nu_p(b) \ge n \ge \mu_p(m)
-     $$ for each $p \in P$.
-   \end{proof}
+$$
+(\ttx + z)^{k + d} = \sum_{j = 0}^{d - 1}  \binom{k + d}{j} z^j  \ttx^{k + d  - j} 
+$$
 
+$$
+\ttx^d S(n, \ttx + z) = \sum_{j = 0}^d   \binom{k}{j} z^j \ttx^{n - j}
+$$
    $$
    S(n, \ttx) = \sum_{k = 0}^{n - 1} \ttx^k  = \frac{\ttx^n - 1}{\ttx - 1} 
    $$
    
 
-   $S(0, \ttx) = 0$, $S(1, \ttx) = 1$, $S(2, \ttx) = 1 + \ttx$, $S(3, \ttx) = 1 + \ttx + \ttx^2$.
+
+ $$
+ S(p, 1 + \ttx) - S(p, 1 + \ttx^2)
+ = \frac{{(1 + \ttx)}^p - {(1 + \ttx^2)}^p}{\ttx}
+ = 
+ $$
+
+ $$
+ S(p, 1 + \ttx^k) =  p + \frac{p(p - 1)}{2} \ttx^k  + \ttx^{2k} f(\ttx^k) 
+ $$
+
+ $$
+ S(p, 1 + \ttx) -  S(p, 1 + \ttx^k)  = \frac{p(p - 1)}{2} \ttx(1 - \ttx^{k - 1}  - 
+ $$
+ $$
+ $$
 
    $$
-   S(n + 1, \ttx) = \ttx S(n, \ttx) + 1
+   S(n, 1 + \ttx) = \frac{{(1 + \ttx)}^n - 1}{\ttx} = n + \frac{n(n - 1)}{2} \ttx + \ttx^2 f(\ttx) \,,
    $$
-
-   $$
-   S(mn, \ttx) = S(m, \ttx^n) S(n, \ttx)
-   $$
-
-   \begin{theorem} \label{th:div-a-div-S-div-n}
-   Let $a$, $p \in \bZ$ be such that $p$ divides $a - 1$.
-   For each $n \in \bN$, $p$ divides $S(n, a)$ if, and only if, $p$ divides~$n$.
- \end{theorem}
-
- \begin{proof}
-   By assumption, $a$ is congruent to $1$ modulo $p$ and,  
-   by definition, $S(n, \ttx)$ is a polynomial with integer coefficients.
-   Therefore, $S(n, a)$ is congruent to $S(n, 1) = n$ modulo~$p$.
- \end{proof}
-   
- 
-   \begin{theorem} \label{thm:n-odd-ncarre}
-   Let $a \in \bZ$ and let $n \in \bN$.
-   If $n$ is odd and if $n$ divides $a  - 1$ then $S(n, a) \equiv n \pmod {n^2}$.
-   \end{theorem}
-
-
-   \begin{proof}
-   Put 
-    $$
-    f(\ttx) = \sum_{k = 3}^n \binom{n}{k} \ttx^{k - 3} \, .
-    $$
-   Since the case where $n = 1$ is trivial, we may assume $n \ge 3$.
-   Then, the binomial theorem yields
-   $$
-   {(1 + \ttx)}^n =  1 + n \ttx + \frac{n(n - 1)}{2} \ttx^2 +  \ttx^3 f(\ttx) \,, 
-   $$
-   whence
-   $$
-   S(n, 1 + \ttx) = \frac{{(1 + \ttx)}^n - 1}{\ttx} = n + \frac{n(n - 1)}{2} \ttx + \ttx^2 f(\ttx) \,, 
-   $$
-   and subsequently, 
-   $$
-   \frac{S(n, 1 + \ttx) - n}{n^2} = \frac{n - 1}{2} \cdot  \frac{\ttx}{n}  + \left( \frac{\ttx}{n} \right)^2 f(\ttx) \, . 
-   $$
-   Finally, remark that the right-hand side of the latter equation is an integer if we let $\ttx = a - 1$.  
- \end{proof}
-
- If $m$ is even then $a - 1$ is even.
- If both $m$ and $a - 1$ are odd then $a - 1 + m$ is even 
-
-
-
-   % $$
-   % S(p^n q , \ttx)  = S(q, \ttx^{p^n}) \prod_{k = 0}^{n - 1}  S(p, \ttx^{p^k})
-   % $$
-
-% $p^{-1} S(n, a)  \equiv S(n p^{- 1}, a) \pmod p$
- % $$
- % S(p, a) \equiv p \pmod {p^2} 
- % $$
-
-
-
- \begin{theorem}
-   Let $a \in \bZ$ and let $p$ be a prime such that $S(p, a^m)$ factor of $a - 1$.
-   For each $n \in \bNast$, the $p$-adic order of $S(n, a)$ is equal to that of~$n$.
- \end{theorem}
-
- \begin{proof}
-   For each $n \in \bN$, let $\nu(n)$ denote the $p$-adic order of~$n$.
-   We proceed by induction on $\nu(n)$.
-   Theorem~\ref{th:div-a-div-S-div-n} ensures that $\nu(n) = 0$ is equivalent to  $\nu(S(n, a)) = 0$,
-   so the basis of our induction holds.
-   Let us now assume $\nu(n) \ge 1$.
-   Put $m =  p^{-1} n$.
-   The induction hypothesis yields
-   $$
-   \nu(S(m, a)) = \nu(n) - 1 \, .
-   $$
-%   because $\nu(n p^{-1})$ is one less than $\nu(n)$ and every factor of $a - 1$ is a factor of $a^p - 1$.
-   Moreover, we have 
-   $$
-   S(n, a) = S(p, a^m) S(m, a) 
-   $$
-   and Theorem~\ref{thm:n-odd-ncarre} yields 
-   $$\nu(S(p, a^m)) = 1 \, .$$
-   It follows
-   $$
-   \nu(S(n, a))
-   = \nu(S(p, a^m)) + \nu(S(m, a))
-   = 1 + (\nu(n) - 1)
-   = \nu(n) \,, 
-   $$
-   as desired.  
- \end{proof}
-
- \begin{exercise}
-   Let $a \in \bZ$, let $n \in \bNast$, and let $p$ be an odd prime factor of $a - 1$.
-   Let $\nu$ denote the $p$-adic order of $n$ and $S(n, a)$.
-   Prove that $p^{-\nu} S(n, a)$ and $S(p^{- \nu} n, a)$ are congruent modulo~$p$.   
- \end{exercise}
- 
-
- \begin{theorem}
-   Let $a \in \bZ$  be such that $4$ divides $a - 1$.
-   For each $n \in \bN$, the $2$-adic order of $S(n, a)$ is equal to that of~$n$.
- \end{theorem} 
-
- \begin{proof}
-   For each $n \in \bN$, let $\nu(n)$ denote the $2$-adic order of~$n$.
-   We proceed by induction on $\nu(n)$.
-   Theorem~\ref{th:div-a-div-S-div-n} ensures that  $\nu(n) = 0$ is equivalent to  $\nu(S(n, a)) = 0$,
-   so the basis of our induction holds.
-   Let us now assume $\nu(n) \ge 1$.
-   Then, the induction hypothesis yields
-   $$
-   \nu(S(\tfrac{1}{2} n, a^2)) = \nu(n) - 1  \, .
-   $$
-   Besides,  $4$ divides $a - 1$ if, and only if, $\nu(1 + a)) = 1$
-   Since 
-   $$
-   S(n, a) = S(\tfrac{1}{2} n, a^2) (1 + a) \,, 
-   $$
-   It follows
-   $$
-   \nu(S(n, a))
-   = \nu(S(\tfrac{1}{2} n, a^2)) + \nu(1 + a)
-   = (\nu(n) - 1) + 1 = \nu(n) \,, 
-   $$
-   as desired.  
   
- \end{proof}
- % \begin{theorem}
-%   Let $a \in \bZ$ and let $n$, $p \in \bN$.
-%   If $p$ is odd  and if $p \equiv 1 \pmod p$ then
-%   $\nu_p(S(n, a)) = \nu_p(n)$.
-% \end{theorem}
 
-% \begin{proof}
-% \end{proof}
 
-$$
-S(n, a) - S(n', a) = {(a + 1)}^n S(n - n', a)
-$$
 
-$$
-d = \gcd(m, n)
-$$
+% The following theorem is only proven for the sake of completeness.
 
-$$
-S(n, a) = S(d, a^{n/d}) S(n/d, a)
-$$
 
+
+\begin{theorem}
+  Let $a$, $m \in \bZ$ be such that $a \in A(m)$.
+\end{theorem}
+
+% 1
+Assume that $4$ divides $a - 1$.
+Then, for each prime factor $p$ of $m$, $2p$ divides $a - 1$.
+% 2
+Assume that $m$ is odd and that $a - 1$ is even.
+Then, for each prime factor $p$ of $m$, $2p$ divides $a - 1$.
+% 3
+Assume that both $m$ and $a - 1$ are odd.
+Then, $a + m - 1$ is even.
+Therefore, for each prime factor $p$ of $m$, $2p$ divides $a + m - 1$.
+% 4 
+Assume that $m$ is even and that $4$ does not divide $a - 1$.
+Then, $m \mathbin{/} 2$ is odd, $a - 1$ is even, and ${(a - 1)} \mathbin{/} 2$ is odd.
+It follows that $4$ divides $a + m - 1$.
+Therefore, for each prime factor $p$ of $m$, $2p$ divides $a + m - 1$.
+
+
+
+
+% $a' = 1 + (a - 1)(m + 1)$
+% $a' - 1 = (a - 1)(m + 1)$
+$a' = 1 + (2 m + 1)(a - 1)$
+$a' - 1 = (2 m + 1)(a - 1)$
  
-$$
-\frac{S(n, a)}{d}  = \frac{1}{p} \frac{S(n, a)}{d} d
-% \frac{S(d, a^{n\mathbin{/}d})}{d}
-% \frac{S(n\mathbin{/}d, a)}{m \mathbin{/} d} 
-$$
-
-
-$$
-\frac{S(n, a)}{m}  =
-\frac{S(d, a^{n\mathbin{/}d})}{d}
-\cdot 
-\frac{S(n\mathbin{/}d, a)}{n\mathbin{/}d}
-\cdot 
-\frac{n \mathbin{/} d}{m \mathbin{/} d}
-$$
 
 \begin{theorem}
   For every $a \in \bZ$ and every  $m \in \bN$, 
@@ -261,20 +182,6 @@ S(3, 4) = 21
 $$
 
 
-
-
-\begin{proof}
-  Since $0$ divides $0 = S(0, a)$,  we may assume $m \ge 1$ and proceed by induction on $\Omega(m)$.
-  Since  $\Omega(m) = 0$ is equivalent to $m = 1$ and since $1$ divides every integer,
-  the basis of the induction holds.
-  Let us now assume  $\Omega(m) \ge 1$.
-  Then, there exist $m'$, $p \in \bN$  such that  $p$ is prime and $m = m' p$.
-  Since every prime factor of $m'$ is a prime factor of $m$ and since every prime factor of , the induction hypothesis ensures that $n$ divides $S(n, a)$.
-  Moreover, if $p$ is odd then 
-  $$
-  S(n n', a) = S(n, a) S(n', a^n)
-  $$
-\end{proof}
 
 
 

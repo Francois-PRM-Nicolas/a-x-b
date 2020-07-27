@@ -1,0 +1,302 @@
+% -*- mode: latex; eval: (flyspell-mode 1); ispell-local-dictionary: "american"; TeX-master: "preambule"; -*-
+
+\section{Additional material}
+
+% \begin{theorem} \label{thm:Frobenius}
+%   Let $k \in \bZ$ and let $p \in \bN$.
+%   If $1 \le k < p$ and if $p$ is prime then $p$ divides the binomial cofficient coefficient of $\ttx^k$ in ${(1 + \ttx)}^p $ is a multiple of~$p$.
+% \end{theorem}
+
+% \begin{proof}
+%   For each $k \in \bN$, let $a_k$ denote the coefficient of $\ttx^k$ in  ${(1 + \ttx)}^p - 1 - \ttx^p$:
+%   $$
+%   a_k =  \frac{p!}{k!{(p - k)}!}
+%   $$
+  
+%   The binomial theorem ensures
+%   $$
+%   a_k = 
+%   $$
+%   If $k = 0$ or if $k \ge p$ then $a_k = 0$.
+%   Let $k$ be an integer such that $1 \le k < p$.
+%   For each $n \in \bN$,
+%   the set of all prime factors of $n!$ is equal to the set of those primes that are not greater than $n$.
+%   Therefore, every prime factor of $k!{(p - k)}!$ is less than~$p$.
+%   Besides, $p$ divides $p (p - 1)! = p!$.
+%   Therefore, $p$ divides the binomial coefficient 
+
+% \end{proof}
+
+% The most famous consequence of Theorem~\ref{thm:Frobenius} is:
+
+% \begin{exercise}
+%   Let $p$ be a prime and let $R$ be a commutative ring with characteristic~$p$: $p R = \{ 0 \}$.
+%   Prove that ${(x+ y)}^p =  x^p + y^p $ for every $x$, $y \in R$.
+% \end{exercise}
+
+\subsection{Powers of $2$}
+
+For each $n \in \bZ$, let $\nu(n)$ denote the $2$-adic valuation of $n$:
+$\nu(n) \in \bN \cup \{ \infty \}$,
+$\nu(n) = \infty$ is equivalent to $n = 0$, and
+if $n \ne 0$ then  $2^{- \nu(n)} n$ is an odd integer.
+%Note that $\gcd(m, 2^n)  = 2^{\min \{ \nu(m), n \}}$ for every $m \in \bZ$ and every $n \in \bN$.
+The first part of Theorem~\ref{thm:val-adic} can be restated as follows:
+
+\begin{theorem} \label{thm:val-adic-2-alt} 
+  Let $a \in \bZ$ and let $n \in \bN$.
+  If $4$ divides $a - 1$ then $\nu(S(n, a)) = \nu(n)$.
+\end{theorem}
+
+
+
+\begin{theorem} \label{thm:order-un-mod-4} 
+  Let $a \in \bZ$ be such that $4$ divides $a - 1$ and let $m \in \bN$.
+  The multiplicative order of $a$ modulo $2^m$ is equal to
+  $$
+  \frac{2^m}{\gcd(a - 1, 2^m)} \,.
+  $$
+\end{theorem}
+
+\begin{proof}
+  Put $d = \gcd(a - 1, 2^m)$ and $k = 2^m d^{-1}$.
+  Let $n \in \bN$.
+  Our task is to prove that the following four assertions are equivalent:
+  \begin{enumerate}
+    \item $2^m$ divides $a^n - 1$, \label{ass:order-1-mod-4:2m} 
+    \item $\nu(a^n - 1)$ is not less than $m$, \label{ass:order-1-mod-4:nu-an} 
+    \item $\nu(n)$ is not less than $m - \nu(a - 1)$, and \label{ass:order-1-mod-4:nu-n} 
+    \item $k$ divides~$n$. \label{ass:order-1-mod-4:k} 
+  \end{enumerate} 
+  First,
+  assertions~\ref{ass:order-1-mod-4:2m} and \ref{ass:order-1-mod-4:nu-an} are clearly equivalent.
+  Second,
+  Theorem~\ref{thm:val-adic-2-alt} yields
+  $$
+  \nu(a^n  - 1) = \nu(n) + \nu(a - 1)
+  $$
+  because
+  $$
+  a^n  - 1 = S(n, a) (a - 1) \, . 
+  $$
+  Therefore,
+  assertions~\ref{ass:order-1-mod-4:nu-an} and \ref{ass:order-1-mod-4:nu-n} are equivalent.
+  Third and last,
+  let us prove that
+  assertions~\ref{ass:order-1-mod-4:nu-n} and \ref{ass:order-1-mod-4:k} are equivalent. 
+  If $a \equiv 1 \pmod{2^m}$
+  then both assertions~\ref{ass:order-1-mod-4:nu-n} and \ref{ass:order-1-mod-4:k} hold true
+  because $m - \nu(a - 1) \le 0$ and $k = 1$.
+  Let us now assume $a \not \equiv 1 \pmod{2^m}$.
+  Then, we have
+  $\nu(a - 1) < m$,
+  $d = 2^{\nu(a - 1)}$, 
+  $k = 2^{m - \nu(a - 1)}$, and
+  $\nu(k) = m - \nu(a - 1)$.
+  Therefore, assertions~\ref{ass:order-1-mod-4:nu-n} and \ref{ass:order-1-mod-4:k} are equivalent.
+\end{proof}
+
+
+
+
+% \begin{theorem}
+%   Let $b \in \bZ$ and let $m \in \bN$.
+%   \begin{enumerate}
+%   \item If $m \ge 2$ then the multiplicative order of $4 b + 1$  modulo $2^m$ is equal to
+%     $$
+%     \frac{2^{m - 2}}{\gcd(b, 2^{m - 2})} \,. 
+%     $$
+%   \item If $m \ge 3$ then the multiplicative order of $4b - 1$ modulo $2^m$ is equal to
+%     $$
+%     \frac{2^{m - 2}}{\gcd(b, 2^{m - 3})} \,. 
+%     $$
+%   \end{enumerate}
+% \end{theorem}
+
+
+\begin{theorem} \label{thm:order-trois-mod-4}
+  Let $a \in \bZ$ and let $m \in \bN$ be such that be such that $a$ is odd and $a \not\equiv -1 \pmod{2^m}$.
+  The multiplicative order of $a$ modulo $2^m$ is equal to that of $- a$.
+\end{theorem}
+
+
+
+
+
+\begin{proof}
+  Put $d = \gcd(a - 1, 2^{m - 1})$
+  Let us first assume $a \equiv - 1 \pmod{2^m}$.  
+  Then, $\gcd(a + 1, 2^{m - 1}) $
+
+   for each $x \in \bZ$.
+  Since $4$ divides $- a - 1 = - (a + 1)$,
+  Theorem~\ref{thm:order-un-mod-4} ensures that the multiplicative order of $- a$ modulo $2^m$ is equal to
+  $2^m \mathbin{/} d(- a)$.
+  Since $\gcd(x, y) = \gcd(- x, y)$ for every $x$, $y \in \bZ$, we have $d(- a) = \gcd(a + 1, 2^m)$.
+  It remains to prove that the multiplicative order of
+  Since  $d(- a) = 2^m$ 
+\end{proof}
+
+$$
+\frac{b^n - a^n}{b - a} =  \sum_{k = 0}^{n - 1}a^k b^{n - 1 - k} 
+$$
+$$
+\frac{{(a + p)}^{p - 1} - a^{p - 1}}{p}  =  \sum_{k = 0}^{p - 2} {(a +  p)}^k a^{p - 2 - k}
+$$
+
+$$
+\frac{a^{p - 1} - 1}{p} = \frac{a - 1}{p} \sum_{k = 0}^{p - 2} a^k 
+$$
+
+$$
+(p - 2) a^{p - 2} = 
+$$
+
+$$
+a^{p - 1}  = 1 + k p^2 
+$$
+
+\begin{theorem}
+  Let $a \in \bZ$ and let $n$, $p \in \bN$.
+  If $p$ is prime and if $p$ divides $S(p, a)$ then $p$ divides $a - 1$.
+  \end{theorem}
+
+  \begin{proof}
+  Assume that $p$ is prime.
+  Straightforward computations yield
+  $$(a - 1) (S(p, a) - 1) = a^p - a$$
+  and
+  Fermat's little theorem ensures that $p$ divides $a^p - a$.
+  Therefore, $p$ divides $a - 1$ or $p$ divides $S(p, a) - 1$.
+  Besides, the latter cannot happen if $p$ divides $S(p, a)$.
+\end{proof}
+
+
+\begin{theorem}
+  Let $a \in \bZ$ and let $n \in \bNast$.
+  \begin{enumerate}
+  \item If $a$ is even or if $n$ is odd then $S(n, a)$ is odd.
+  \item If $a$ is odd and if $n$ is even then $\nu(S(n, a)) = \nu(n) + \nu(a + 1) - 1$.
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  First, assume that $a$ is even.
+  Then, $a^n - 1$ is odd.
+  Besides, $S(n, a)$ divides $a^n - 1$.
+  Therefore, $S(n, a)$ is odd.
+
+  Second, assume that both $a$ and $n$ are odd.
+  Then, every power of $a$ is odd.
+  Besides, $S(n, a)$ can be written as the sum of $n$ powers of~$a$.
+  Therefore, $S(n, a)$ is odd as the sum of an even number of odd numbers.
+
+
+  Third and last, assume that $a$ is odd and that $n$ is even.
+  Then, $4$ divides $(a + 1)(a - 1) = a^2 - 1$,
+  and thus Theorem~\ref{thm:val-adic} ensures
+  $$
+  \nu(S( n \mathbin{/} 2, a^2)) = \nu ( n  \mathbin{/} 2 ) = \nu(n)  - 1  \, .
+  $$
+  Besides, $S(n, a)$ can be written as 
+  $$
+  S(n, a) = S( n  \mathbin{/} 2, a^2) (a + 1) \, . 
+  $$
+  It follows
+  $$
+  \nu(S(n, a)) =  \nu(S( n \mathbin{/} 2, a^2)) + \nu(a + 1) =\nu(n) + \nu(a + 1) - 1 \, .
+  $$
+\end{proof}
+
+
+
+\begin{theorem}
+  For every $m \in \bNast$ and every $a \in \bZ$, 
+  $m$ divides $S(m, a)$  if, and only if, $m$ divides $a^m - 1$.
+\end{theorem}
+
+\begin{proof}
+  The ``only if part'' is trivial.
+  Assume that  $m$ divides $S(m, a)$
+\end{proof}
+
+
+Assume that  $m$ and $\phi(m)$ are coprime.
+Let $a \in \bZ$ be such that $m$ divides $S(m, a)$.
+In particular, $m$ divides $a^m - 1$.
+There exist $u$, $v \in \bZ$ such that 
+$$
+u m + v \phi(m) = 1
+$$
+
+$$
+a^m 
+$$
+$m$ divides $a^m - 1$
+
+Assume that $m$ and $\phi(m)$ are not coprime.
+Then, there exists a prime number $p$ such that $p$ divides $\gcd(m, \phi(m))$,
+and subsequently,
+Cauchy's theorem ensures that there exists $a \in \bZ$ such that the multiplicative order of $a$ modulo $m$ equals~$p$.
+Let $n \in \bN$ be such that $m = np$.
+$$
+(a - 1) S(m, a) = a^m - 1
+$$
+
+$p$ divides $a - 1$
+
+Assume there exists $a \in \bZ$ such that $m$ does not divide $a - 1$ and $m$ divides $S(m, a)$.
+Then there exists a prime number $p$ such that $p$ divides $m$ and $p$ does not divide $a - 1$
+
+
+\begin{exercise}
+   Assume that $p$ is not prime.
+    Prove that $a$ can be chosen in such a way that $p$ divides $S(p, a)$
+    Does every prime factor of $p$ divides $a - 1$?
+\end{exercise} 
+
+
+\begin{solution}
+  Therefore, the first part of the exercise is complete.
+  Let us now deal with the second part.
+  Assume 
+  Let $a \in \bZ$ and let $p \in \bN$ be such that
+  $p$ is even, $p$ is not a power of $2$,  and $p$ divides $a + 1$:
+  Let $a \in \bZ$ be such that  $a \equiv - 1 \pmod{p}$.
+  Let $n \in \bN$.
+  % Since $a \equiv -1 \pmod{p}$,
+  % we have
+  % $$
+  % S(n + 1, - 1) \equiv 1 - S(n, - 1) \pmod{p}
+  % $$
+  % for every $n \in \bN$,
+  % and thus
+  
+  % Since $p$ is even, $S(p, -1) =  \frac{1}{2}{(- 1)}^p - 1}$
+  Since 
+  $$
+  S(n, -1) = \frac{{(- 1)}^n - 1}{2}
+  $$
+  and since 
+  $$S(n, - 1) \equiv S(n, a) \pmod{p} \,, $$
+  we have
+  $$
+  S(n + 2, a) \equiv S(n) \pmod{p} 
+  $$
+  However, at least one prime factor of $p$ does not divide $a - 1$ because  
+  $p$ is not a power of $2  = \gcd(p, a - 1)$.
+\end{solution}
+
+
+$$
+(a - 1) S(n, a) = (1 - a^n)
+$$
+
+
+
+
+\begin{theorem}
+  Let $a \in \bZ$ and let $n \in \bNast$.
+  If $4$ divides $a - 1$ then the multiplicative order of $a$ modulo $2^n$ is equal to 
+ 
+\end{theorem}

@@ -1,0 +1,154 @@
+% -*- mode: latex; eval: (flyspell-mode 1); ispell-local-dictionary: "american"; TeX-master: "preambule"; -*-
+
+\section{proof of the main theorem}
+
+
+   $S(0, \ttx) = 0$, $S(1, \ttx) = 1$, $S(2, \ttx) = 1 + \ttx$, $S(3, \ttx) = 1 + \ttx + \ttx^2$.
+
+   $$
+   S(n + 1, \ttx) = \ttx S(n, \ttx) + 1
+   $$
+
+   $$
+   S(mn, \ttx) = S(m, \ttx^n) S(n, \ttx)
+   $$
+
+  
+ 
+   \begin{theorem} \label{thm:p-odd-pcarre}
+   Let $p \in \bN$ and let $q \in \bZ$.
+   If $p$ is odd or if $q$ is even then
+   \begin{equation} \label{eq:Spa-mod-psquare}
+     S(p, 1 + pq) \equiv p \pmod {p^2}\, .
+   \end{equation}
+   \end{theorem}
+
+
+   \begin{proof}
+    Equation~\eqref{eq:Spa-mod-psquare} holds trivially true if $p = 1$,
+    so we may assume $p \ge 3$.
+    Put 
+    $$
+    f(\ttx) = \sum_{k = 3}^p \binom{p}{k} \ttx^{k - 3} \, .
+    $$
+    The binomial theorem yields
+   $$
+   {(1 + \ttx)}^p =  1 + p \ttx + \frac{p(p - 1)}{2} \ttx^2 +  \ttx^3 f(\ttx) \,, 
+   $$
+   whence
+   $$
+   S(p, 1 + \ttx) = \frac{{(1 + \ttx)}^p - 1}{\ttx} = p + \frac{p(p - 1)}{2} \ttx + \ttx^2 f(\ttx) \,, 
+   $$
+   and subsequently,
+   $$
+   S(p, 1 + p \ttx) = p + p^2 \frac{p - 1}{2} \ttx + p^2  \ttx^2 f(p\ttx)  \,.
+   $$
+   Therefore, $p^2$ divides every coefficient of $S(p, 1 + p \ttx) - p$.
+   Now, by letting  $\ttx = q$, we obtain that $p^2$ divides $S(p, 1 + p q) - p$,
+   whence Equation~\eqref{eq:Spa-mod-psquare} holds true.
+ \end{proof}
+
+ Let $p$ be a prime.
+ For every $s$, $n \in \bZ$, 
+ $\nu_p(s - n) > \nu_p(n)$ implies $\nu_p(s) = \nu_p(n)$.
+ The converse holds true if $p = 2$ and $n \ne 0$.
+
+ \begin{theorem} \label{thm:val-adic}
+   Let  $n \in \bNast$ and let $q \in \bZ$.
+   \begin{enumerate}
+   \item The $2$-adic valuation of $S(n, 1 + 4 q)$ is equal to that of~$n$.
+   \item For each prime $p$, the $p$-adic valuation of $S(n, 1 + p q)$ is equal to that of~$n$.
+   \end{enumerate} 
+ \end{theorem}
+
+ $$
+ S(p n, a) = S(p, a^n) S(n, a) 
+ $$
+
+ $$
+ S(np, a) - pn = (S(n, a) - n) p + S(n, a) (S(p, a^n) - p) 
+ $$
+ $$
+ \nu_p(S(n, a) - n) > \nu_p(n) 
+ $$
+ $$
+ \nu_p((S(n, a) - n) p) > \nu_p(np) 
+ $$
+ $$
+\nu_p( S(n, a) (S(p, a^n) - p) ) = \nu_p(S(n, a)) + \nu(S(p, a^n) - p) \ge \nu_p(np) = 
+ $$
+ $$
+ \nu_p(S(pn, a) - pn) 
+ $$
+
+ % The $p$-adic valuation of $\nu_p(S(pn, a) - pn) is larger than $S(n, a) - n$
+ % $p^{k + 1}$ divides $S(pn, a) - pn$
+ 
+ \begin{proof}
+   We prove both parts at once.
+   Put $T(k, \ttx)  = S(k, \ttx) - k$ for each $k \in \bNast$.
+   Let $p$ be a prime factor of $a - 1$.
+   Assume that $p$ is odd or that $4$ divides $a - 1$.
+   Our task is to prove
+   \begin{equation}  \label{eq:val-adic:nup}
+   \nu_p(T(n, a)) > \nu_p(n) \, . 
+   \end{equation}
+   We proceed by induction on the total number of prime factors of~$n$.
+
+   First, assume that $n$ has no prime factors.
+   Then, we have $n = 1$, and consequently, $T(n, a)  = 1 - 1 = 0$.
+   It follows $\nu_p(n) = 0 < \infty = \nu_p(T(n, a))$,
+   and thus Equation~\eqref{eq:val-adic:nup} holds true.
+
+   Second, assume $n = p = 2$.
+   Then, we have
+   $\nu_p(n) = \nu_2(2) = 1$
+   and 
+   $T(n, a) = S(2, a) - 2 = a + 1 - 2 = a - 1$.
+   Moreover, $4$ divides $a - 1$ because $p$ is not odd,
+   whence $\nu_p(T(n, a)) = \nu_2(a - 1) > 1$.
+   Therefore, Equation~\eqref{eq:val-adic:nup} holds true.
+
+   Third, assume $n = p \ne 2$.
+   Then,
+   we have $\nu_p(n) = \nu_p(p) = 1$
+   and
+   Theorem~\ref{thm:p-odd-pcarre} ensures that Equation~\eqref{eq:Spa-mod-psquare} holds true.
+   Besides, the latter is equivalent to $\nu_p(T(n, a)) \ge 2$.
+   Therefore, Equation~\eqref{eq:val-adic:nup} holds true.
+
+   Fourth, every power of $a$ is congruent to $1$ modulo $p$
+   and
+   $S(n, a)$ can be written as the sum of $n$ powers of $a$.
+   It follows $S(n, a) \equiv n \pmod {p}$, or equivalently, $\nu_p(T(n, a)) \ge 1$.
+   Therefore, Equation~\eqref{eq:val-adic:nup} holds true whenever $p$ does not divide~$n$.
+ 
+   At this point of our discussion,
+   we have proven that Equation~\eqref{eq:val-adic:nup} holds true if $n = 1$ or if $n$ is prime,
+   so it only remains to deal with the case where $n$ is composite.
+   Assume that there exist $m$, $m' \in \bNdeux$ such that $n = mm'$.
+   Put $\mu = \nu_p(m)$ and $\mu' = \nu_p(m')$: $\mu\mu' = \nu_p(n)$.
+   $$
+   \nu(T(m, a)) > \mu
+   $$
+   $$
+   \nu(S(m, a) = \mu
+   $$
+   $$
+   \nu(T(m', a^m)) > \mu'
+   $$
+   $$
+   \nu(T(m, a) m') > \mu + \mu' 
+   $$
+   $$
+   T(mm', a) = T(m, a) m' +  S(m, a) T(m', a^m) 
+   $$
+ \end{proof}
+
+   $$
+   S(nn', 1 + p \ttx) 
+   =
+   S(n, 1 + p \ttx)  S(n', {(1 + p \ttx)}^n)
+   $$
+
+ 
