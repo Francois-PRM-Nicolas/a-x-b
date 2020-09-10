@@ -14,10 +14,13 @@
 \newcommand{\bN}{\mathbb{N}} %{\bZ_{\ge 0}}
 \newcommand{\bNast}{ \bZ_{> 0}} %{\bN \setminus \{ 0 \}}
 \newcommand{\bNdeux}{\bZ_{\ge 2}}
+\newcommand{\bNtrois}{\bZ_{> 2}}
 
 
 
 \newcommand{\seg}[2]{\left\llbracket#1, #2 \right\rrbracket}
+
+\newcommand{\RS}{\mathrm{RS}}
 
 
 
@@ -30,6 +33,157 @@
 \newenvironment{solution}{\begin{proof}[Solution.]}{\end{proof}}
 
 \begin{document}
+
+\begin{theorem} \label{thm:ax+b-solution-S}
+  Let $a$, $b \in \bZ$ and let $\left( u_n \right)_{n \in \bN} \in \bZ^{\bN}$.
+  Equality $u_{n + 1} = a u_n + b$ holds true for every $n \in \bN$
+  if, and only if,
+  equality
+  $$
+  u_n = S(n, a) ((a - 1) u_0 + b)  + u_0
+  $$
+  holds true for every $n \in \bN$.
+\end{theorem}
+
+Let $m \in \bZ$ and let $X \subseteq \bZ$.
+% Let $\equiv$ denote the congruence relation modulo~$m$.
+We say that $X$ is a \emph{complete residue system (CRS) modulo $m$}
+if for each $y \in \bZ$, there exists a unique $x \in X$ such that $y \equiv x \pmod{m}$.
+If $m \ne 0$ then the cardinality of every CRS modulo $m$ is equal to $| m |$.
+If $m = 0$ then $\bZ$ is the unique CRS modulo~$m$.
+Put
+$$
+\RS(a) = \left\{ S(n, a) : n \in \bNast \right\}
+$$
+for each $a \in \bZ$.
+
+\begin{theorem} \label{thm:contains-CRS-implies-rho-divides-m}
+  For every $a$, $m \in \bZ$ such that $\RS(a)$ contains a CRS modulo $m$,
+  $m$ is non-zero and $\rho'(m)$ divides $a - 1$.
+\end{theorem}
+
+
+
+
+\begin{theorem} \label{thm:p-divides-a-1}
+  For every $a$, $p \in \bZ$ such that $p$ is prime and $\RS(a)$ contains a CRS modulo $p$,
+  $p$ divides $a - 1$.  
+\end{theorem}
+
+\begin{proof}
+  Let $\equiv$ denote the congruence relation modulo~$p$.
+%  Without loss of generality, we may assume $| p | \ne 1$.
+  Assume that $\RS(a)$ contains a CRS modulo $p$ and
+  that $p$ and $a - 1$ are coprime.
+  Then, there exists $i \in \bNast$ such that $S(i, a) \equiv 0$,
+  there exists $b \in \bZ$ such that $(a - 1)b \equiv 1$, and subsequently,
+  there exists $j \in \bNast$ such that $S(j, a) \equiv - b$.
+  On the one hand, we have
+  $$
+  -  S(i - 1, a) a = 1 - S(i, a) \equiv 1 
+  $$
+  whence $p$ and $a$ are coprime.
+  On the other hand, we have 
+  $$
+  a^j  - 1 =  (a - 1) S(j, a) \equiv (a - 1) (- b) \equiv - 1 \,,
+  $$
+  whence $a^j \equiv 0$, or equivalently, $p$ divides $a^j$.
+  Therefore, $p$ is not prime.
+\end{proof}
+
+\begin{theorem}
+  For each $a \in \bZ$ such that $\RS(a)$ contains a CRS modulo $4$,
+  $4$ divides $a - 1$.
+\end{theorem}
+
+\begin{proof}
+  Let $\equiv$ denote the congruence relation modulo~$4$.
+  A straightforward induction on $n$ yields
+  for every $n \in \bN$.
+  It follows $\RS(- 1) = \{ 0, 1 \}$
+,
+  and thus $\RS(- 1)$ does not contain any CRS modulo~$4$.
+  Therefore, if $a \equiv - 1$ then $S(n, a) \equiv 0$ or $S(n, a) \equiv 1$ for every $n \in \bN$.
+  It follows $a \equiv - 1$ implies 
+  Assume that $\RS(a)$ contains a CRS modulo~$4$.
+  Then, Theorem~\ref{thm:p-divides-a-1} ensures that $a - 1$ is even,
+  whence $a \equiv 1$ or $a \equiv  - 1$.
+   
+\end{proof}
+
+
+
+
+\begin{theorem} \label{thm:a-invertible-m}
+  Let $a$, $b \in \bZ$, let $m \in \bNtrois$, and let $\left( u_n \right)_{n \in \bN} \in \bZ^{\bN}$ be such that
+  $u_{n + 1} = a u_n + b$ for every $n \in \bN$
+  and
+  $\left\{ u_n : n \in \bN \right\} $ contains a complete residue system modulo~$m$.
+  Then, $a$ and $m$ are coprime.
+\end{theorem}
+
+\begin{proof}
+  Since $m$ is larger than $2$,
+  $b - 1$ and $b + 1$ are not congruent modulo $m$, 
+  and thus there exists $\varepsilon \in \{ - 1, + 1 \}$ such that $u_0 \not\equiv b + \varepsilon \pmod{m}$.
+  Since  $\left\{ u_n : n \in \bN \right\} $ contains a complete residue system modulo $m$,
+  there exists $k \in \bN$ such that $u_k \equiv b + \varepsilon \pmod{m}$.
+  By construction, $k$ is positive, whence  $u_k = a u_{k - 1} + b$.
+  It follows $a  u_{k - 1}  \equiv  \varepsilon  \pmod{m}$
+  or equivalently,
+  $a  u_{k - 1} \varepsilon  \equiv  1  \pmod{m}$.
+  Therefore, $a$ is invertible modulo $m$,
+  or equivalently,
+  $a$ and $m$ are coprime.
+\end{proof}
+
+\begin{theorem}
+  Let the notation be as in Theorem~\ref{thm:a-invertible-m}.
+  For every $i$, $j \in \bN$,
+  $u_i \equiv u_j \pmod{m}$ is equivalent to $i \equiv j \pmod{m}$. 
+\end{theorem}
+
+\begin{proof}
+  Let $G$ denote the set of those $k \in \bZ$ such that
+  for which there exist $i$, $j \in \bN$ such that
+   $i - j = k$ implies $u_i \equiv u_j \pmod{m}$.
+\end{proof}
+
+  
+
+\begin{theorem} \label{thm:m-odd-prime-divides-a-1}
+  Let the notation be as in Theorem~\ref{thm:a-invertible-m}.
+  Then, $m$ and $a - 1$ are not coprime.
+\end{theorem}
+
+\begin{proof}
+  Put $v_n = (a - 1) u_n + b$ for each $n \in \bN$ and $V = \left\{ v_n : n \in \bN \right\}$.
+%  If $a - 1$ and $m$ are coprime then $V$ contains a complete residue system modulo~$m$.
+ % Therefore, it suffices to check that $V$ does not contain any complete residue system modulo~$m$.
+  For each $n \in \bN$, straightforward computations yield
+  $$
+  v_{n + 1}  = (a - 1)(a u_n + b) + b = a ((a - 1) u_n + b) = a v_n \,, 
+  $$
+  whence $v_n = a^n v_0$ for every $n \in \bN$.
+  First, assume that $v_0$ and $m$ are coprime.
+  Since $a$ and $m$ are coprime by Theorem~\ref{ },
+  $v_n$ and $m$ are coprime for every $n \in \bN$,
+  and thus $V$  does not contain any complete residue system modulo~$m$.
+  Now, assume that $v_0$ and $m$ are not coprime.
+  Then, we have $v_n \not \equiv 1 \pmod{m}$ for every $n \in \bNast$.
+  
+  
+
+\end{proof}
+
+\begin{theorem}
+  Let the notation be as in Theorem~\ref{thm:a-invertible-m}.
+  If $m = 4$ then $4$ divides $a - 1$.
+\end{theorem}
+
+\begin{proof}
+\end{proof} 
+
 
 \include{maintheorem}
 
@@ -720,3 +874,15 @@ $$
 
 
 \end{document}
+
+% three equivalent properties:
+% \begin{enumerate}
+% \item
+
+% \item
+%   The cardinality of $X$ is not greater than $| m |$ and,
+%   for each $y \in \bZ$, there exists at least one $x \in X$ such that $y \equiv x \pmod{m}$.
+% \item
+%   The cardinality of $X$ is not less than $| m |$ and,
+%   for every $x$, $x' \in X$, $x \equiv x' \pmod{m}$ implies $x = x'$.
+% \end{enumerate}

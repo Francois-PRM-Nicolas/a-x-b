@@ -13,40 +13,98 @@
    S(mn, \ttx) = S(m, \ttx^n) S(n, \ttx)
    $$
 
-  
- 
-   \begin{theorem} \label{thm:p-odd-pcarre}
+   
+
+   Theorem~\ref{thm:p-odd-pcarre} is merely a lemma.
+
+ \begin{theorem} \label{thm:p-odd-pcarre}
    Let $p \in \bN$ and let $q \in \bZ$.
    If $p$ is odd or if $q$ is even then
    \begin{equation} \label{eq:Spa-mod-psquare}
      S(p, 1 + pq) \equiv p \pmod {p^2}\, .
    \end{equation}
-   \end{theorem}
+ \end{theorem}
 
 
-   \begin{proof}
-    Equation~\eqref{eq:Spa-mod-psquare} holds trivially true if $p = 1$,
-    so we may assume $p \ge 3$.
-    Put 
-    $$
-    f(\ttx) = \sum_{k = 3}^p \binom{p}{k} \ttx^{k - 3} \, .
-    $$
-    The binomial theorem yields
+ \begin{proof}
+   Put 
    $$
-   {(1 + \ttx)}^p =  1 + p \ttx + \frac{p(p - 1)}{2} \ttx^2 +  \ttx^3 f(\ttx) \,, 
+   f(\ttx) = \sum_{k = 3}^p \binom{p}{k} \ttx^{k - 3} 
+   $$
+   and
+   $$
+   u =  \frac{(p - 1)q}{2}  + q^2 f(p q) \,.
+   $$
+   Note that $f(\ttx) \in \bZ[\ttx]$ and $u \in \bZ$.
+   Equation~\eqref{eq:Spa-mod-psquare} holds trivially true if $p \in \{ 0, 1 \}$,
+   so we may assume $p \ge 2$.
+     Then, the binomial theorem yields
+   $$
+   {(1 + \ttx)}^p
+   =
+   1 + p \ttx + \frac{p(p - 1)}{2} \ttx^2 + \ttx^3 f(\ttx) \,, 
    $$
    whence
    $$
-   S(p, 1 + \ttx) = \frac{{(1 + \ttx)}^p - 1}{\ttx} = p + \frac{p(p - 1)}{2} \ttx + \ttx^2 f(\ttx) \,, 
+   S(p, 1 + \ttx)
+   =
+   \frac{{(1 + \ttx)}^p - 1}{\ttx}
+   =
+   p + \frac{p(p - 1)}{2} \ttx + \ttx^2 f(\ttx) \,.
    $$
-   and subsequently,
-   $$
-   S(p, 1 + p \ttx) = p + p^2 \frac{p - 1}{2} \ttx + p^2  \ttx^2 f(p\ttx)  \,.
-   $$
-   Therefore, $p^2$ divides every coefficient of $S(p, 1 + p \ttx) - p$.
-   Now, by letting  $\ttx = q$, we obtain that $p^2$ divides $S(p, 1 + p q) - p$,
-   whence Equation~\eqref{eq:Spa-mod-psquare} holds true.
+   It follows $S(p, 1 + p q) =  p + u p^2$,
+   and thus Equation~\eqref{eq:Spa-mod-psquare} holds true.
  \end{proof}
+
+ 
+ \begin{theorem} \label{thm:p-odd-pk}
+   Let $k$, $n$, $p \in \bN$ and let $q \in \bZ$.
+   If $p$ is odd or if $q$ is even then
+   \begin{equation} \label{eq:Spa-mod-pk}
+     S(n p^k, 1 + p q) \equiv n p^k \pmod {p^{k + 1} } \,.
+   \end{equation}
+ \end{theorem}
+
+
+ \begin{proof}
+   We proceed by induction on~$k$.
+   Put $a = 1 + p q$,  $m = n p^k$, and $q' = q S(m, a)$.
+   Every power of $a$ is congruent to $1$ modulo $p$
+   and
+   $S(n, a)$ can be written as the sum of $n$ powers of~$a$.
+   It follows $S(n, a) \equiv n \pmod {p}$, whence
+   Equation~\eqref{eq:Spa-mod-pk} holds true for $k = 0$.
+
+   Since  
+   $$
+   a^m - 1 = (a - 1) S(m, a) 
+   $$
+   we have 
+   $$
+   a^m  = 1 + p q'  \,, 
+   $$
+   and thus
+   
+   Now, assume that Equation~\eqref{eq:Spa-mod-pk} holds true for some $k \in bN$.
+   Then, $p^{k + 1}$ divides $S(m, a) - m$.
+   Since
+   $$
+   S(m p, a) = S(m, a) S(p, a^m) \, , 
+   $$
+   $$
+   S(m p, a) - m p = (S(m, a) - m) p + S(m, a)(S(p, a^m) - p) 
+   $$
+
+   $$
+   S(p m, a) - p m = S(p, a^m)(S(m, a) - m) + (S(p, a^m) - p) m
+   $$
+   
+   $$
+   \nu_p(S(m p, a) - m p) \ge  \min \left\{ 1 + \nu_p(S(m, a) - m), 2 + \nu_p(m)  \right\}
+   $$
+ \end{proof}
+   
+
 
  Let $p$ be a prime.
  For every $s$, $n \in \bZ$, 
@@ -54,10 +112,10 @@
  The converse holds true if $p = 2$ and $n \ne 0$.
 
  \begin{theorem} \label{thm:val-adic}
-   Let  $n \in \bNast$ and let $q \in \bZ$.
+   Let $n \in \bNast$ and let $q \in \bZ$.
    \begin{enumerate}
+   \item For each odd prime $p$, the $p$-adic valuation of $S(n, 1 + p q) - n$ is larger than that of~$n$.
    \item The $2$-adic valuation of $S(n, 1 + 4 q)$ is equal to that of~$n$.
-   \item For each prime $p$, the $p$-adic valuation of $S(n, 1 + p q)$ is equal to that of~$n$.
    \end{enumerate} 
  \end{theorem}
 
@@ -66,8 +124,9 @@
  $$
 
  $$
- S(np, a) - pn = (S(n, a) - n) p + S(n, a) (S(p, a^n) - p) 
+ S(np, a)  - np =  S(n, a) (S(p, a^n) - p) + (S(n, a) - n) p
  $$
+
  $$
  \nu_p(S(n, a) - n) > \nu_p(n) 
  $$

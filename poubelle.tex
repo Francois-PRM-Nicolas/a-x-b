@@ -1,0 +1,132 @@
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "preambule"
+%%% End:
+
+
+
+
+\begin{proof}
+  Since $0$ divides $0 = S(0, a)$,  we may assume $m \ge 1$ and proceed by induction on $\Omega(m)$.
+  Since  $\Omega(m) = 0$ is equivalent to $m = 1$ and since $1$ divides every integer,
+  the basis of the induction holds.
+  Let us now assume  $\Omega(m) \ge 1$.
+  Then, there exist $m'$, $p \in \bN$  such that  $p$ is prime and $m = m' p$.
+  Since every prime factor of $m'$ is a prime factor of $m$ and since every prime factor of , the induction hypothesis ensures that $n$ divides $S(n, a)$.
+  Moreover, if $p$ is odd then 
+  $$
+  S(n n', a) = S(n, a) S(n', a^n)
+  $$
+\end{proof}
+
+
+$p$ divides $f(0)$
+
+$$
+\frac{f(p) - f(0)}{p}
+$$
+
+
+ \begin{exercise}  \label{exo:n-odd-carre}
+   Let $a \in \bZ$ and let $p \in \bN$.
+   Assume that $p$ is odd and that $p$ divides $a  - 1$.
+   Prove $S(p, a) \equiv p \pmod {p^2}$.
+ \end{exercise}
+ 
+ \begin{proof}
+   Let us first consider the case where $a - 1$ is even.
+   Then, $2p$ divides $a - 1$, and thus Theorem~\ref{thm:n-even-ncarre} yields the desired congruence.
+   Let us now consider the case where $a - 1$ is odd.
+   Then, $a + p^2 - 1$ is even, and thus the previous discussion ensures $S(n, a + p^2) \equiv p \pmod {p^2}$.
+   Besides, $S(p, a + \ttx)$ is a polynomial with integer coefficients,
+   whence $S(p, a) \equiv S(p, a + p^2) \pmod{p^2}$.
+   Therefore, the desired congruence  holds true.
+ \end{proof}
+ 
+
+ \begin{theorem} \label{thm:2p-p-adic}
+   Let $a \in \bZ$ and let $p$ be a prime such that $2p$ divides $a - 1$.
+   For each $n \in \bNast$, the $p$-adic order of $S(n, a)$ is equal to that of~$n$.
+ \end{theorem}
+
+ \begin{proof}
+   Let $\nu$ denote the $p$-adic order of~$n$.
+   We proceed by induction on $\nu(n)$.
+   Theorem~\ref{th:div-a-div-S-div-n} ensures that $\nu(n) = 0$ is equivalent to  $\nu(S(n, a)) = 0$,
+   so the basis of our induction holds.
+   Let us now assume $\nu(n) \ge 1$.
+   Put $m =  p^{-1} n$.
+   The induction hypothesis yields
+   $$
+   \nu(S(m, a)) = \nu(n) - 1 \, .
+   $$
+%   because $\nu(n p^{-1})$ is one less than $\nu(n)$ and every factor of $a - 1$ is a factor of $a^p - 1$.
+   Moreover, we have 
+   $$
+   S(n, a) = S(p, a^m) S(m, a) 
+   $$
+   and Theorem~\ref{thm:n-odd-ncarre} yields 
+   $$\nu(S(p, a^m)) = 1 \, .$$
+   It follows
+   $$
+   \nu(S(n, a))
+   = \nu(S(p, a^m)) + \nu(S(m, a))
+   = 1 + (\nu(n) - 1)
+   = \nu(n) \,, 
+   $$
+   as desired.  
+ \end{proof}
+
+ \begin{exercise} \label{exo:p-p-adic}
+   Let $a \in \bZ$ and let $p$ be a odd prime factor of $a - 1$.
+   Prove that for each $n \in \bN$, the $p$-adic order of $S(n, a)$ is equal to that of~$n$.
+ \end{exercise}
+
+ \begin{proof}
+   Let us first consider the case were $a - 1$ is even.
+   Then, $2p$ divides $a - 1$,
+   and thus Theorem~\ref{thm:2p-p-adic} ensures that the desired property holds true.
+   Let us now consider the case where $a - 1$ is odd.
+   Let $\nu$ denote the $p$-adic order of $n$ and let $a' = a + p^{\nu + 1}$.
+   By construction, $a' - 1$ is even,
+   so the previous discussion ensures that the $p$-adic order of $S(n, a')$ equals~$\nu$.
+   Besides, $S(n, a + \ttx)$ is a polynomial with integer coefficients,
+   whence $S(n, a') \equiv S(n, a) \pmod{p^{\nu + 1}}$.
+   Therefore, the $p$-adic order of $S(n, a)$ equals~$\nu$.   
+ \end{proof}
+ 
+ 
+
+   %  \item Let $\nu$ denote the $p$-adic order of $n$.
+   %   Prove $p^{-\nu} S(n, a) \equiv S(p^{- \nu} n, a) \pmod{p}$. 
+   % \end{enumerate} 
+
+
+$$
+S(n, a) - S(n', a) = {(a + 1)}^n S(n - n', a)
+$$
+
+$$
+d = \gcd(m, n)
+$$
+
+$$
+S(n, a) = S(d, a^{n/d}) S(n/d, a)
+$$
+
+ 
+$$
+\frac{S(n, a)}{d}  = \frac{1}{p} \frac{S(n, a)}{d} d
+% \frac{S(d, a^{n\mathbin{/}d})}{d}
+% \frac{S(n\mathbin{/}d, a)}{m \mathbin{/} d} 
+$$
+
+% Assume that $a - 1$ is odd.
+% Then, $m$ is odd and $a + m - 1$ is even.
+% Therefore, for each prime factor $p$ of $m$, $2p$ divides $a + m - 1$.
+
+% Assume that $a - 1$ is even and that $4$ does not divide $a - 1$.
+% The, for each prime factor $p$ of $m$, $2p$ divides $a + m - 1$.
+
+   
