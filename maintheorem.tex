@@ -13,48 +13,227 @@
    S(mn, \ttx) = S(m, \ttx^n) S(n, \ttx)
    $$
 
-   
+\cite{HullDobell62}   
 
-   Theorem~\ref{thm:p-odd-pcarre} is merely a lemma.
+Theorem~\ref{thm:p-odd-pcarre} is merely a lemma.
 
+\begin{theorem}
+  For every $m$, $n \in \bZ$ such that $\rho'(m)$ divides $n$,
+  $2 \rho(m)$ divides $n$ or $2 \rho(m)$ divides $m + n$.
+\end{theorem}
+
+\begin{proof}
+  % $\rho(m)$ divides $\rho(m) + $
+  % Assume $\nu(m) < \nu(n)$.
+  % Then $2 \rho(m)$ divides~$n$.
+  % If $\nu(m) = \nu(n)$ then  $\nu(m + n) > \nu(m)$ and $2 \rho(m)$ divides~$n$.
+  % If $\nu(m) < \nu(n)$ 
+  %Assume that $\rho'(m)$ divides~$n$.
+  % If $n$ is even then $2 \rho(m)$ divides~$n$.
+  % If $n$ is odd then $2 \rho(m)$ divides $m + n$.
+  % Assume that $\rho(m)$ is odd.
+  % If $n$ is even then 
+  % If $n$ is odd then
+ % Assume that $\rho'(m)$ divides~$n$.
+%  Then, $\rho(m)$ divides both $n$ and $m + n$.
+%  Assume that $m$ and $\rho(m)$ are odd.
+%  If $n$ is even then $2 \rho(m)$ divides~$n$.
+%  If $n$ is odd  then $2 \rho(m)$ divides $m + n$.
+  
+  % If $\rho(m)$ is even  divides $m$ 
+  % Assume that $\rho'(m) \ne 2 \rho(m)$ and that $\rho'(m)$ divides~$n$.
+%  Assume that $m$ is odd.
+  If $m$ is odd and if $n$ is even then $2 \rho(m)$ divides~$n$.
+  If both $m$ and $n$ are odd then $2 \rho(m)$ divides $m + n$.
+  If $4$ divides $n$ then $2 \rho(m)$ divides~$n$.
+  %If $4$ divides $m + n$ then $2 \rho(n)$ divides $m + n$.
+  Finally, assume that $m$ is even and that $4$ does not divide~$n$.
+  Then, $4$ does not divides $m$, $4$ divides $m + n$, and thus $2 \rho(m)$ divides $m + n$.
+\end{proof}
+
+\begin{theorem}
+  For each $r \in \bN$, there exists $f_r(\ttx) \in \bZ[\ttx]$ such that 
+  $$
+  {(1 + \ttx)}^r = 1 + r \ttx + \frac{r(r - 1)}{2} \ttx^2 + \ttx^3 f_r(\ttx) \, .
+  $$
+\end{theorem}
+
+\begin{proof}
+ 
+ 
+ 
+ \end{proof} 
+
+ \begin{theorem}
+   Let $a$, $r \in \bZ$ be such that $a$ and is invertible modulo~$r$.
+   For each $k \in \bN$, $a$ is invertible modulo~$r^k$.
+ \end{theorem}
+ 
+ \begin{proof}
+   By assumption, there exists $b \in \bZ$ such that $r$ divides $1 - ab$.
+      $(1 - ab)(1 - ab')  = 1 - a(b + b' - b b')$
+ \end{proof}
+ 
  \begin{theorem} \label{thm:p-odd-pcarre}
-   Let $p \in \bN$ and let $q \in \bZ$.
-   If $p$ is odd or if $q$ is even then
-   \begin{equation} \label{eq:Spa-mod-psquare}
-     S(p, 1 + pq) \equiv p \pmod {p^2}\, .
-   \end{equation}
+   For each $r \in \bN$,
+   $S(r, 1 + 2r)$ is congruent to $r$ modulo $r^2$.
  \end{theorem}
 
+ \begin{theorem} \label{thm:p-odd-pcarre}
+   For every $n \in \bN$ and every $b \in \bZ$,
+   $S(n, 1 + 2b)$ is congruent to $n$ modulo $\gcd(n, b) b$.
+ \end{theorem}
 
- \begin{proof}
-   Put 
+\begin{proof}
+   Put
+   $$
+   f(\ttx) = \sum_{k = 3}^{np} \binom{np}{k} \ttx^{k - 3} 
+   $$
+   and $k = n(np - 1) + 4 q f(2 p q)$.
+   By construction, $f(\ttx)$ lies in $\bZ[\ttx]$, $k$ is an integer, and the binomial theorem ensures 
+   $$
+   {(1 + \ttx)}^{np} = 1 + np \ttx + \frac{np(np - 1)}{2} \ttx^2 + \ttx^3 f(\ttx) \,.
+   $$
+   It follows
+   $$
+   S(np, 1 + \ttx) = \frac{{(1 + \ttx)}^{np} - 1}{\ttx} = np + \frac{np(np - 1)}{2} \ttx + \ttx^2 f(\ttx) \,,
+   $$
+   and consequently,
+   $$
+   S(np, 1 + 2pq) = np + \frac{np(np - 1)}{2}(2pq) + {(2pq)}^2f(2pq) = np + kp^2q \,. 
+   $$
+ \end{proof}
+
+   $$
+   \frac{S(np, 1 + 2pq)}{p} = n + kpq
+   $$
+
+   $$
+   S(np, 1 + 2pq) = (n + kpq) p = S(n, 1 + 2pq) S(p, 1 + 2pq) 
+   $$
+   
+ \begin{theorem} \label{thm:p-odd-pcarre}
+   For every $p \in \bN$ and every $q \in \bZ$,
+   $S(p, 1 + 2pq)$ is congruent to $p$ modulo $p^2q$.
+ \end{theorem}
+
+\begin{proof}
+   Put
    $$
    f(\ttx) = \sum_{k = 3}^p \binom{p}{k} \ttx^{k - 3} 
    $$
-   and
+   and $n = p - 1 + 4 q f(2 p q)$.
+   By construction, $f(\ttx)$ lies in $\bZ[\ttx]$,
+   $n$ is an integer, and
+   the binomial theorem ensures 
    $$
-   u =  \frac{(p - 1)q}{2}  + q^2 f(p q) \,.
+   {(1 + \ttx)}^p = 1 + p \ttx + \frac{p(p - 1)}{2} \ttx^2 + \ttx^3 f(\ttx)  \, .
    $$
-   Note that $f(\ttx) \in \bZ[\ttx]$ and $u \in \bZ$.
-   Equation~\eqref{eq:Spa-mod-psquare} holds trivially true if $p \in \{ 0, 1 \}$,
-   so we may assume $p \ge 2$.
-     Then, the binomial theorem yields
+   It follows
    $$
-   {(1 + \ttx)}^p
-   =
-   1 + p \ttx + \frac{p(p - 1)}{2} \ttx^2 + \ttx^3 f(\ttx) \,, 
+   S(p, 1 + \ttx) = \frac{{(1 + \ttx)}^p - 1}{\ttx} = p + \frac{p(p - 1)}{2} \ttx + \ttx^2 f(\ttx) \,,
    $$
-   whence
+   and consequently,
    $$
-   S(p, 1 + \ttx)
-   =
-   \frac{{(1 + \ttx)}^p - 1}{\ttx}
-   =
-   p + \frac{p(p - 1)}{2} \ttx + \ttx^2 f(\ttx) \,.
+   S(p, 1 + 2 pq) = p + \frac{p(p - 1)}{2} (2 p q) + {(2 p q )}^2 f(2 p q) = p + n p^2 q \,. 
    $$
-   It follows $S(p, 1 + p q) =  p + u p^2$,
-   and thus Equation~\eqref{eq:Spa-mod-psquare} holds true.
  \end{proof}
+ $$
+ S(pq, \ttx) =  S(p, \ttx^q) S(q, \ttx)   
+ $$
+ $$
+ (1 +  \ttx)^q   = 1 + \ttx S(q, 1 + \ttx)
+ $$
+ $$
+ S(pq, 1 + \ttx)
+ =  S(p, {(1 + \ttx)}^q) S(q, 1 + \ttx)
+ =  S(p, 1 + \ttx S(q, 1 + \ttx)) S(q, 1 + \ttx)
+ $$
+ \begin{theorem}
+ \end{theorem}
+ 
+ \begin{theorem}
+   Let $m$, $n \in \bZ$ and let $X$, $Y \subseteq \bZ$.
+   %Let $f \colon X \to \bZ$ such that $f(x)$ is invertible modulo $n$ for every $x \in X$.
+   If $X$ is a complete residue system modulo $m$ and
+   if $Y$ is a complete residue system modulo $n$
+   then
+   $x + m Y$ is a complete residue system modulo $mn$.
+ \end{theorem}
+ \begin{theorem}
+   Let $m$, $n \in \bZ$ and let $X$, $Y \subseteq \bZ$.
+   Let $f \colon X \to \bZ$ such that for each $x \in X$, $f(x)$ is invertible modulo~$n$.
+   If $X$ is a complete residue system modulo $m$ and
+   if $Y$ is a complete residue system modulo $n$
+   then
+   $$
+   \left\{ x +  f(x) y : (x, y) \in X \times Y \right\} 
+   $$
+ \end{theorem}
+
+ $$
+  \left\{ x + f(x) m y  \right\} 
+ $$
+
+ \begin{proof}
+%   Without loss of generality, we may assume that both $m$ and $n$ are non-negative. 
+   If $m = 0$ then $X + m Y = X = \bZ$ is the unique complete residue system modulo $0 = mn$.
+   Therefore, we may assume $m \ne 0$.
+   If $n \ne 0$ then the cardinality of $X + m Y$ is not greater than $|mn|$.
+   Therefore, it suffices to prove that for each $t \in \bZ$,
+   there exists $z \in X + m Y$ such that $t \equiv z \pmod{mn}$.
+   Let $t \in \bZ$.
+   Since $X$ is a complete residue system modulo $m$,
+   there exists $x \in X$ such that $t \equiv x \pmod{m}$.
+%   $f(x) - k n = m$
+   Since $Y$ is a complete residue system modulo $n$,
+   there exists $y \in Y$ such that $(t - x) m^{-1}  \equiv y \pmod{n}$.
+   Put $z = x + m y$.
+   By construction, $z$ satisfies $z \in X + m Y$ and $t \equiv z \pmod{mn}$.
+\end{proof} 
+ 
+
+ \begin{theorem}
+   Let $a \in \bZ$ and let 
+   For every $k \in \bN$ and every $r$, $y \in \bZ$, 
+   there exists $x \in \bZ$ such that $y = S(x, 1 + 2r) \pmod {r^k}$.  
+ \end{theorem}
+
+ \begin{proof}
+   $r = \rho(m)$, $r' = \rho'(m)$
+   $$
+   a_k = a^{r^k} 
+   $$
+
+   $$
+   a_{k + 1} = a_k^r 
+   $$
+
+   Every power of $a$ is congruent to $1$ modulo~$r'$.
+
+   $a \equiv 1 \pmod{r'}$
+   
+   $a_k \equiv 1 \pmod{r'}$ implies $a_{k + 1} \equiv 1 \pmod{r'}$.
+    
+   $$
+   S(r, a_k^n) S(n, a_k) = S(r n, a_k) = S(r, a_k) S(n, a_{k + 1})
+   $$
+
+   $$
+   \frac{S(r, a_k^n)}{r} S(n, a_k) = \frac{S(r, a_k)}{r} S(n, a_{k + 1})
+   $$
+
+   $$
+   a_{k + 1} - 1 = a_k^r - 1 = (a_k - 1) S(r, a_k) 
+   $$
+
+   $r^k$ divides $a_k  - 1$
+
+  
+ \end{proof}
+ 
+ 
+   
 
  
  \begin{theorem} \label{thm:p-odd-pk}
@@ -209,5 +388,3 @@
    =
    S(n, 1 + p \ttx)  S(n', {(1 + p \ttx)}^n)
    $$
-
- 

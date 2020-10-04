@@ -6,6 +6,31 @@
 
 
 
+ \begin{proof}
+      % Put
+   % $$
+   % g(\ttx) = 1 - r  \ttx - \frac{r(r - 1)}{2} \ttx^2
+   % $$
+   % and
+   % $$
+   % f(\ttx) =  {(1 + \ttx)}^r - g(\ttx)1 - r  \ttx - \frac{r(r - 1)}{2} \ttx^2
+   % $$
+   % Since $S(r, 1 + 2r) = r$ for each $r \in \{ 0, 1 \}$, we may assume $r \ge 2$.
+   Put
+   $$
+   f(\ttx) = \sum_{k = 3}^r \binom{r}{k} \ttx^{k - 3}
+   $$
+   and $q =  r - 1  +  4 f(2r)$.
+   By construction, $f(\ttx)$ lies in $\bZ[\ttx]$, $q$ is an integer, and the binomial theorem ensures 
+   $$
+   {(1 + \ttx)}^r = 1 + r \ttx + \frac{r(r - 1)}{2} \ttx^2 + \ttx^3 f(\ttx)  \, .
+   $$
+   It follows
+   $$
+   S(r, 1 + 2 \ttx) = \frac{{(1 + 2 \ttx)}^r - 1}{2 \ttx} = r + r(r - 1) \ttx + 4 \ttx^2 f(2 \ttx) \,,
+   $$
+   and consequently, $S(r, 1 + 2r) = r + q r^2$.
+ \end{proof}
 
 \begin{proof}
   Since $0$ divides $0 = S(0, a)$,  we may assume $m \ge 1$ and proceed by induction on $\Omega(m)$.

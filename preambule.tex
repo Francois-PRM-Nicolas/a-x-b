@@ -34,6 +34,15 @@
 
 \begin{document}
 
+\include{maintheorem}
+
+\cite{HullDobell62}   
+\cite{Knuth97}
+\bibliographystyle{plain}
+\bibliography{gen}
+
+\end{document}
+
 \begin{theorem} \label{thm:ax+b-solution-S}
   Let $a$, $b \in \bZ$ and let $\left( u_n \right)_{n \in \bN} \in \bZ^{\bN}$.
   Equality $u_{n + 1} = a u_n + b$ holds true for every $n \in \bN$
@@ -185,9 +194,8 @@ for each $a \in \bZ$.
 \end{proof} 
 
 
-\include{maintheorem}
 
- \include{additional}
+% \include{additional}
 
  For each $n \in \bZ \setminus \{ 0 \}$, let $\rho(n)$ denote the \emph{radical} of $n$:
  $\rho(n)$ largest square-free divisor of $n$,
@@ -869,8 +877,6 @@ $$
 $$
 S(\ttx)  = \ttx^{q - 1}  
 $$
-
-
 
 
 \end{document}
