@@ -6,12 +6,14 @@
 \usepackage{hyperref,amsthm,amsmath,amsfonts,enumerate,stmaryrd}
 
 \newcommand{\bZ}{\mathbb{Z}}
+\newcommand{\bR}{\mathbb{R}}
+\newcommand{\Rpos}{\left]0, \infty \right[}
 
 \newcommand{\ttx}{\mathtt{x}}
 \newcommand{\tty}{\mathtt{y}}
 
 
-\newcommand{\bN}{\mathbb{N}} %{\bZ_{\ge 0}}
+\newcommand{\bN}{\bZ_{\ge 0}}%
 \newcommand{\bNast}{ \bZ_{> 0}} %{\bN \setminus \{ 0 \}}
 \newcommand{\bNdeux}{\bZ_{\ge 2}}
 \newcommand{\bNtrois}{\bZ_{> 2}}
@@ -20,7 +22,6 @@
 
 \newcommand{\seg}[2]{\left\llbracket#1, #2 \right\rrbracket}
 
-\newcommand{\RS}{\mathrm{RS}}
 
 
 
@@ -34,26 +35,630 @@
 
 \begin{document}
 
-\include{maintheorem}
 
-\cite{HullDobell62}   
-\cite{Knuth97}
+
+$$
+S(n, a) = \sum_{k = 0}^{n - 1} a^k 
+$$
+
+$$
+a^n   = {(1 + p q)}^n = \sum_{k = 0}^n \binom{n}{k} p^k q^k
+$$
+$$
+a^n - 1 = n p q + \sum_{k = 2}^n \binom{n}{k} p^k q^k
+$$
+
+$$
+S(n, a) = \frac{a^n - 1}{a - 1} = \frac{1}{pq} (a^n - 1) = n + \sum_{k = 2}^n \binom{n}{k} p^{k - 1} q^{k - 1}
+$$
+
+$$
+p^{k - 1} \binom{n}{k} = \frac{n p^{k - 1}}{k} \binom{n - 1}{k - 1}
+$$
+
+\begin{lemma}
+  For every $k$, $p \in \bZ_{\ge 2}$,
+  $p^{k - 1} \le k$ is equivalent to $k = p = 2$.
+\end{lemma}
+
+\begin{proof}
+  Let $p \in \bZ_{\ge 2}$ be fixed.
+  If $k = 2$ then $p^{k - 1} \le k$ is clearly equivalent to $p = 2$.
+  It remains to prove $p^{k - 1} > k$ for every $k \in \bZ_{\ge 3}$. 
+  We proceed by induction on~$k$.
+  In the case where $k = 3$, we have $p^{k - 1} = p^2 \ge 2^2 = 4 > 3 = k$,
+  and thus the basis of our induction holds.
+  Now, let $k \in \bNast$.
+  Since $p$ is larger than $1$, $p^k$ is larger than $p^{k - 1}$.
+  It follows $p^k \ge p^{k - 1} + 1$ because both $p^k$ and $p^{k - 1}$ are integers.
+  Therefore, $p^{k - 1} > k$ implies $p^k > k + 1$,
+  and thus induction applies.
+ \end{proof} 
+
+$$
+2^i 
+$$
+$$
+2^{i + j} \ge 2^i + j  
+$$
+$i = 2$, $j = k - 3$
+$$
+2^{k - 1} \ge k + 1
+$$
+Since  
+If $k = 3$ then $p^{k - 1} = p^2 \ge 4 > 3$
+
+$$
+p^{k - 1} > k 
+$$
+$p^{k - 1} > k$
+$p^k > p k > k + 1$
+$$
+p^{pq - 2} = q 
+$$
+% $$
+% F(t + h) = p^h \frac{1}{1 + ht^{-1}} F(t) 
+% $$
+$$
+\frac{2}{k} 
+= \prod_{j = 3}^{k}  \frac{j - 1}{j}
+= \prod_{j = 3}^{k}  \left( 1 - j^{-1} \right)
+\ge  \left( \frac{2}{3} \right)^{k - 2} 
+$$
+
+$$
+\frac{p^{k - 1}}{k} = \frac{2^{k - 1}}{k} \ge \left( \frac{4}{3} \right)^{k - 2} > 1
+$$
+
+
+$$
+F(k, p)
+= \frac{p^k}{2}  \prod_{j = 3}^{k}  \frac{j - 1}{j}
+= \prod_{j = 2}^{k} p  \left( 1 - j^{-1} \right)
+= \frac{p}{2} \prod_{j = 3}^{k} p  \left( 1 - j^{-1} \right)
+$$
+
+If $p \ge 3$ and 
+
+$$
+p (1 - j^{-1}) \ge \frac{p}{2} 
+$$
+$$
+F(k, p) = \frac{p^{k - 1}}{k}
+$$
+
+$$
+\frac{F(k + 1, p)}{F(k, p)}
+=
+\frac{p}{1 + k^{-1}}
+\ge
+\frac{p}{1 + 2^{-1}}
+=
+\frac{2p}{3} \ge \frac{4}{3} > 1 
+$$
+
+$$
+F(k, p) > F(2, p) 
+$$
+
+$$
+F(k, p) > F(2, p) = \frac{p}{2} \ge 1
+$$
+
+
+
+If $k \ge 2$ 
+$$
+\frac{F(k + 1)}{F(k)} \ge \frac{2p}{3}  \ge \frac{4}{3} 
+$$
+\begin{proof}
+  Let $p \in \left]0, \infty \right[$ be fixed and let $f\colon \bR \setminus \{ 0 \} \to \bR$ be defined by:
+  $$
+  f(t) = \frac{p^{t - 1}}{t}
+  $$
+  for every $t \in \bR \setminus \{ 0 \}$.   
+  The derivative of $f$ is given by:
+  $$
+  f'(t) = \left( \ln p - \frac{1}{t} \right) f(t)
+  $$
+  for every $t \in \bR \setminus \{ 0 \}$.
+  In particular, $f'$ is positive on 
+If $p \ge 2$ and $t \ge 2$ 
+  $f(k) > p / 2$ for every $k \in \bZ_{\ge 2}$
+  
+  Assume $p \ge 2$ and $t \ge 2$
+  % $$
+  % \exp((t - 1) \ln p)
+  % $$
+  
+\end{proof} 
+
+$$
+S(n, a)  = \frac{a^n - 1}{a - 1}
+$$
+
+$$
+S(n, 1)  = n
+$$
+
+$$
+S(n + 1, a) = a S(n, a) + 1 
+$$
+
+$$
+S(0, a) = 0
+$$
+$$
+{(1 + 2p + p^2)}^n \equiv 1 + 2p n  \pmod{p^2}
+$$
+
+$$
+a^{2n} \equiv 1 + 2n (a - 1) \pmod{{(a - 1)}^2}
+$$
+\begin{lemma}
+  Let $m$, $a \in \bZ$ be such that $m \ne 0$ and $\rho'(m)$ divides~$a$.
+  There exists $a' \in \bZ$ such that both $4$ and $\rho(m)$ divides $a'$.
+\end{lemma}
+
+\begin{proof}
+\end{proof}
+
+
+$$
+S(p, a^n) 
+$$
+% $$
+% a^n = 1 + (a - 1) S(n, a)
+% $$
+$$
+a \equiv 1 \pmod{b}
+$$
+$$
+S(n, a) \equiv S(n, 1) = n \pmod{b} 
+$$
+$$
+S(n, a) b \equiv n b \pmod{b^2} 
+$$
+$$
+a^n = 1 + S(n, a) b \equiv 1 + n b \pmod{b^2} 
+$$
+$$
+S(p, a^n) \equiv S(p, 1 + nb) \pmod {b^2}
+$$
+
+
+\begin{proof}
+  Put
+  $$
+  a \equiv m \pmod{4} 
+  $$
+  $$
+  (m - 1)(m + 1)(a - m)
+  $$
+  $$
+  k = (m + 2)a 
+  $$
+  $$
+  a + k m 
+  $$
+
+  Put
+  $$
+  a' = \begin{cases}
+    a - m & \textrm{if $a \equiv m \pmod{4}$ and } \\
+    {(1 + m)}^2 a & \text{otherwise} \\
+    \end{cases} 
+  $$
+  % $$
+  % a' = \begin{cases}
+  %   {(1 + m)}^2 a & \text{if $4$ divides $a$ or if $m$ is odd and} \\
+  %   a + m & \text{otherwise.}
+  %   \end{cases} 
+  %   $$
+  Assume $a \not\equiv m \pmod{4}$.
+  Then, $m$ is odd or $4$ divides $a$.
+  Either way, $4$ divides ${(1 + m)}^2 a$.
+  Therefore, 
+  Since both $a - m$ and  ${(1 + m)}^2 a$ are congruent to $a$ modulo $m$,
+  $a'$ is also congruent to $a$ modulo $m$, and thus
+  $S(n, a')$ and $S(n, a)$ are congruent modulo $m$ for every $n \in \bN$.
+  If $4$ divides $a$ or if $m$ is odd then $4$ divides ${(1 + m)}^2 a$.
+  If $4$ does not divide $a$ and if $m$ is even then $a \equiv m \equiv 2 \pmod{4}$ and $4$ divides $a + m$.
+  If $m$ is odd or if $4$ divides 
+  ${(1 + m)}^2$
+  If $m$ is odd then $4$ divides $a$ 
+  Assume that $m$ is even and that $4$ does not divide ${(1 + m)}^2 a$.
+  Then, $m$ 
+  $m$ is even and $4$ d
+  $a + m$ 
+  Put 
+  $$
+  a'
+  = \begin{cases}
+    {(1 + m)}^2 a  & \text{if $m$ is odd,} \\
+    a & \textrm{if $4$ divides $a$, and } \\
+    a + m & \textrm{otherwise.}  
+    \end{cases} 
+  $$
+\end{proof}
+\begin{theorem}
+  Let $n \in \bNast$, let $p \in \bN$, and let $q \in \bZ$.
+  % \begin{enumerate}
+  % \item $S(n, 1 + p q)$ divides $S(n p, 1 + p q)$.
+  For every $n \in \bNast$, every $p \in \bN$,  and every $q \in \bZ$,
+  the congruence 
+  If $n$ is even or if $p$ is odd or if $q$ is even then
+    $$
+    \frac{S(n p, 1 + p q)}{S(n, 1 + p q)} \equiv p \pmod{p^2}
+    $$
+   holds true unless $p = 2$ and both $n$ 
+\end{theorem}
+
+$$
+a^n - 1 = (a - 1) S(n, a) 
+$$
+$$
+S(n p , a)
+= \frac{a^{np} - 1}{a - 1}
+= \left( \frac{a^{np} - 1}{a^n - 1} \right) \left( \frac{a^n - 1}{a - 1} \right)
+= S(p, a^n) S(n, a)
+$$
+
+%1 + a^n
+$$
+{(1 + a)}^n \equiv 1 + n a + \frac{n(n - 1)}{2} a^2  \pmod{a^3}
+$$
+
+$$
+S(n, 1 + a) \equiv n + \frac{n(n - 1)}{2} a  \pmod{a^2}
+$$
+
+$$
+n (n - 1) a = 2 k n^2 
+$$
+
+$$
+(n - 1) a = 2 k n 
+$$
+
+$$
+\frac{S(p, 1 + p q)}{p} = 1 + \frac{1}{2} p (p - 1)q \pmod{p}  
+$$
+
+$$
+2 + p (p - 1) q = 2 k p 
+$$
+
+$$
+2 = p (2 k + (p - 1) q) 
+$$
+
+$$
+1 = 2k + q 
+$$
+\begin{theorem}
+  Let $a \in \bZ$ be such that $4$ divides $a - 1$.
+  For every $n \in \bN$,
+  the $2$-adic valuation of $S(n, a)$ is equal to that of~$n$.
+\end{theorem}
+
+\begin{theorem}
+  Let $a \in \bZ$ and let $p \in \bN$ be such that $p$ is odd and $p$ divides $a - 1$.
+  For every $n \in \bN$,
+  $p S(n, a)$ divides $S(p n, a)$ and the quotient is congruent to $1$ modulo~$p$.
+\end{theorem}
+
+\begin{proof}
+  $a = 1$.
+  Then, we have $S($
+  
+  Let us now assume $a \ne 1$
+  $$
+  {(1 + b)}^n \in  1 + n b + \frac{n (n - 1)}{2} b^2 + b^3 \bZ
+  $$
+  
+  $$
+  S(n, 1 + b) = \frac{{(1 + b)}^n - 1}{b} \in n + \frac{n(n - 1)}{2} b + b^2 \bZ 
+  $$
+
+\end{proof}
+
+\begin{theorem}
+  Let $a \in \bZ$ and let $p$ be an odd prime factor of $a - 1$.
+  For every $n \in \bN$, the $p$-adic valuation of $S(n, a)$ is equal to that of~$n$.
+\end{theorem}
+
+\begin{exercise}
+  Let $m \in \bNast$ and let $T\colon \bN \to \bZ$.
+  \begin{enumerate}
+  \item For every $n$, $n' \in \bN$, $T(n) \equiv T(n')$ is equivalent to $n \equiv n' $.
+  \item For every $n$, $n' \in \bN$, $T(n) \equiv T(n')$ implies $n \equiv n'$.
+  \item For every $K \subseteq \bN$, $K$ is complete residue system modulo $m$ if, and only if, $T(K)$ is a complete residue system modulo~$m$.
+  \item There exists $K \subseteq \bN$ such that $T(K)$ is a complete residue system modulo $m$ and
+    for each $n \in \bN$, $T(n + m) \equiv T(n)$.
+  \end{enumerate}
+  
+\end{exercise}
+
+$$
+S(n, a) = \sum_{k = 0}^{n - 1} a^k 
+$$
+% \begin{theorem}
+%   Let $n \in \bN$ and let $a \in \bZ$ be such that $4$ divides $a - 1$.
+% \end{theorem}
+
+$$
+S(n, a) \equiv 1 + (n - 1) a \pmod{2} 
+$$
+
+\begin{theorem}
+  $S(n, a)$ is odd if, and only if, $n a$ is odd or $n$ is positive and $a$ is even. 
+\end{theorem}
+
+
+\begin{theorem}
+  Let $n \in \bN$ and let $a \in \bZ$.
+  If $a$ is even and if $n > 0$ then $S(n, a)$ is odd.
+  If $a$ is odd and if $n$ is even then
+  $$\nu_2(S(n, a)) = \nu_2(n) + \nu_2(a + 1) - 1 \, .$$
+\end{theorem}
+
+
+
+$a n = $
+
+\begin{proof}
+  Assume that $a$ is even.
+  Then, 
+  
+  If $a = 1$ 
+\end{proof}
+
+
+$$
+S(2 n, a) = S(n, a) S(2, a^n) = S(n, a) (1 + a^n)
+$$
+
+$$
+S(2 n, a) = S(n, a^2) S(2, a) = S(n, a^2) (1 + a)
+$$
+
+\begin{align*} 
+  \frac{S(2n, a)}{S(n, a)}
+  & = \frac{a^{2n} - 1}{a - 1} \frac{a - 1}{a^n - 1} \\
+  & = \frac{a^{2n} - 1}{a^n - 1} \\
+  & = S(2, a^n) = 1 + a^n
+\end{align*} 
+
+$$
+S(2 n, a) 
+$$
+
+
+\end{document}
+
+$$
+{(1 + a)}^n \equiv 1 + n a  \pmod{a^2}
+$$
+
+$$
+{(1 + p a)}^n \equiv 1 + 2 p n a \pmod{p^2 a}
+$$
+
+$$
+{(1 + a)}^n \equiv 1 + n a + \frac{(n - 1) n}{2} a^2 \pmod{a^3}
+$$
+
+$a$ is even
+
+$$
+{(1 + p a)}^p \equiv 1 +  p^2 a   \pmod{p^3 a} 
+$$
+
+$$
+a = p^k(a + p a b)
+$$
+$$
+\left(1 + p^{k + 1} a + p^{k + 2} a b \right)^p =
+ 1 + p^{k + 2} a \pmod{p^{k + 3} a }
+$$
+
+$$
+\left(1 + \ttx \right)^n  = 1 + n \ttx + \frac{(n - 1) n}{2} \ttx^2 + \ttx^3 R(n, \ttx)   
+$$
+
+$$
+Q(n, \ttx) = \frac{(n - 1) n}{2} \ttx + p \ttx^2 R(n, p \ttx) 
+$$
+
+\begin{align*}
+  \left(1 + p \ttx \right)^n
+  & = 1 + n (p \ttx) + \frac{(n - 1) n}{2} {(p \ttx)}^2 + {(p \ttx)}^3 R(n, p \ttx)  \\
+  & = 1 + p n \ttx + p^2 \ttx Q(n, \ttx)
+\end{align*} 
+
+$$
+\left(1 + p \ttx \right)^{n + 1}
+=
+(1 + p \ttx ) (1 + p n \ttx + p^2 \ttx Q(n, \ttx)) = 1 + p(n + 1) \ttx 
+$$
+% $$
+% \left( 1 + p \ttx \right)^{pn}
+% = 1 + p^2 n \ttx + p^3 \ttx^2 \left( \frac{1}{2}(pn - 1) n + \ttx R(p n, p \ttx) \right)  
+% $$
+  
+% $$
+% F(n, \ttx) = \left( 1 + \ttx \right)^n - 1 - n\ttx 
+% $$
+
+% $$
+% F(0, \ttx) = 0
+% $$
+% and 
+% \begin{align*}
+%   F(n + 1, \ttx) - (1 + \ttx) F(n, \ttx)
+%   & = (1 + \ttx) (1 + n\ttx) - (1 + (n + 1) \ttx) \\
+%   & = n \ttx^2 
+% \end{align*}
+$$
+P(\ttx) = \frac{p - 1}{2} \ttx + \ttx^2 R(p, p \ttx) 
+$$
+\begin{align*}
+  \left(1 + p \ttx \right)^p
+  & = 1 + p^2 \ttx + p^3 \frac{p - 1}{2} \ttx^2 + p^3 \ttx^3 R(p, p\ttx) \\
+  & = 1 + p^2 \ttx + p^3 \ttx  Q(\ttx)
+\end{align*} 
+
+% $$
+%   \left(1 + 2p^{k + 1} \ttx \right)^p
+%    = 1 + 2 p^{k + 1} \ttx + 2 p^{k + 3} \ttx Q(2 p^k \ttx)
+% $$
+% \left(1 + p (\ttx + p \tty)  \right)^p =
+% 1 + p^2 \left( \ttx + p \left( \tty + (\ttx + p \tty) Q(\ttx + p \tty) \right) \right) 
+% $$
+% \begin{align*}
+%   \left(1 + p \ttx + p^2 \tty  \right)^p
+%   & = \left(1 + p (\ttx + p \tty)  \right)^p \\
+%   & = 1 + p^2 ( \ttx + p \tty) +  p^3 (\ttx + p \tty) Q(\ttx + p \tty) \\
+%   & = 1 + p^2 \ttx + p^3 \left( \tty + (\ttx + p \tty) Q(\ttx + p \tty) \right)  \\ 
+% \end{align*} 
+$$
+\ttx = 2 p^k (\ttx + p \tty)
+$$
+$$
+\left( 1 + 2p^{k + 1} \ttx  + 2 p^{k + 2} \tty \right)^p
+= 1
++ 2 p^{k + 2} \ttx 
++ 2 p^{k + 3} \left(  \ttx + (\ttx + p \tty) Q(2 p^k (\ttx + p \tty)) \right)  
+$$
+
+$$
+\left( 1 + 2p^{k + 1} \ttx  + 2 p^{k + 2} \tty \right)^p
+$$
+\begin{theorem}[Hull and Dobell \cite{HullDobell62,Knuth97}] \label{thm:Hull-Dobbel}
+Let $a$, $b \in \bZ$ and let $T\colon \bN \to \bZ$ be such that
+  $T(n + 1) = a T(n) + b$
+  for every $k \in \bN$.
+  Let $m \in \bNast$ be such that $\rho'(m)$ divides $a - 1$ and $b$ and $m$ are coprime.
+  For every $n$, $n' \in \bN$,
+  $T(n) \equiv T(n') \pmod{m}$ is equivalent to $n \equiv n' \pmod{m}$.
+\end{theorem}
+
+\begin{theorem} \label{thm:Hull-Dobbel-reverse}
+  Let the notation be as in Theorem~\ref{thm:Hull-Dobbel}.
+  Assume $m \ne 2$ and that for each $n \in \bZ$, there exists $k \in \bN$ such that $T(k) \equiv n \pmod{m}$.
+  Then, $\rho'(m)$ divides $a - 1$ and $b$ and $m$ are coprime.
+\end{theorem}
+
+\begin{theorem}
+  For every $a \in \bZ$ and every $p \in \bN$ such that $2p$ divides $a - 1$,
+  $S(p, a)$ is congruent to $p$ modulo $p^2$.
+\end{theorem}
+
+
+\begin{theorem}
+  Let $a \in \bZ$ be such that $4$ divides $a - 1$.
+  For every prime factor $p$ of $a - 1$ and every $n \in \bN$,
+  the $p$-adic valuation on $S(n, a)$ is equal to that of~$n$.
+\end{theorem}
+
+\begin{proof}
+  Let $p$ be a prime factor of $a - 1$.
+  For each $n \in \bN$, let $\nu(n)$ denote the $p$-adic valuation of $S(n, a)$.
+  Let $n \in \bN$ be such that $p$ does not divide~$n$.
+  
+  Our task is to prove that $\nu$ satisfies the following two properties:
+  \begin{enumerate}
+  \item For every $n \in \bN$ such that $p$ does not divide $n$,  $\nu(n) = 0$
+  \item For every $n \in \bN$, $\nu(pn) = \nu(n) + 1$.
+  \end{enumerate}
+\end{proof}
+
+
+
+
+\begin{theorem}
+    Let $a$, $b \in \bZ$ and let $T\colon \bN \to \bZ$ be such that
+    $T(n + 1) = a T(n) + b$
+    for every $k \in \bN$.
+    Let $p$ be a prime factor of $a - 1$ that does not divide~$b$.
+    For every $n$, $k \in \bN$, the $p$-adic valuation of $T(n + k) - T(n)$ is equal to that of $S(k, a)$.
+\end{theorem}
+
+\begin{proof}
+    Put $b' = T(1) - T(0)$. %= (a - 1) T(0) + b
+   %  $$
+   % S(k, a) = \frac{T(k) - T(0)}{T(1) - T(0)} 
+   % $$
+%   We have $a S(k, a) = S(k + 1, a) - 1$ and $a(T(k) - T(0)) = T(k + 1) - T(1)$ for every $k \in \bN$, 
+    % Since
+    % $$(T(j + 1) - T(j))a = T(j + 2) - T(j + 1)
+    % $$
+    % for every $j \in \bN$, 
+    A straightforward induction on $j$ yields
+    $$T(j + 1) - T(j) = b' a^j$$
+    for every $j \in \bN$.    
+    $$
+    T(n + k) - T(k)
+%      & = \sum_{j = 0}^{k - 1} \left( T(n + j + 1) - T(n + j) \right)  \\
+    = \sum_{j = k}^{n + k - 1} b' a^j
+    = \sum_{j = 0}^{k - 1} b' a^{n + j} 
+    = b' a^n \sum_{j = 0}^{k - 1}  a^j 
+    =  b' a^n S(k, a) 
+      %& =  a^n b'  \sum_{j = 0}^{k - 1} a^j \\
+%     & = b' a^n  S(k, a) 
+$$
+      It follows
+    \begin{align*}
+      T(n + k) - T(k)
+%      & = \sum_{j = 0}^{k - 1} \left( T(n + j + 1) - T(n + j) \right)  \\
+      & = \sum_{j = 0}^{k - 1} b' a^{n + j} = b' a^n \sum_{j = 0}^{k - 1} a^j 
+      %& =  a^n b'  \sum_{j = 0}^{k - 1} a^j \\
+      & = b' a^n  S(k, a) 
+    \end{align*}
+    for every $k \in \bN$.
+    A straightforward induction on $n$ yields
+    $$
+    T(n + k) - T(n) = a^n 
+    $$
+    for every $n \in \bN$.
+    Since $a \equiv 1 \pmod p$ and since $b' = (a - 1) T(0) + b$, 
+    $$
+    a^n b' \equiv b \pmod{p} 
+    $$
+    It follows that $p$ does not divide $a^n b'$.
+    $$
+    \nu_p(T(n + k) - T(n)) = \nu_p(S(k, a)) 
+    $$
+%    a F(k) + b = a' (a S(k, a) + 1) - a' + a F(0) + b = a' S(k + 1) + F(0)
+    % T(n + k) - T(n) = a' S(i, a) - a' S(j, a) = a' a^n S(k, a)
+    $$
+    T(n + k) - T(n) =  a' a^n S(k, a)
+    $$
+    $$
+    T(i + 1) - T(i) = (a - 1) T(i) + b
+    $$
+    $$
+    T(n + k) - T(n) = \sum_{j = 1}^k T(n + j) - T(n + j - 1) 
+    $$
+    $$
+    a' a^j \equiv b \pmod{\rho(m)} 
+    $$
+\end{proof}
+%\include{maintheorem}
+
 \bibliographystyle{plain}
 \bibliography{gen}
 
 \end{document}
 
-\begin{theorem} \label{thm:ax+b-solution-S}
-  Let $a$, $b \in \bZ$ and let $\left( u_n \right)_{n \in \bN} \in \bZ^{\bN}$.
   Equality $u_{n + 1} = a u_n + b$ holds true for every $n \in \bN$
   if, and only if,
   equality
   $$
-  u_n = S(n, a) ((a - 1) u_0 + b)  + u_0
+  f(n) = S(n, a) ((a - 1) u_0 + b)  + u_0
   $$
   holds true for every $n \in \bN$.
-\end{theorem}
-
 Let $m \in \bZ$ and let $X \subseteq \bZ$.
 % Let $\equiv$ denote the congruence relation modulo~$m$.
 We say that $X$ is a \emph{complete residue system (CRS) modulo $m$}
@@ -892,3 +1497,17 @@ $$
 %   The cardinality of $X$ is not less than $| m |$ and,
 %   for every $x$, $x' \in X$, $x \equiv x' \pmod{m}$ implies $x = x'$.
 % \end{enumerate}
+
+\begin{theorem}[Hull and Dobell \cite{HullDobell62,Knuth97}] \label{thm:Hull-Dobbel}
+  Let $m \in \bNast$, let $a$, $b \in \bZ$, and let $F\colon \bN \to \bZ$ be such that
+  $F(k + 1) = a F(k) + b$
+  for every $k \in \bN$.
+  The following three assertions  are equivalent:
+  \begin{enumerate}
+    \item  For every $i$, $j \in \bN$,
+      $F(i) \equiv F(j) \pmod{m}$ is equivalent to $i \equiv j \pmod{m}$.
+%      $m$ divides $F(i) - F(j)$ if, and only if, $m$ divides $i - j$. 
+    \item $\rho'(m)$ divides $a - 1$ and $b$ and $m$ are coprime.
+    \item For each $n \in \bZ$, there exists $k \in \bNast$ such that $F(k) \equiv n \pmod{m}$.
+    \end{enumerate}
+  \end{theorem}
