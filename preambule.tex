@@ -7,6 +7,7 @@
 
 \newcommand{\bZ}{\mathbb{Z}}
 \newcommand{\bR}{\mathbb{R}}
+\newcommand{\bC}{\mathbb{C}}
 \newcommand{\Rpos}{\left]0, \infty \right[}
 
 \newcommand{\ttx}{\mathtt{x}}
@@ -35,123 +36,294 @@
 
 \begin{document}
 
+Let $p$ be a prime.
+For each $n \in \bZ$, the \emph{$p$-adic valuation of $n$} is defined as the supremum of
+$$
+ \left\{ v \in \bZ : n \in p^v \bZ \right\} \, .
+$$
+Note that both the supremum of $\bZ$ and the $p$-adic valuation of $0$ are equal to~$\infty$.
+For every $v \in \bN$ and every $q \in \bZ$,
+the $p$-adic valuation of $p^v q$ is equal to $v$ if, and only if, $p$ does not divide~$q$.
 
-
-$$
-S(n, a) = \sum_{k = 0}^{n - 1} a^k 
-$$
-
-$$
-a^n   = {(1 + p q)}^n = \sum_{k = 0}^n \binom{n}{k} p^k q^k
-$$
-$$
-a^n - 1 = n p q + \sum_{k = 2}^n \binom{n}{k} p^k q^k
-$$
-
-$$
-S(n, a) = \frac{a^n - 1}{a - 1} = \frac{1}{pq} (a^n - 1) = n + \sum_{k = 2}^n \binom{n}{k} p^{k - 1} q^{k - 1}
-$$
-
-$$
-p^{k - 1} \binom{n}{k} = \frac{n p^{k - 1}}{k} \binom{n - 1}{k - 1}
-$$
-
-\begin{lemma}
-  For every $k$, $p \in \bZ_{\ge 2}$,
-  $p^{k - 1} \le k$ is equivalent to $k = p = 2$.
-\end{lemma}
+\begin{theorem}
+  Let $p$ be a prime and let $\sigma\colon \bZ \to \bZ$ be such that for every $n \in \bZ$,
+  \begin{enumerate}
+  \item the $p$-adic valuation of $\sigma(pn)$ is one more than that of $\sigma(n)$ and 
+  \item if $p$ divides $\sigma(n)$ then $p$ divides~$n$.
+  \end{enumerate} 
+For each $n \in \bZ$, the $p$-adic valuation of $\sigma(n)$ is equal to that of~$n$.    
+\end{theorem}
 
 \begin{proof}
-  Let $p \in \bZ_{\ge 2}$ be fixed.
-  If $k = 2$ then $p^{k - 1} \le k$ is clearly equivalent to $p = 2$.
-  It remains to prove $p^{k - 1} > k$ for every $k \in \bZ_{\ge 3}$. 
+  For each $n \in \bZ$, let $\nu(n)$ denote the $p$-adic valuation of~$n$.
+  The first assumption ensures $\nu(\sigma(0)) = \nu(\sigma(0)) + 1$.
+  Therefore, the $p$-adic valuation of $\sigma(0)$ is equal to $\infty$, as desired.
+  It remains to prove $\nu(\sigma(n)) = \nu(n)$ for every $n \in \bZ \setminus \{ 0 \}$.
+  For every $v \in \bN$ and every $q \in \bZ$,
+  the $p$-adic valuation of $\sigma(p^v q)$ is equal to that of $p^v \sigma(q)$. 
+  
+  Let $n \in \bZ \setminus \{ 0 \}$ and let $v \in \bN$ be such that that $p$-adic valuation of $n$ equals~$v$.
+  Let $v$ denote the $p$-adic valuation of $n$ and let $q = p^{- v} n$.
+  % There exist $v \in \bN$ and $q \in \bZ$ such that $n = p^v q$ and $p$ does not divide~$q$.
+  For each The $p$
+  Let $v$ denote the $p$-adic valuation of~$n$.
+  If $n = 0$ then the first condition ensures $v = v + 1$,
+\end{proof}
+
+\begin{theorem} \label{thm:a-1-divides-Sna-n}
+  For every $a \in \bZ$ and every $n \in \bN$,
+  $a - 1$ divides $S(n, a) - n$.
+\end{theorem}
+
+\begin{proof}
+  Since %$a^k - 1$ can be written as
+  $$
+  a^k - 1 = (a - 1) S(k, a)
+  $$
+  for each $k \in \bN$,
+  $S(n, a) - n$ can be written as
+  $$
+  S(n, a) - n = \sum_{k = 0}^{n - 1} (a^k - 1) = (a - 1) \sum_{k = 0}^{n - 1} S(k, a)  \, ,
+  $$
+%   \begin{equation} \label{eq:Sna-sum-Ska}
+% \end{equation}
+   and thus  $a - 1$ divides $S(n, a) - n$.
+\end{proof} 
+
+\begin{theorem}
+  Let $a \in \bZ$ and let $n \in \bN$ be such that $4$ divides $a - 1$.
+  The $2$-adic valuation of $S(n, a)$ is equal to that of~$n$.
+\end{theorem}
+
+\begin{proof}
+  Let $\nu\colon \bN \to \bN$ be defined by:
+  for each $n \in \bN$, $\nu(n)$ equals the $2$-adic valuation of $S(n, a)$.
+  Since $a - 1$ is even, Theorem~\ref{thm:a-1-divides-Sna-n} ensure that $S(n, a) - n$ is even.
+  Therefore, the following three assertions are equivalent: $n$ is odd, $S(n, a)$ is odd, and $\nu(n) = 0$.
+  It remains to prove that 
+  
+
+\end{proof}
+
+
+\begin{exercise}
+Put
+$$
+P(n) = S(n, 5) = \frac{5^n - 1}{4}
+$$
+for every $n \in \bN$.
+\begin{enumerate}
+  \item Prove $P(2n) = 2 P(n) (2 P(n) + 1)$ for every $n \in \bN$.
+  \item Prove that $P(n)$ 
+  \item Prove
+  $$
+  P(2^v n ) = 2^v P(n) \prod_{i = 0}^{v - 1}  (2 P(2^i n) + 1)  
+  $$
+  \item Prove that 
+  \end{enumerate}
+\end{exercise} 
+
+\begin{exercise}
+  Let $k$, $p \in \bN$d let $p$ be a prime.
+  \begin{enumerate}
+  \item Prove that for every $k$, $p \in \bZ_{\ge 2}$, the following three assertions are equivalent:
+    $p^{k - 1} \le k$, $p^{k - 1}$ divides $k$, and $k = p = 2$, 
+  \item Let $a \in \bZ$ and let $n \in \bNast$.
+    Prove 
+   $$
+  \frac{S(n, a)}{n}  = 1 + \sum_{k = 2}^n \binom{n - 1}{k - 1} \frac{{(a - 1)}^{k - 1}}{k}  \, . 
+  $$
+ \item Find new proofs of Theorems~\ref{ } and~\ref{ }.
+  \end{enumerate}
+\end{exercise} 
+%\include{python}
+
+\end{document} 
+3^{k - 1} > k$
+
+$2^k > k$
+$$
+S(n, 1 + 2\ttx) = 
+$$
+
+$$
+S(n, 1 + \ttx) - n = n \ttx \sum_{k = 2}^n \binom{n - 1}{k - 1} \frac{\ttx ^{k - 2}}{k} \, .
+$$
+
+$$
+S(n, 1 + \ttx)
+= \left(1 + \frac{n - 1}{2}  \ttx \right) n
+=
+  n \ttx  \sum_{k = 3}^n \binom{n - 1}{k - 1} \frac{\ttx^{k - 2}}{k}\, .
+$$
+\begin{theorem}
+\end{theorem}
+
+$$
+S(2n, a) = 
+$$
+
+\begin{theorem}
+  Let $a \in \bZ$ and let $n \in \bN$.
+  If $4$ divides $a - 1$ then the $2$-adic valuation of $S(n, a)$ is equal to that of~$n$.
+\end{theorem}
+$$
+S(2^k n, a) = 
+$$
+\begin{lemma}
+  \begin{enumerate}
+  \item For each $k \in \bN$, $2^k$ is larger than~$k$.
+  \item For each $k \in \bZ_{\ge 2}$, $3^{k - 1}$ is larger than~$k$.
+  \end{enumerate} 
+  % For every $k \in \bZ_{k \ge 3}$ and every $p \in \bZ_{\ge 2}$,
+  % $p^{k - 1}$ is larger than $k$ is equivalent to $k = p = 2$.
+\end{lemma}
+
+Put $d = \frac{1}{2} (a - 1)$.
+
+% $$
+% a^{2k} \equiv 
+% $$
+$$
+a^{2n} - 1 = (a^n - 1)(a^n + 1)
+$$
+$$
+S(2n, \ttx)= S(n, \ttx) (\ttx^n + 1)
+$$
+$$
+S(2n, \ttx)  = (\ttx + 1) S(n, \ttx^2) 
+$$
+
+$$
+S(2^k n, \ttx)  = S(n, \ttx) \prod_{j = 0}^{k - 1} \left( \ttx^{2^j n } + 1 \right) 
+$$
+
+$$
+S(2^k n 
+$$
+$$
+S(2 n, \ttx) -  (\ttx + 1) n
+= (\ttx + 1) \left( S(n, \ttx^2)  - n \right)  
+= (1 + \ttx) S(n, \ttx^2)  \prod_{j = 0}^{k - 1} \left( \ttx^{2^{j +1 }  n } + 1 \right) 
+$$
+$$
+S(2^{k + 1} n, \ttx) 
+= (1 + \ttx) S(2^k n, \ttx^2)  
+= (1 + \ttx) S(n, \ttx^2)  \prod_{j = 0}^{k - 1} \left( \ttx^{2^{j +1 }  n } + 1 \right) 
+$$
+
+$$
+S(n, a) = S(n, \ttx^2)  
+$$
+
+If $m$ is even then
+% $$
+% a^2  = {(2 d + 1)}^2 =  4 d^2 + 4 d + 1 
+% $$
+% $$
+% a^m \equiv 
+% $$
+$$
+\frac{a^m + 1}{2}  \equiv 1 \pmod{d}
+$$
+
+ %= \frac{a^{2n} - 1}{a - 1} 
+\begin{theorem}
+  Let $a \in \bZ$ and let $n \in \bN$.
+  If $a$ is odd then the $2$-adic valuation of $S(n, a) - \frac{1}{2} (a + 1) n$ is not less than that of 
+  $\frac{1}{2}(a - 1) n$. 
+\end{theorem}
+
+\begin{proof}
+  % Let $p \in \bZ_{\ge 2}$ be fixed.
+  % If $k = 2$ then $p^{k - 1} \le k$ is clearly equivalent to $p = 2$.
+  % It remains to prove $p^{k - 1} > k$ for every $k \in \bZ_{\ge 3}$. 
   We proceed by induction on~$k$.
   In the case where $k = 3$, we have $p^{k - 1} = p^2 \ge 2^2 = 4 > 3 = k$,
   and thus the basis of our induction holds.
-  Now, let $k \in \bNast$.
+  Let $p \in \bZ_{\ge 2}$ and let $k \in \bNast$.
   Since $p$ is larger than $1$, $p^k$ is larger than $p^{k - 1}$.
   It follows $p^k \ge p^{k - 1} + 1$ because both $p^k$ and $p^{k - 1}$ are integers.
-  Therefore, $p^{k - 1} > k$ implies $p^k > k + 1$,
+  Therefore, $p^{k - 1} > k$ implies $p^k > k + 1$.
+  If  
   and thus induction applies.
  \end{proof} 
 
-$$
-2^i 
-$$
-$$
-2^{i + j} \ge 2^i + j  
-$$
-$i = 2$, $j = k - 3$
-$$
-2^{k - 1} \ge k + 1
-$$
-Since  
-If $k = 3$ then $p^{k - 1} = p^2 \ge 4 > 3$
+ \begin{theorem}
+   Let $a \in \bZ$ and let $n \in \bN$.
+   \begin{enumerate}
+   \item  If $p$ is an odd prime factor of $a - 1$ then
+     the $p$-adic valuation of $S(n, a) - n$ is not less than that of $ (a - 1) n$.
+   \item If $a$ is odd then
+     the $2$-adic valuation of $S(n, a) - n$ is not less than that of $\frac{1}{2} (a - 1) n$.
+   \end{enumerate}
+ \end{theorem} 
 
-$$
-p^{k - 1} > k 
-$$
-$p^{k - 1} > k$
-$p^k > p k > k + 1$
-$$
-p^{pq - 2} = q 
-$$
-% $$
-% F(t + h) = p^h \frac{1}{1 + ht^{-1}} F(t) 
-% $$
-$$
-\frac{2}{k} 
-= \prod_{j = 3}^{k}  \frac{j - 1}{j}
-= \prod_{j = 3}^{k}  \left( 1 - j^{-1} \right)
-\ge  \left( \frac{2}{3} \right)^{k - 2} 
-$$
+ \begin{proof}
+   Let $b$ be a real number.
+   
+  % $$
+  %  {(1 + x)}^n  = \sum_{k = 0}^n \binom{n}{k} x^k
+  % $$
+   Let $b$ be a non-zero real number.
+  Since $\binom{n}{0} = 1$ and $\binom{n}{1} = n$, the binomial theorem yields
+  $$
+  {(1 + b)}^n  = 1 + n b + b^2  \sum_{k = 2}^n \binom{n}{k} b^{k - 2} \, .
+  $$
+  It follows
+  $$
+  S(n, 1 + b) = \frac{{(1 + b)}^n - 1}{b} = b   \sum_{k = 2}^n \binom{n}{k} b^{k - 2} \, .
+  $$
 
-$$
-\frac{p^{k - 1}}{k} = \frac{2^{k - 1}}{k} \ge \left( \frac{4}{3} \right)^{k - 2} > 1
-$$
+  $$
+  {(1 + x)}^n  = 1 + n x + x^2  \sum_{k = 2}^n \binom{n}{k} x^{k - 2}
+  $$
+  Put $b = a - 1$. 
+  The binomial theorem yields
+  $$
+  a^n  = {(1 + b)}^n  = \sum_{k = 0}^n \binom{n}{k} b^k
+  $$
+  $$
+  a^n = 1 + b n + b^2 \sum_{k = 2}^n \binom{n}{k} b^{k - 2} \,.
+  $$
 
-
+  $$
+  a^n = 1 + b n + b^2 n \sum
+  $$
+  Besides,
+  we have $b \ne 0$, $\binom{n}{0}  = 1$, $\binom{n}{1} = n$, and
+  $\binom{n}{k} = \frac{n}{k} \binom{n - 1}{k - 1}$
+  for each $k \in \{ 1, 2, \dotsc, n \}$.
+  It follows 
+ $$
+ S(n, a) - n 
+= \frac{a^n - 1}{b} - n 
+= b \sum_{k = 2}^n \binom{n}{k}  b^{k - 2}
+= b n \sum_{k = 2}^n \binom{n - 1}{k - 1} \frac{b^{k - 2}}{k} 
+\, .
+%= \frac{1}{2} bn \sum_{k = 2}^n \mu_k \, . %2 n^{- 1} \lambda_k  b^{k - 2}
 $$
-F(k, p)
-= \frac{p^k}{2}  \prod_{j = 3}^{k}  \frac{j - 1}{j}
-= \prod_{j = 2}^{k} p  \left( 1 - j^{-1} \right)
-= \frac{p}{2} \prod_{j = 3}^{k} p  \left( 1 - j^{-1} \right)
+Therefore, it suffices to check that the $p$-adic valuation of the rational number 
+$\mu_k$ is non-negative for each $k \in \{ 2, 3, \dotsc, n \}$.
 $$
-
-If $p \ge 3$ and 
-
-$$
-p (1 - j^{-1}) \ge \frac{p}{2} 
-$$
-$$
-F(k, p) = \frac{p^{k - 1}}{k}
-$$
-
-$$
-\frac{F(k + 1, p)}{F(k, p)}
-=
-\frac{p}{1 + k^{-1}}
-\ge
-\frac{p}{1 + 2^{-1}}
-=
-\frac{2p}{3} \ge \frac{4}{3} > 1 
+\frac{ k \lambda_k }{n}  = \binom{n - 1}{k - 1} 
 $$
 
+$k \lambda_k n^{-1}$ is an integer.
 $$
-F(k, p) > F(2, p) 
-$$
-
-$$
-F(k, p) > F(2, p) = \frac{p}{2} \ge 1
+\mu_k  = \frac{2p^{k - 2}}{k} \frac{k \lambda_k}{n} \left(  \frac{b}{p}  \right)^{k - 2}  
 $$
 
+If $p^{k - 1}$ does not divide $k$ then the $p$-adic valuation of $2 p^{k - 2} k^{-1}$ is non-negative. 
+If $p^{k - 1}$ divides $k$ then Lemma~\ref{ } ensures that $2 p^{k - 2} k^{-1} = 1$
+ 
+  
+ 
+\end{proof}
 
-
-If $k \ge 2$ 
-$$
-\frac{F(k + 1)}{F(k)} \ge \frac{2p}{3}  \ge \frac{4}{3} 
-$$
-\begin{proof}
+\begin{theorem}
+ \end{theorem}
+ \begin{proof}
   Let $p \in \left]0, \infty \right[$ be fixed and let $f\colon \bR \setminus \{ 0 \} \to \bR$ be defined by:
   $$
   f(t) = \frac{p^{t - 1}}{t}
