@@ -7,7 +7,7 @@
 
 \newcommand{\bZ}{\mathbb{Z}}
 \newcommand{\bR}{\mathbb{R}}
-\newcommand{\bC}{\mathbb{C}}
+\newcommand{\bQ}{\mathbb{Q}}
 \newcommand{\Rpos}{\left]0, \infty \right[}
 
 \newcommand{\ttx}{\mathtt{x}}
@@ -37,43 +37,193 @@
 \begin{document}
 
 Let $p$ be a prime.
-For each $n \in \bZ$, the \emph{$p$-adic valuation of $n$} is defined as the supremum of
+For each $n \in \bZ$, the \emph{$p$-adic valuation of $n$}, denoted $\nu_p(n)$,
+is defined as the supremum of those $v \in \bN$ for which $p^v$ divides $n$:
 $$
- \left\{ v \in \bZ : n \in p^v \bZ \right\} \, .
+\nu_p(n) = \sup \left\{ k \in \bZ : n \in p^k \bZ \right\} \, .
 $$
-Note that both the supremum of $\bZ$ and the $p$-adic valuation of $0$ are equal to~$\infty$.
-For every $v \in \bN$ and every $q \in \bZ$,
-the $p$-adic valuation of $p^v q$ is equal to $v$ if, and only if, $p$ does not divide~$q$.
+%$\left\{ v \in \bZ : n \in p^v \bZ \right\}$.
+Note that
+$$\nu_p(0) = \sup \bN = \sup \bZ = \infty
+$$ and that
+$\nu_p(n) \in \bN$ for every $n \in \bZ \setminus \{ 0 \}$.
+Moreover, for every $k \in \bN$ and every $q \in \bZ$,
+$\nu_p(p^k q) = k$ is equivalent to $q \notin p \bZ$.
+% the $p$-adic valuation of $p^k q$ is equal to $k$ if, and only if, $p$ does not divide~$q$.
+$$
+\nu_p(nn') = \nu_p(n) + \nu_p(n') 
+$$
 
-\begin{theorem}
-  Let $p$ be a prime and let $\sigma\colon \bZ \to \bZ$ be such that for every $n \in \bZ$,
-  \begin{enumerate}
-  \item the $p$-adic valuation of $\sigma(pn)$ is one more than that of $\sigma(n)$ and 
-  \item if $p$ divides $\sigma(n)$ then $p$ divides~$n$.
-  \end{enumerate} 
-For each $n \in \bZ$, the $p$-adic valuation of $\sigma(n)$ is equal to that of~$n$.    
+$$
+\nu_p(n + n') \ge \inf \left\{ \nu_p(n), \nu_p(n') \right\} 
+$$
+
+$$
+\nu_p(n + n') \ge 1 + \inf \left\{ \nu_p(n), \nu_p(n') \right\} 
+$$
+implies $\nu_p(n) = \nu_p(n')$
+
+$$
+\nu_p(p n ) = \nu_p(n) + 1
+$$
+ 
+\begin{equation} \label{eq:ak-1-a-1-Ska} 
+  a^k - 1 = (a - 1) S(k, a) 
+\end{equation} 
+
+
+\begin{theorem} \label{thm:2-adic-S}
+  Let $a \in \bZ$ and let $n \in \bN$ be such that $4$ divides $a - 1$.
+  The $2$-adic valuation of $S(n, a)$ is equal to that of~$n$.
 \end{theorem}
 
 \begin{proof}
+%  If  $a = 1$ then Theorem~\ref{thm:2-adic-S} trivially holds true because
+  Since $S(n, 1) = n$ for every $n \in \bN$, we may assume $a \ne 1$.
+%  and since $S(0, a) = 0$, we may assume $a \ne 1$ and $n \ge 1$.
+%  Hence, we may assume $a \ne 1$.
+%  Since $S(0, a) = 0$, we
+  Let $n \in \bN$.
+  The first step is to prove
+  \begin{equation} \label{eq:nu-S2n-2Sn}
+  \nu_2(S(2n, a)) = \nu_2(S(n, a)) + 1 
+  \end{equation}
+  and 
+  \begin{equation}  \label{eq:nu-S2n+1-0}
+    \nu_2(S(2n + 1, a)) = 0 \, .
+  \end{equation}
+  Let $T\colon \bN \to \bZ$ be defined by
+  $$
+  T(n) = 1 + \frac{a - 1}{2} S(n, a)
+  $$
+  for every $n \in \bN$.
+  Since Equation~\eqref{eq:ak-1-a-1-Ska} holds true for 
+  for $k \in \{ n, 2n \}$, straightforward computations yield
+  \begin{align*}
+    (a - 1) \left( S(2 n, a) - 2 S(n, a) \right) & = (a^{2n} - 1) - 2(a^n - 1) \\
+                                                 & = {(a^n - 1)}^2 \\
+                                                 & = {(a - 1)}^2 \left( S(n, a) \right)^2\,.
+  \end{align*}
+  It follows 
+  $$
+  S(2 n, a) - 2 S(n, a) = (a - 1) \left(  S(n, a) \right)^2 \,, 
+  $$
+  or equivalently,
+  $$
+  S(2 n, a) = 2 T(n) S(n, a) \, .
+  $$
+  % S(2 n, a) = 2 \left(1 + \frac{a - 1}{2}  S(n, a)  \right) S(n, a) \, .
+  Besides,  $T(n)$ is an odd integer because $(a - 1) \mathbin{/} 2$ is an even integer.
+  Therefore, Equation~\eqref{eq:nu-S2n-2Sn} holds true.
+%  Let us now prove Equation~\eqref{eq:nu-S2n+1-0}. 
+  Equation~\eqref{eq:nu-S2n-2Sn} ensures that $S(2n, a)$ is even, whence
+  $$
+  S(2n + 1, a) = 1 + S(2n, a) a
+  $$
+  is odd, and thus Equation~\eqref{eq:nu-S2n+1-0} holds true.
+\end{proof}
+
+Theorem~\ref{ } is an \emph{ad hoc} lemma that provides a backbone for the poo The following 
+\begin{theorem}
+  Let $p$ be a prime and let $T\colon \bZ \to \bZ$ be such that for every $n \in \bZ$,
+  \begin{enumerate}
+  \item $p$ divides $T(n) - n$ and 
+  \item $p^2 T(n)$ divides $T(pn) - p T(n)$.
+  \end{enumerate} 
+  For each $n \in \bZ$, the $p$-adic valuation of $T(n)$ is equal to that of~$n$.
+\end{theorem}
+
+\begin{proof}
+ \end{proof} 
+$$
+T(p^k q) = p^k T(q)(1 + i p)
+$$
+
+$$
+T(p^{k + 1}) = p^{k + 1} T(q)(1 + j p)
+$$
+
+$$
+T(p^{k + 1} q) - p T(p^k q) = p^{k + 1}T(q)(1 + (j - i) p)
+$$
+
+\begin{proof}
+  Let $n \in \bZ$ be fixed.
+  We prove by induction on $k$ that for every $k \in \bN$,
+  $p^k$ divides $T(n)$ if, and only if, $p^k$ divides~$n$.
+  If $k = 0$ then $p^k = 1$ divides both $T(n)$ and~$n$.
+  Therefore, the basis of our induction holds.
+  Let us now assume $k \ge 1$.
+
+  $$
+  T(p^v q) - p^v q =
+  \sum_{k = 1}^v p^{v - k} \left(  T(p^k q) - p T(p^{k - 1} q)  \right) 
+  $$
+
+  
+  First, assume that $p$ does not divide~$n$.
+  Then, $p$ does not divides $T(n)$ either because of the first assumption.
+  Let us now assume that $p$ divides~$n$.
+  
+  
+\end{proof}
+
+$$
+\sigma(p^{k + 1} q) - p^{k + 1}q = (\sigma(p^{k + 1} q) - p \sigma(p^k q)) - p (\sigma(p^k q) + p^k q) 
+$$
+$$
+a^{2n} - 1 = (a^n + 1)(a^n - 1)
+$$
+
+$$
+S(2 n, a) = (a^n + 1) \frac{a^n - 1}{a - 1} = (a^n + 1) S(n, a) 
+$$
+
+$$
+S(2 n, a) - 2 S(n, a) = (a^n - 1) S(n, a) = (a - 1) \left( S(n, a) \right)^2
+$$
+
+ $$
+ \frac{S(pn, a)}{S(n, a)}
+ = \frac{a^{pn} - 1}{a^n - 1}
+ = \frac{\left( a^n \right)^p - 1}{a^n - 1}
+ = \sum_{k = 0}^{p - 1} a^{nk}
+ $$
+
+$$
+S(pn, a) = S(p, a^n) S(n, a) 
+$$
+
+$$
+S(pn, a) - p S(n, a) = (S(p, a^n) - p) S(n, a)  
+$$
+
+
+
+$$
+S(p, a^n) - p 
+= \sum_{k = 0}^{p - 1} (a^{n k} - 1)
+= (a - 1) \sum_{k = 0}^{p - 1} S(n k, a)  
+$$
+
+$$
+\sum_{k = 0}^{p - 1} S(n k, a) = n \frac{p(p - 1)}{2} + \sum_{k = 0}^{p - 1} \left( S(n k, a) - n k \right) =  
+$$
+\begin{proof}
+ 
   For each $n \in \bZ$, let $\nu(n)$ denote the $p$-adic valuation of~$n$.
   The first assumption ensures $\nu(\sigma(0)) = \nu(\sigma(0)) + 1$.
-  Therefore, the $p$-adic valuation of $\sigma(0)$ is equal to $\infty$, as desired.
+  It follows $\nu(\sigma(0)) = \infty = \nu(0)$, as desired.
   It remains to prove $\nu(\sigma(n)) = \nu(n)$ for every $n \in \bZ \setminus \{ 0 \}$.
-  For every $v \in \bN$ and every $q \in \bZ$,
-  the $p$-adic valuation of $\sigma(p^v q)$ is equal to that of $p^v \sigma(q)$. 
-  
-  Let $n \in \bZ \setminus \{ 0 \}$ and let $v \in \bN$ be such that that $p$-adic valuation of $n$ equals~$v$.
-  Let $v$ denote the $p$-adic valuation of $n$ and let $q = p^{- v} n$.
-  % There exist $v \in \bN$ and $q \in \bZ$ such that $n = p^v q$ and $p$ does not divide~$q$.
-  For each The $p$
-  Let $v$ denote the $p$-adic valuation of~$n$.
-  If $n = 0$ then the first condition ensures $v = v + 1$,
+  Let $q \in \bZ \setminus p \bZ$.
+  A straightforward induction on $k$ yields $\nu(\sigma(p^k q)) = k$ for every $k \in \bN$.
+  Since $\nu(p^k q) = k$ for every $k \in \bN$ and since 
 \end{proof}
 
 \begin{theorem} \label{thm:a-1-divides-Sna-n}
   For every $a \in \bZ$ and every $n \in \bN$,
   $a - 1$ divides $S(n, a) - n$.
-\end{theorem}
+ \end{theorem}
 
 \begin{proof}
   Since %$a^k - 1$ can be written as
@@ -85,25 +235,8 @@ For each $n \in \bZ$, the $p$-adic valuation of $\sigma(n)$ is equal to that of~
   $$
   S(n, a) - n = \sum_{k = 0}^{n - 1} (a^k - 1) = (a - 1) \sum_{k = 0}^{n - 1} S(k, a)  \, ,
   $$
-%   \begin{equation} \label{eq:Sna-sum-Ska}
-% \end{equation}
-   and thus  $a - 1$ divides $S(n, a) - n$.
+  and thus  $a - 1$ divides $S(n, a) - n$.
 \end{proof} 
-
-\begin{theorem}
-  Let $a \in \bZ$ and let $n \in \bN$ be such that $4$ divides $a - 1$.
-  The $2$-adic valuation of $S(n, a)$ is equal to that of~$n$.
-\end{theorem}
-
-\begin{proof}
-  Let $\nu\colon \bN \to \bN$ be defined by:
-  for each $n \in \bN$, $\nu(n)$ equals the $2$-adic valuation of $S(n, a)$.
-  Since $a - 1$ is even, Theorem~\ref{thm:a-1-divides-Sna-n} ensure that $S(n, a) - n$ is even.
-  Therefore, the following three assertions are equivalent: $n$ is odd, $S(n, a)$ is odd, and $\nu(n) = 0$.
-  It remains to prove that 
-  
-
-\end{proof}
 
 
 \begin{exercise}
