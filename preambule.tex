@@ -22,6 +22,7 @@
 
 
 \newcommand{\seg}[2]{\left\llbracket#1, #2 \right\rrbracket}
+\newcommand{\floor}[1]{\left\lfloor #1  \right\rfloor}
 
 
 
@@ -36,6 +37,7 @@
 
 \begin{document}
 
+
 Let $p$ be a prime.
 For each $n \in \bZ$, the \emph{$p$-adic valuation of $n$}, denoted $\nu_p(n)$,
 is defined as the supremum of those $v \in \bN$ for which $p^v$ divides $n$:
@@ -44,28 +46,23 @@ $$
 $$
 %$\left\{ v \in \bZ : n \in p^v \bZ \right\}$.
 Note that
-$$\nu_p(0) = \sup \bN = \sup \bZ = \infty
-$$ and that
-$\nu_p(n) \in \bN$ for every $n \in \bZ \setminus \{ 0 \}$.
-Moreover, for every $k \in \bN$ and every $q \in \bZ$,
-$\nu_p(p^k q) = k$ is equivalent to $q \notin p \bZ$.
-% the $p$-adic valuation of $p^k q$ is equal to $k$ if, and only if, $p$ does not divide~$q$.
+$$\nu_p(0) = \sup \bN = \sup \bZ = \infty 
 $$
-\nu_p(nn') = \nu_p(n) + \nu_p(n') 
-$$
+and that
+$\nu_p(n)$ is a non-negative integer for every $n \in \bZ \setminus \{ 0 \}$.
+% Moreover, for every $k \in \bN$ and every $q \in \bZ$,
+% $\nu_p(p^k q) = k$ is equivalent to $q \notin p \bZ$.
 
-$$
-\nu_p(n + n') \ge \inf \left\{ \nu_p(n), \nu_p(n') \right\} 
-$$
-
-$$
-\nu_p(n + n') \ge 1 + \inf \left\{ \nu_p(n), \nu_p(n') \right\} 
-$$
-implies $\nu_p(n) = \nu_p(n')$
-
-$$
-\nu_p(p n ) = \nu_p(n) + 1
-$$
+\begin{theorem}
+  Let $p$ be a prime and let $\mu\colon \bZ \to \bZ \cup \{ \infty \}$.
+  The following two assertions are equivalent:
+   \begin{enumerate}
+     \item  For each $n \in \bZ$, the $p$-adic valuation of $n$ is equal to $\mu(n)$.
+     \item  For each $n \in \bZ$,
+       equality $\mu(p n) = \mu(n) + 1$ holds true and
+       $n \notin p \bZ$ implies $\mu(n) = 0$.
+ \end{enumerate} 
+\end{theorem} 
  
 \begin{equation} \label{eq:ak-1-a-1-Ska} 
   a^k - 1 = (a - 1) S(k, a) 
@@ -73,79 +70,146 @@ $$
 
 
 \begin{theorem} \label{thm:2-adic-S}
-  Let $a \in \bZ$ and let $n \in \bN$ be such that $4$ divides $a - 1$.
-  The $2$-adic valuation of $S(n, a)$ is equal to that of~$n$.
+  Let $a \in \bZ$ be such that $4$ divides $a - 1$.
+  For every $n \in \bN$, the $2$-adic valuation of $S(n, a)$ is equal to that of~$n$.
 \end{theorem}
 
 \begin{proof}
 %  If  $a = 1$ then Theorem~\ref{thm:2-adic-S} trivially holds true because
-  Since $S(n, 1) = n$ for every $n \in \bN$, we may assume $a \ne 1$.
 %  and since $S(0, a) = 0$, we may assume $a \ne 1$ and $n \ge 1$.
 %  Hence, we may assume $a \ne 1$.
 %  Since $S(0, a) = 0$, we
+  Theorem~\ref{thm:2-adic-S} trivially holds true in the case $a = 1$ because $S(n, 1) = n$ for every $n \in \bN$.
+  Hence, we may assume $a \ne 1$.
+  For each $n \in \bN$, let  $\mu(n)$ denote the $2$-adic valuation of $S(n, a)$.
+  % Note that $t(n)$ is an odd integer Since $4$ divides $a - 1$,
+  %$(a - 1) \mathbin{/} 2$ is an even integer, and thus $t(n)$ is an odd integer.
+  The crux is to prove $\mu(2n) = \mu(n) + 1$ and $\mu(2n + 1) = 0$ for every $n \in \bN$.
   Let $n \in \bN$.
-  The first step is to prove
-  \begin{equation} \label{eq:nu-S2n-2Sn}
-  \nu_2(S(2n, a)) = \nu_2(S(n, a)) + 1 
-  \end{equation}
-  and 
-  \begin{equation}  \label{eq:nu-S2n+1-0}
-    \nu_2(S(2n + 1, a)) = 0 \, .
-  \end{equation}
-  Let $T\colon \bN \to \bZ$ be defined by
+  Put
   $$
-  T(n) = 1 + \frac{a - 1}{2} S(n, a)
+  t(n) = 1 + \frac{a - 1}{2}S(n, a) \, . 
   $$
-  for every $n \in \bN$.
-  Since Equation~\eqref{eq:ak-1-a-1-Ska} holds true for 
-  for $k \in \{ n, 2n \}$, straightforward computations yield
+  Since Equation~\eqref{eq:ak-1-a-1-Ska} holds true for $k \in \{ n, 2n \}$, straightforward computations yield
   \begin{align*}
-    (a - 1) \left( S(2 n, a) - 2 S(n, a) \right) & = (a^{2n} - 1) - 2(a^n - 1) \\
-                                                 & = {(a^n - 1)}^2 \\
-                                                 & = {(a - 1)}^2 \left( S(n, a) \right)^2\,.
+    (a - 1)  S(2 n, a)  & = a^{2n} - 1 \\
+                        & = (a^n - 1) (a^n + 1) \\
+                        & = (a^n - 1)(2 + (a^n - 1)) \\
+                        & = (a - 1) S(n, a) (2 + (a - 1) S(n, a)) \\
+                        & = (a - 1) S(n, a) (2 t(n)) \, ,
   \end{align*}
-  It follows 
-  $$
-  S(2 n, a) - 2 S(n, a) = (a - 1) \left(  S(n, a) \right)^2 \,, 
-  $$
-  or equivalently,
-  $$
-  S(2 n, a) = 2 T(n) S(n, a) \, .
-  $$
+  and consequently,
+  % \begin{align*}
+  %   (a - 1) \left( S(2 n, a) - 2 S(n, a) \right) & = (a^{2n} - 1) - 2(a^n - 1) \\
+  %                                                & = {(a^n - 1)}^2 \\
+  %                                                & = {(a - 1)}^2 \left( S(n, a) \right)^2\,.
+  % \end{align*}
+  \begin{equation} \label{eq:S2na-2tnSna}
+  S(2 n, a) = 2  S(n, a) t(n) \, .
+  \end{equation} 
   % S(2 n, a) = 2 \left(1 + \frac{a - 1}{2}  S(n, a)  \right) S(n, a) \, .
-  Besides,  $T(n)$ is an odd integer because $(a - 1) \mathbin{/} 2$ is an even integer.
-  Therefore, Equation~\eqref{eq:nu-S2n-2Sn} holds true.
-%  Let us now prove Equation~\eqref{eq:nu-S2n+1-0}. 
-  Equation~\eqref{eq:nu-S2n-2Sn} ensures that $S(2n, a)$ is even, whence
-  $$
-  S(2n + 1, a) = 1 + S(2n, a) a
-  $$
-  is odd, and thus Equation~\eqref{eq:nu-S2n+1-0} holds true.
+  Besides, $t(n)$ is an odd integer because $(a - 1) \mathbin{/} 2$ is an even integer.
+  It follows $\mu(2n) = \mu(n) + 1$.
+  In addition, Equation~\eqref{eq:S2na-2tnSna} ensures that $S(2n, a)$ is even, whence  
+  $S(2n + 1, a) = 1 + S(2n, a) a$ is odd.
+  It follows $\mu(2n + 1) = 0$.
+  Let us now conclude the proof of Theorem~\ref{thm:2-adic-S}.
 \end{proof}
 
-Theorem~\ref{ } is an \emph{ad hoc} lemma that provides a backbone for the poo The following 
-\begin{theorem}
-  Let $p$ be a prime and let $T\colon \bZ \to \bZ$ be such that for every $n \in \bZ$,
+% \begin{exercise}
+%   The aim of this exercise is to prove the converse of Theorem~\ref{thm:2-adic-S}.
+%   Let $a \in \bZ$ be such that the $2$-adic valuation of $S(2, a)$ is equal to~$1$.
+%   Prove that $4$ divides $a - 1$.
+% \end{exercise}
+
+\begin{exercise}
+  The aim of this exercise is to generalize Theorem~\ref{thm:2-adic-S}.
+  Let $a \in \bZ$ and let $n \in \bN$.
   \begin{enumerate}
-  \item $p$ divides $T(n) - n$ and 
-  \item $p^2 T(n)$ divides $T(pn) - p T(n)$.
-  \end{enumerate} 
-  For each $n \in \bZ$, the $p$-adic valuation of $T(n)$ is equal to that of~$n$.
-\end{theorem}
+  \item Prove that $S(2 n, a) = (a + 1) S(n, a^2)$ (warning: $a = - 1$ may happen).
+  \item Compute the $2$-adic valuation of $S(n, a)$ (hint: the $2$-adic valuation of $S(n, a)$ equals $0$, $\infty$,  or
+    $\nu_2(n) + \nu_2(a + 1) - 1$).
+  \end{enumerate}
+\end{exercise}
+
+\begin{theorem} \label{thm:a-1-divides-Sna-n}
+  For every $a \in \bZ$ and every $n \in \bN$,
+  $a - 1$ divides $S(n, a) - n$.
+ \end{theorem}
 
 \begin{proof}
- \end{proof} 
-$$
-T(p^k q) = p^k T(q)(1 + i p)
-$$
+  Since %$a^k - 1$ can be written as
+  $$
+  a^k - 1 = (a - 1) S(k, a)
+  $$
+  for each $k \in \bN$,
+  $S(n, a) - n$ can be written as
+  $$
+  S(n, a) - n = \sum_{k = 0}^{n - 1} (a^k - 1) = (a - 1) \sum_{k = 0}^{n - 1} S(k, a)  \, ,
+  $$
+  and thus  $a - 1$ divides $S(n, a) - n$.
+\end{proof}
 
-$$
-T(p^{k + 1}) = p^{k + 1} T(q)(1 + j p)
-$$
+\begin{theorem} \label{thm:p-adic-S}
+  Let $p$ be an odd prime and let $a \in \bZ$ be such that $p$ divides $a - 1$.
+  For every $n \in \bN$, the $p$-adic valuation of $S(n, a)$ is equal to that of~$n$.
+\end{theorem} 
 
-$$
-T(p^{k + 1} q) - p T(p^k q) = p^{k + 1}T(q)(1 + (j - i) p)
-$$
+\begin{exercise}
+ Let $a \in \bZ$.
+  \begin{enumerate}
+  \item Prove that the $4$ divides $a - 1$ if, and only if, $2$-adic valuation of $S(2, a)$ is equal to~$1$. 
+  \item  Let $p$ be a prime.
+    Prove that $p$ divides $a - 1$ if, and only if, $p$ divides $S(p, a)$ (hint: Fermat).
+  \end{enumerate}
+\end{exercise}
+
+
+
+\begin{exercise}
+  The aim of this exercise is to construct proofs for Theorems~\ref{thm:2-adic-S} and~\ref{thm:p-adic-S}
+  that strictly follow the line of the original paper \cite{HullDobell62}.
+  \begin{enumerate}
+  \item Let $k$, $p \in \bZ_{\ge 2}$.
+    Prove that the following three assertions are equivalent:
+    $p^{k - 1} \le k$, $p^{k - 1}$ divides $k$, and $k = p = 2$. 
+  \item Let $a \in \bZ$ and let $n \in \bNast$.
+    Prove
+   $$
+  \frac{S(n, a)}{n}  = 1 + \sum_{k = 2}^n \binom{n - 1}{k - 1} \frac{{(a - 1)}^{k - 1}}{k} \, . 
+  $$
+  (hint: $\binom{n}{k} = \frac{n}{k} \binom{n - 1}{k - 1}$).
+\item Find new proofs for Theorems~\ref{thm:2-adic-S} and~\ref{thm:p-adic-S}
+  (hint: rational numbers have $p$-adic valuations too).
+  \end{enumerate}
+\end{exercise}
+
+\bibliographystyle{plain}
+\bibliography{gen}
+\end{document} 
+% Theorem~\ref{ } is an \emph{ad hoc} lemma that provides a backbone for the poo The following 
+% \begin{theorem}
+%   Let $p$ be a prime and let $T\colon \bZ \to \bZ$ be such that for every $n \in \bZ$,
+%   \begin{enumerate}
+%   \item $p$ divides $T(n) - n$ and 
+%   \item $p^2 T(n)$ divides $T(pn) - p T(n)$.
+%   \end{enumerate} 
+%   For each $n \in \bZ$, the $p$-adic valuation of $T(n)$ is equal to that of~$n$.
+% \end{theorem}
+
+% \begin{proof}
+%  \end{proof} 
+% $$
+% T(p^k q) = p^k T(q)(1 + i p)
+% $$
+
+% $$
+% T(p^{k + 1}) = p^{k + 1} T(q)(1 + j p)
+% $$
+
+% $$
+% T(p^{k + 1} q) - p T(p^k q) = p^{k + 1}T(q)(1 + (j - i) p)
+% $$
 
 \begin{proof}
   Let $n \in \bZ$ be fixed.
@@ -220,25 +284,6 @@ $$
   Since $\nu(p^k q) = k$ for every $k \in \bN$ and since 
 \end{proof}
 
-\begin{theorem} \label{thm:a-1-divides-Sna-n}
-  For every $a \in \bZ$ and every $n \in \bN$,
-  $a - 1$ divides $S(n, a) - n$.
- \end{theorem}
-
-\begin{proof}
-  Since %$a^k - 1$ can be written as
-  $$
-  a^k - 1 = (a - 1) S(k, a)
-  $$
-  for each $k \in \bN$,
-  $S(n, a) - n$ can be written as
-  $$
-  S(n, a) - n = \sum_{k = 0}^{n - 1} (a^k - 1) = (a - 1) \sum_{k = 0}^{n - 1} S(k, a)  \, ,
-  $$
-  and thus  $a - 1$ divides $S(n, a) - n$.
-\end{proof} 
-
-
 \begin{exercise}
 Put
 $$
@@ -256,19 +301,6 @@ for every $n \in \bN$.
   \end{enumerate}
 \end{exercise} 
 
-\begin{exercise}
-  Let $k$, $p \in \bN$d let $p$ be a prime.
-  \begin{enumerate}
-  \item Prove that for every $k$, $p \in \bZ_{\ge 2}$, the following three assertions are equivalent:
-    $p^{k - 1} \le k$, $p^{k - 1}$ divides $k$, and $k = p = 2$, 
-  \item Let $a \in \bZ$ and let $n \in \bNast$.
-    Prove 
-   $$
-  \frac{S(n, a)}{n}  = 1 + \sum_{k = 2}^n \binom{n - 1}{k - 1} \frac{{(a - 1)}^{k - 1}}{k}  \, . 
-  $$
- \item Find new proofs of Theorems~\ref{ } and~\ref{ }.
-  \end{enumerate}
-\end{exercise} 
 %\include{python}
 
 \end{document} 
@@ -952,8 +984,6 @@ $$
 \end{proof}
 %\include{maintheorem}
 
-\bibliographystyle{plain}
-\bibliography{gen}
 
 \end{document}
 
