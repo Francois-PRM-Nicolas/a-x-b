@@ -38,31 +38,31 @@
 \begin{document}
 
 
+
 Let $p$ be a prime.
 For each $n \in \bZ$, the \emph{$p$-adic valuation of $n$}, denoted $\nu_p(n)$,
 is defined as the supremum of those $v \in \bN$ for which $p^v$ divides $n$:
 $$
 \nu_p(n) = \sup \left\{ k \in \bZ : n \in p^k \bZ \right\} \, .
 $$
-%$\left\{ v \in \bZ : n \in p^v \bZ \right\}$.
-Note that
-$$\nu_p(0) = \sup \bN = \sup \bZ = \infty 
-$$
-and that
+Note that $\nu_p(0) = \sup \bN = \sup \bZ = \infty$ and that
 $\nu_p(n)$ is a non-negative integer for every $n \in \bZ \setminus \{ 0 \}$.
+Equality $\nu_p(pn) = \nu_p(n) + 1$ holds true for every $n \in \bZ$
+and
+equality $\nu_p(n) = 0$ holds true for every $n \in \bZ \setminus p \bZ$.
 % Moreover, for every $k \in \bN$ and every $q \in \bZ$,
 % $\nu_p(p^k q) = k$ is equivalent to $q \notin p \bZ$.
 
-\begin{theorem}
-  Let $p$ be a prime and let $\mu\colon \bZ \to \bZ \cup \{ \infty \}$.
-  The following two assertions are equivalent:
-   \begin{enumerate}
-     \item  For each $n \in \bZ$, the $p$-adic valuation of $n$ is equal to $\mu(n)$.
-     \item  For each $n \in \bZ$,
-       equality $\mu(p n) = \mu(n) + 1$ holds true and
-       $n \notin p \bZ$ implies $\mu(n) = 0$.
- \end{enumerate} 
-\end{theorem} 
+% \begin{theorem} \label{thm:mu-nu-equiv}
+%   Let $p$ be a prime and let $\mu\colon \bZ \to \bZ \cup \{ \infty \}$.
+%   The following two assertions are equivalent:
+%    \begin{enumerate}
+%      \item  For each $n \in \bZ$, the $p$-adic valuation of $n$ is equal to $\mu(n)$.
+%      \item  For each $n \in \bZ$,
+%        equality $\mu(p n) = \mu(n) + 1$ holds true and
+%        $n \notin p \bZ$ implies $\mu(n) = 0$.
+%  \end{enumerate} 
+% \end{theorem} 
  
 \begin{equation} \label{eq:ak-1-a-1-Ska} 
   a^k - 1 = (a - 1) S(k, a) 
@@ -75,45 +75,47 @@ $\nu_p(n)$ is a non-negative integer for every $n \in \bZ \setminus \{ 0 \}$.
 \end{theorem}
 
 \begin{proof}
-%  If  $a = 1$ then Theorem~\ref{thm:2-adic-S} trivially holds true because
-%  and since $S(0, a) = 0$, we may assume $a \ne 1$ and $n \ge 1$.
-%  Hence, we may assume $a \ne 1$.
-%  Since $S(0, a) = 0$, we
-  Theorem~\ref{thm:2-adic-S} trivially holds true in the case $a = 1$ because $S(n, 1) = n$ for every $n \in \bN$.
+  Theorem~\ref{thm:2-adic-S} is easily deduced from the following two claims and a simple induction on $n$:
+  \begin{enumerate}
+  \item For every $n \in \bN$, the $2$-adic valuation of $S(2n, a)$ is equal to that of $2 S(n, a)$.
+%    is one more than that of $S(n, a)$.
+  \item For every $n \in \bN$, $S(2n + 1, a)$ is odd.
+  \end{enumerate} 
+  It remains to prove the claims.
+  Since $S(n, 1) = n$ for every $n \in \bN$,
+  both claims (and Theorem~\ref{thm:2-adic-S}) trivially hold true in the case where $a = 1$.
   Hence, we may assume $a \ne 1$.
-  For each $n \in \bN$, let  $\mu(n)$ denote the $2$-adic valuation of $S(n, a)$.
-  % Note that $t(n)$ is an odd integer Since $4$ divides $a - 1$,
-  %$(a - 1) \mathbin{/} 2$ is an even integer, and thus $t(n)$ is an odd integer.
-  The crux is to prove $\mu(2n) = \mu(n) + 1$ and $\mu(2n + 1) = 0$ for every $n \in \bN$.
   Let $n \in \bN$.
-  Put
-  $$
-  t(n) = 1 + \frac{a - 1}{2}S(n, a) \, . 
-  $$
-  Since Equation~\eqref{eq:ak-1-a-1-Ska} holds true for $k \in \{ n, 2n \}$, straightforward computations yield
+  % Put
+  % $$
+  % t(n) = 1 + \frac{a - 1}{2}S(n, a) \, . 
+  % $$
+  Since Equation~\eqref{eq:ak-1-a-1-Ska} holds true for $k = n$ and for $k = 2n$,
+  straightforward computations yield
   \begin{align*}
     (a - 1)  S(2 n, a)  & = a^{2n} - 1 \\
                         & = (a^n - 1) (a^n + 1) \\
                         & = (a^n - 1)(2 + (a^n - 1)) \\
-                        & = (a - 1) S(n, a) (2 + (a - 1) S(n, a)) \\
-                        & = (a - 1) S(n, a) (2 t(n)) \, ,
+                        & = (a - 1) S(n, a) (2 + (a - 1) S(n, a)) \,, %\\ 
+      %       & = (a - 1) S(n, a) (2 + 4 t(n)) \\
+       %      & = 2 (a - 1) S(n, a) (1 + 2t(n))  
+%                        & = (a - 1) S(n, a) (2 + 4 t(n)) \, ,
   \end{align*}
-  and consequently,
-  % \begin{align*}
-  %   (a - 1) \left( S(2 n, a) - 2 S(n, a) \right) & = (a^{2n} - 1) - 2(a^n - 1) \\
-  %                                                & = {(a^n - 1)}^2 \\
-  %                                                & = {(a - 1)}^2 \left( S(n, a) \right)^2\,.
-  % \end{align*}
-  \begin{equation} \label{eq:S2na-2tnSna}
-  S(2 n, a) = 2  S(n, a) t(n) \, .
-  \end{equation} 
-  % S(2 n, a) = 2 \left(1 + \frac{a - 1}{2}  S(n, a)  \right) S(n, a) \, .
-  Besides, $t(n)$ is an odd integer because $(a - 1) \mathbin{/} 2$ is an even integer.
-  It follows $\mu(2n) = \mu(n) + 1$.
-  In addition, Equation~\eqref{eq:S2na-2tnSna} ensures that $S(2n, a)$ is even, whence  
-  $S(2n + 1, a) = 1 + S(2n, a) a$ is odd.
-  It follows $\mu(2n + 1) = 0$.
-  Let us now conclude the proof of Theorem~\ref{thm:2-adic-S}.
+  and subsequently,
+  \begin{align*}
+    S(2n, a) & = S(n, a) (2 + (a - 1) S(n, a)) \\
+             & = 2 S(n, a) T(n) \,, 
+  \end{align*}
+  with
+  $$
+  T(n) = 1 + \frac{a - 1}{2} S(n, a) \, . 
+  $$
+  Besides, $T(n)$ is an odd integer because $(a - 1) \mathbin{/} 2$ is an even integer.
+  Therefore, the first claim holds true.
+  In particular, it ensures that $S(2n, a)$ is even,
+  whence
+  $$S(2n + 1, a) = 1 + S(2n, a) a$$
+  is odd and the second claim is proven.
 \end{proof}
 
 % \begin{exercise}
@@ -126,9 +128,10 @@ $\nu_p(n)$ is a non-negative integer for every $n \in \bZ \setminus \{ 0 \}$.
   The aim of this exercise is to generalize Theorem~\ref{thm:2-adic-S}.
   Let $a \in \bZ$ and let $n \in \bN$.
   \begin{enumerate}
+  \item Prove that $a$ is odd if, and only if, $8$ divides $a^2 - 1$.
   \item Prove that $S(2 n, a) = (a + 1) S(n, a^2)$ (warning: $a = - 1$ may happen).
-  \item Compute the $2$-adic valuation of $S(n, a)$ (hint: the $2$-adic valuation of $S(n, a)$ equals $0$, $\infty$,  or
-    $\nu_2(n) + \nu_2(a + 1) - 1$).
+  \item Compute the $2$-adic valuation of $S(n, a)$
+    (hint: the $2$-adic valuation of $S(n, a)$ equals $0$, $\infty$, or $\nu_2(n) + \nu_2(a + 1) - 1$).
   \end{enumerate}
 \end{exercise}
 
@@ -137,12 +140,7 @@ $\nu_p(n)$ is a non-negative integer for every $n \in \bZ \setminus \{ 0 \}$.
   $a - 1$ divides $S(n, a) - n$.
  \end{theorem}
 
-\begin{proof}
-  Since %$a^k - 1$ can be written as
-  $$
-  a^k - 1 = (a - 1) S(k, a)
-  $$
-  for each $k \in \bN$,
+ \begin{proof}
   $S(n, a) - n$ can be written as
   $$
   S(n, a) - n = \sum_{k = 0}^{n - 1} (a^k - 1) = (a - 1) \sum_{k = 0}^{n - 1} S(k, a)  \, ,
@@ -153,13 +151,56 @@ $\nu_p(n)$ is a non-negative integer for every $n \in \bZ \setminus \{ 0 \}$.
 \begin{theorem} \label{thm:p-adic-S}
   Let $p$ be an odd prime and let $a \in \bZ$ be such that $p$ divides $a - 1$.
   For every $n \in \bN$, the $p$-adic valuation of $S(n, a)$ is equal to that of~$n$.
-\end{theorem} 
+\end{theorem}
+
+\begin{proof}
+  (The proof of Theorem~\ref{thm:p-adic-S} is organized in the same way as that of Theorem~\ref{thm:2-adic-S}.) 
+  Theorem~\ref{thm:p-adic-S} is easily deduced from the following two claims and a simple induction on $n$: 
+  \begin{enumerate}
+  \item For every $n \in \bN$, $p$ divides $S(n, a)$ if, and only if, $p$ divides~$n$.
+  \item For every $n \in \bN$, the $p$-adic valuation of $S(p n, a)$ is equal to that of $p S(n, a)$.
+  \end{enumerate}
+  The first claim follows from Theorem~\ref{thm:a-1-divides-Sna-n};
+  it remains to prove the second one.
+  Since $S(n, 1) = n$ for every $n \in \bN$,
+  both claims (and Theorem~\ref{thm:p-adic-S}) trivially hold true in the case where $a = 1$.
+  Hence, we may assume $a \ne 1$.
+  Since Equation~\eqref{ } holds true for $k = n$, for $k = np$ and for $( = p$ and we have 
+$$
+(a - 1) S(np, a)
+= a^{pn} - 1
+= (a^n - 1)S(p, a^n)
+= (a - 1) S(n, a) S(p, a^n)
+$$
+whence 
+$$
+S(pn, a) = S(n, a) S(p, a^n) \, . 
+$$
+
+$$
+(a - 1) S(p n, a) = a^{p n} - 1 = (a^n - 1) S(p, a^n) 
+$$
+
+$$
+(a - 1) S(n, a) = a^n - 1
+$$
+
+$$
+S(p, a^n) - p 
+= \sum_{k = 0}^{p - 1} (a^{kn} - 1)
+= (a - 1) \sum_{k = 0}^{p - 1} S(n k, a)  
+$$
+
+$$
+\sum_{k = 0}^{p - 1} S(n k, a) = n \frac{p(p - 1)}{2} + \sum_{k = 0}^{p - 1} \left( S(n k, a) - n k \right)  
+$$
+\end{proof}
 
 \begin{exercise}
  Let $a \in \bZ$.
   \begin{enumerate}
   \item Prove that the $4$ divides $a - 1$ if, and only if, $2$-adic valuation of $S(2, a)$ is equal to~$1$. 
-  \item  Let $p$ be a prime.
+  \item Let $p$ be a prime.
     Prove that $p$ divides $a - 1$ if, and only if, $p$ divides $S(p, a)$ (hint: Fermat).
   \end{enumerate}
 \end{exercise}
@@ -235,44 +276,14 @@ $\nu_p(n)$ is a non-negative integer for every $n \in \bZ \setminus \{ 0 \}$.
 $$
 \sigma(p^{k + 1} q) - p^{k + 1}q = (\sigma(p^{k + 1} q) - p \sigma(p^k q)) - p (\sigma(p^k q) + p^k q) 
 $$
-$$
-a^{2n} - 1 = (a^n + 1)(a^n - 1)
-$$
 
-$$
-S(2 n, a) = (a^n + 1) \frac{a^n - 1}{a - 1} = (a^n + 1) S(n, a) 
-$$
+ % $$
+ % \frac{S(pn, a)}{S(n, a)}
+ % = \frac{a^{pn} - 1}{a^n - 1}
+ % = \frac{\left( a^n \right)^p - 1}{a^n - 1}
+ % = \sum_{k = 0}^{p - 1} a^{nk}
+ % $$
 
-$$
-S(2 n, a) - 2 S(n, a) = (a^n - 1) S(n, a) = (a - 1) \left( S(n, a) \right)^2
-$$
-
- $$
- \frac{S(pn, a)}{S(n, a)}
- = \frac{a^{pn} - 1}{a^n - 1}
- = \frac{\left( a^n \right)^p - 1}{a^n - 1}
- = \sum_{k = 0}^{p - 1} a^{nk}
- $$
-
-$$
-S(pn, a) = S(p, a^n) S(n, a) 
-$$
-
-$$
-S(pn, a) - p S(n, a) = (S(p, a^n) - p) S(n, a)  
-$$
-
-
-
-$$
-S(p, a^n) - p 
-= \sum_{k = 0}^{p - 1} (a^{n k} - 1)
-= (a - 1) \sum_{k = 0}^{p - 1} S(n k, a)  
-$$
-
-$$
-\sum_{k = 0}^{p - 1} S(n k, a) = n \frac{p(p - 1)}{2} + \sum_{k = 0}^{p - 1} \left( S(n k, a) - n k \right) =  
-$$
 \begin{proof}
  
   For each $n \in \bZ$, let $\nu(n)$ denote the $p$-adic valuation of~$n$.
