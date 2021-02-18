@@ -62,12 +62,46 @@ equality $\nu_p(n) = 0$ holds true for every $n \in \bZ \setminus p \bZ$.
 %        equality $\mu(p n) = \mu(n) + 1$ holds true and
 %        $n \notin p \bZ$ implies $\mu(n) = 0$.
 %  \end{enumerate} 
-% \end{theorem} 
- 
-\begin{equation} \label{eq:ak-1-a-1-Ska} 
-  a^k - 1 = (a - 1) S(k, a) 
-\end{equation} 
+% \end{theorem}
+For every $n \in \bN$ and every $a \in \bZ$, put
+$$
+S(n, a) = \sum_{k = 0}^{n - 1} a^k \, . 
+$$
 
+$$
+S(n, a) = \frac{a^n - 1}{a - 1} 
+$$
+Clearly, $S(0, a) = 0$ and $S(n + 1, a) = a S(n, a) + 1$ for every $n \in \bN$  
+ 
+% \begin{equation} \label{eq:ak-1-a-1-Ska} 
+%   a^n - 1 = (a - 1) S(n, a) 
+% \end{equation} 
+% \begin{theorem}
+%   Equality
+%   $$
+%   S(2n, a) = S(n, a)(2 + (a - 1) S(n, a))$$
+%   holds true for every $a \in \bZ$ and every $n \in \bN$.
+% \end{theorem} 
+
+\begin{exercise}
+  This exercise focuses on the computational complexity of the bivariate function~$S$.
+  \begin{enumerate}
+  \item Check that the following equality holds true for every $a \in \bZ$ and every $n \in \bN$:
+    %Compute the $n$th power of the following $2$-by-$2$ matrix 
+    $$
+    \begin{pmatrix} a & 1 \\ 0 & 1 \end{pmatrix}^n = \begin{pmatrix} a^n & S(n, a) \\ 0 & 1 
+    \end{pmatrix}
+    \, . 
+    $$
+  \item  Prove that the following problem can be solved in polynomial time:
+    given $a \in \bZ$, $m \in \bNast$, and $n \in \bN$ as input,
+    compute $S(n, a) \bmod m$ (warning: the size of $n$ is $O( \log n)$).
+\end{enumerate}
+\end{exercise}
+
+% $$
+% S(n, a) 
+% $$
 
 \begin{theorem} \label{thm:2-adic-S}
   Let $a \in \bZ$ be such that $4$ divides $a - 1$.
@@ -75,77 +109,191 @@ equality $\nu_p(n) = 0$ holds true for every $n \in \bZ \setminus p \bZ$.
 \end{theorem}
 
 \begin{proof}
-  Theorem~\ref{thm:2-adic-S} is easily deduced from the following two claims and a simple induction on $n$:
+  We claim that 
   \begin{enumerate}
-  \item For every $n \in \bN$, the $2$-adic valuation of $S(2n, a)$ is equal to that of $2 S(n, a)$.
-%    is one more than that of $S(n, a)$.
-  \item For every $n \in \bN$, $S(2n + 1, a)$ is odd.
+  \item the $2$-adic valuation of $S(2n, a)$ is equal to that of $2 S(n, a)$ and that  
+  \item $S(2n + 1, a)$ is odd.
   \end{enumerate} 
+  Theorem~\ref{thm:2-adic-S} is easily deduced from the claims and a simple induction on~$n$.
   It remains to prove the claims.
-  Since $S(n, 1) = n$ for every $n \in \bN$,
-  both claims (and Theorem~\ref{thm:2-adic-S}) trivially hold true in the case where $a = 1$.
-  Hence, we may assume $a \ne 1$.
-  Let $n \in \bN$.
-  % Put
-  % $$
-  % t(n) = 1 + \frac{a - 1}{2}S(n, a) \, . 
-  % $$
-  Since Equation~\eqref{eq:ak-1-a-1-Ska} holds true for $k = n$ and for $k = 2n$,
-  straightforward computations yield
-  \begin{align*}
-    (a - 1)  S(2 n, a)  & = a^{2n} - 1 \\
-                        & = (a^n - 1) (a^n + 1) \\
-                        & = (a^n - 1)(2 + (a^n - 1)) \\
-                        & = (a - 1) S(n, a) (2 + (a - 1) S(n, a)) \,, %\\ 
-      %       & = (a - 1) S(n, a) (2 + 4 t(n)) \\
-       %      & = 2 (a - 1) S(n, a) (1 + 2t(n))  
-%                        & = (a - 1) S(n, a) (2 + 4 t(n)) \, ,
-  \end{align*}
+  Straightforward computations yield
+  $$
+  S(2n, a) - S(n, a)
+  = \sum_{k = n}^{2n - 1} a^k - \sum_{k = n}^{n - 1} a^k
+  = \sum_{k = n}^{2n - 1} a^k
+  = \sum_{k = 0}^{n - 1} a^{k + n} =  S(n, a) a^n \,,
+  $$
   and subsequently,
-  \begin{align*}
-    S(2n, a) & = S(n, a) (2 + (a - 1) S(n, a)) \\
-             & = 2 S(n, a) T(n) \,, 
-  \end{align*}
-  with
   $$
-  T(n) = 1 + \frac{a - 1}{2} S(n, a) \, . 
+  S(2 n, a) = S(n, a) a^n + S(n, a) = S(n, a) (a^n + 1) = 2 S(n, a) \frac{a^n + 1}{2} \,. 
   $$
-  Besides, $T(n)$ is an odd integer because $(a - 1) \mathbin{/} 2$ is an even integer.
-  Therefore, the first claim holds true.
+  Therefore, the first claim holds true if, and only if, $(a^n + 1) \mathbin{/} 2$ is an odd integer.
+  More straightforward computations yield
+  $$
+  a^n + 1  = 2 + (a^n - 1) = 2 + (a - 1) S(n, a) \,, 
+  $$
+  and subsequently,
+  $$
+  \frac{a^n + 1}{2} = 1 + \frac{a - 1}{2} S(n, a) \,. 
+  $$
+  Besides, $(a - 1) \mathbin{/} 2$ is an even integer by assumption.
+  Therefore, $(a^n + 1) \mathbin{/} 2$ is an odd integer, and the first claim is proven.
   In particular, it ensures that $S(2n, a)$ is even,
   whence
   $$S(2n + 1, a) = 1 + S(2n, a) a$$
-  is odd and the second claim is proven.
+  is odd and the second claim is also proven.
 \end{proof}
 
-% \begin{exercise}
-%   The aim of this exercise is to prove the converse of Theorem~\ref{thm:2-adic-S}.
-%   Let $a \in \bZ$ be such that the $2$-adic valuation of $S(2, a)$ is equal to~$1$.
-%   Prove that $4$ divides $a - 1$.
-% \end{exercise}
+% \begin{theorem}
+%   Let $a \in \bZ$ and let $m \in \bN$.
+%   For every $n \in \bN$, $S(n \bmod 2^m, a) \bmod 2^m  = S(n, a) \bmod 2^m$
+%   If $4$ divides $a - 1$ then
+%   $$\left\{ S(n, a)\bmod 2^m : n \in \bZ \right\}$$
+%   is a complete residue system modulo $2^m$.
+%   % For every $n$, $j$, $m \in \bN$,
+%   % $S(i, a) - S(j, a) \in 2^m \bZ$ is equivalent to $i - j \in  2^m \bZ$.
+% \end{theorem}
+
+% \begin{proof}
+  
+% \end{proof}
+
+\begin{exercise}
+   Let $m \in \bNdeux$.
+   This exercise focuses on the multiplicative group of integers modulo $2^m$.
+   \begin{enumerate}
+   \item Check that the multiplicative group of integers modulo $2^m$ is of order $2^{m - 1}$.
+   \item Prove that the multiplicative order of $5$ modulo $2^m$ is equal to $2^{m - 2}$
+     (hint: Theorem~\ref{thm:2-adic-S}).
+     % (\emph{i.e.}, prove that for every  $i$, $j \in \bN$,
+     %$5^i - 5^j \in 2^m \bZ$ is equivalent to $i - j \in 2^{m - 2} \bZ$).       
+   % \item Let $n \in \bZ$.
+   %   Prove that $n$ is odd if, and only if,
+   %   there exist $\varepsilon \in \{ - 1, + 1 \}$ and $k \in \bN$ such that
+   %   $n$ is congruent to $\varepsilon 5^k$ modulo $2^m$.
+%     (hint: if $n$ is odd then there exists $\varepsilon \in \{ - 1, + 1 \}$ such that $4$ divides $n - \varepsilon$).
+   \item Describe the structure of the multiplicative group of integers modulo $2^m$ (hint: $5$ and $-1$).
+ \end{enumerate}
+\end{exercise}
 
 \begin{exercise}
   The aim of this exercise is to generalize Theorem~\ref{thm:2-adic-S}.
   Let $a \in \bZ$ and let $n \in \bN$.
   \begin{enumerate}
   \item Prove that $a$ is odd if, and only if, $8$ divides $a^2 - 1$.
-  \item Prove that $S(2 n, a) = (a + 1) S(n, a^2)$ (warning: $a = - 1$ may happen).
-  \item Compute the $2$-adic valuation of $S(n, a)$
-    (hint: the $2$-adic valuation of $S(n, a)$ equals $0$, $\infty$, or $\nu_2(n) + \nu_2(a + 1) - 1$).
+  \item Prove that $S(2 n, a) = (a + 1) S(n, a^2)$ (warning: $a = - 1$ may happen) and that $S(2n + 1, a)$ is odd. 
+  \item Compute the $2$-adic valuation of $S(n, a)$  (hint: $0$ or $\nu_2(n) + \nu_2(a + 1) - 1$).
   \end{enumerate}
 \end{exercise}
 
-\begin{theorem} \label{thm:a-1-divides-Sna-n}
+\begin{theorem} \label{thm:DL-Sn-am}
   For every $a \in \bZ$ and every $n \in \bN$,
-  $a - 1$ divides $S(n, a) - n$.
+  $S(n, a)$ is congruent to
+  $$
+  n + \frac{n(n - 1)}{2}  {(a - 1)}
+  $$ modulo ${(a - 1)}^2$.
  \end{theorem}
 
  \begin{proof}
-  $S(n, a) - n$ can be written as
+   Put
+   $$
+   T = \sum_{k = 0}^{j - 1} S(k, a)  
+   $$
+   for every $q \in\bN$ and 
+   $$
+   N = \frac{n(n - 1)}{2} \, .
+   $$
+   Straightforward computations yield 
+   $$
+   S(n, a) - n
+   = \sum_{k = 0}^{n - 1}  (a^ k  - 1)
+   = \sum_{k = 0}^{n - 1} (a - 1) S(k, a)
+   = (a - 1) T \,, 
+%   \left( t + N
+   $$
+   and subsequently  
+   $$
+   S(n, a) - n - N (a - 1)  = (a - 1) (T - N) \, . 
+   $$
+   Therefore, Theorem~\ref{thm:DL-Sn-am} holds true if, and only if, $a - 1$ divides $T - N$.
+   Since 
+   $$
+   N= \sum_{k = 0}^{n - 1} k \,, 
+   $$
+   $T - N$ can be written as 
+   $$
+   T - N = \sum_{k = 0}^{n - 1} \left( S(k, a) - k \right) = \sum_{k = 0}^{n - 1} \sum_{j = 0}^{k - 1} (a^j - 1) \, .
+   $$
+   Besides, $a - 1$ divides $(a - 1) S(j, a) = a^j - 1$  for every $j \in \bN$.
+   It follows that $a - 1$ divides $T - N$, as desired.
+   % Since
+   % $$
+   % N= \sum_{k = 0}^{n - 1} k \,, 
+   % $$
+   % $T - m N$ can be written as 
+   % $$
+   % T - m N = \sum_{k = 0}^n \left( S(m k, a) - m k \right) 
+   % $$
+   % Besides, $a - 1$ divides $S(m k, a) - m k$  for every $k \in \bN$ because 
+   % $$
+   % S(m k, a) - m k =  \sum_{j = 0}^{m k - 1} (a^j - 1) = (a - 1) \sum_{j = 0}^{m k - 1} S(j, a) \, . 
+   % $$
+   % It follows that $a - 1$ divides $T - m N$, as desired.
+\end{proof}
+
+\begin{theorem} \label{thm:DL-Sn-am}
+  For every $a \in \bZ$ and every $m$, $n \in \bN$,
+  $S(n, a^m)$ is congruent to
   $$
-  S(n, a) - n = \sum_{k = 0}^{n - 1} (a^k - 1) = (a - 1) \sum_{k = 0}^{n - 1} S(k, a)  \, ,
-  $$
-  and thus  $a - 1$ divides $S(n, a) - n$.
+  n + m \frac{n(n - 1)}{2}  {(a - 1)}
+  $$ modulo ${(a - 1)}^2$.
+ \end{theorem}
+
+ \begin{proof}
+   Put
+   $$
+   T = \sum_{k = 0}^{n - 1} S(m k, a)  
+   $$
+   and
+   $$
+   N = \frac{n(n - 1)}{2} \, .
+   $$
+   Straightforward computations yield 
+   $$
+   S(n, a^m) - n
+   = \sum_{k = 0}^{n - 1}  (a^{m k}  - 1)
+   = \sum_{k = 0}^{n - 1} (a - 1) S(m k, a)
+   = (a - 1) T \,, 
+%   \left( t + N
+   $$
+   and subsequently  
+   $$
+   S(n, a) - n - m N (a - 1)  = (a - 1) (T - m N) \, . 
+   $$
+   Therefore, Theorem~\ref{thm:DL-Sn-am} holds true if, and only if, $a - 1$ divides $T - m N$.
+   Since 
+   $$
+   N= \sum_{k = 0}^{n - 1} k \,, 
+   $$
+   $T - m N$ can be written as 
+   $$
+   T - m N = \sum_{k = 0}^{n - 1} \left( S(m k, a) - m k \right) = \sum_{k = 0}^{n - 1} \sum_{j = 0}^{mk - 1} (a^j - 1) \, .
+   $$
+   Besides, $a - 1$ divides $(a - 1) S(j, a) = a^j - 1$  for every $j \in \bN$.
+   It follows that $a - 1$ divides $T - m N$, as desired.
+   % Since
+   % $$
+   % N= \sum_{k = 0}^{n - 1} k \,, 
+   % $$
+   % $T - m N$ can be written as 
+   % $$
+   % T - m N = \sum_{k = 0}^n \left( S(m k, a) - m k \right) 
+   % $$
+   % Besides, $a - 1$ divides $S(m k, a) - m k$  for every $k \in \bN$ because 
+   % $$
+   % S(m k, a) - m k =  \sum_{j = 0}^{m k - 1} (a^j - 1) = (a - 1) \sum_{j = 0}^{m k - 1} S(j, a) \, . 
+   % $$
+   % It follows that $a - 1$ divides $T - m N$, as desired.
 \end{proof}
 
 \begin{theorem} \label{thm:p-adic-S}
@@ -154,43 +302,69 @@ equality $\nu_p(n) = 0$ holds true for every $n \in \bZ \setminus p \bZ$.
 \end{theorem}
 
 \begin{proof}
-  (The proof of Theorem~\ref{thm:p-adic-S} is organized in the same way as that of Theorem~\ref{thm:2-adic-S}.) 
-  Theorem~\ref{thm:p-adic-S} is easily deduced from the following two claims and a simple induction on $n$: 
+  (The proof of Theorem~\ref{thm:p-adic-S} is organized in the same way as that of Theorem~\ref{thm:2-adic-S}.)
+  We claim that
   \begin{enumerate}
-  \item For every $n \in \bN$, $p$ divides $S(n, a)$ if, and only if, $p$ divides~$n$.
-  \item For every $n \in \bN$, the $p$-adic valuation of $S(p n, a)$ is equal to that of $p S(n, a)$.
+  \item $p$ divides $S(n, a)$ if, and only if, $p$ divides $n$ and that
+  \item the $p$-adic valuation of $S(p n, a)$ is equal to that of $p S(n, a)$.
   \end{enumerate}
+  Theorem~\ref{thm:p-adic-S} is easily deduced from the claims and a simple induction on~$n$.
+  It remains to prove the claims.
+
+  Put
+  $$
+  T(x) = \sum_{k = 0}^{p - 1} S(n k, x) 
+  $$
   The first claim follows from Theorem~\ref{thm:a-1-divides-Sna-n};
   it remains to prove the second one.
   Since $S(n, 1) = n$ for every $n \in \bN$,
   both claims (and Theorem~\ref{thm:p-adic-S}) trivially hold true in the case where $a = 1$.
   Hence, we may assume $a \ne 1$.
   Since Equation~\eqref{ } holds true for $k = n$, for $k = np$ and for $( = p$ and we have 
-$$
+ % $$
+ % S(np, a)
+ % = \frac{a^{pn} - 1}{a - 1}
+ % = \frac{{(a^n)}^p - 1}{a - 1} 
+ % = \frac{(a^n - 1)S(p, a^n)}{a - 1}
+ % = S(n, a) S(p, a^n)
+\begin{align*}
 (a - 1) S(np, a)
-= a^{pn} - 1
-= (a^n - 1)S(p, a^n)
-= (a - 1) S(n, a) S(p, a^n)
-$$
-whence 
+& = a^{pn} - 1 \\
+& = {(a^n)}^p - 1  \\
+& = (a^n - 1)S(p, a^n) \\
+& = (a - 1) S(n, a) S(p, a^n) 
+\end{align*}
+whence
 $$
 S(pn, a) = S(n, a) S(p, a^n) \, . 
 $$
 
-$$
-(a - 1) S(p n, a) = a^{p n} - 1 = (a^n - 1) S(p, a^n) 
-$$
 
-$$
-(a - 1) S(n, a) = a^n - 1
-$$
-
+Therefore, it suffices to prove that the $p$-adic valuation of $S(p, a^n)$ is equal to~$1$.
+Straightforward computations yield
 $$
 S(p, a^n) - p 
-= \sum_{k = 0}^{p - 1} (a^{kn} - 1)
+= \sum_{k = 0}^{p - 1} (a^{n k} - 1)
 = (a - 1) \sum_{k = 0}^{p - 1} S(n k, a)  
 $$
+$$
+(a - 1) S(np, a)
+ = a^{pn} - 1
+ = {(a^n)}^p - 1 
+ = (a^n - 1)S(p, a^n)
+ = (a - 1) S(n, a) S(p, a^n)
+ $$
+ 
+$$
+\sum_{k = 0}^{p - 1} k = \frac{p(p - 1)}{2} 
+$$
 
+$$
+\sum_{k = 0}^{p - 1} k = \frac{p(p - 1)}{2} 
+$$% $$
+$$
+\sum_{k = 0}^{p - 1} k = \frac{p(p - 1)}{2} 
+$$
 $$
 \sum_{k = 0}^{p - 1} S(n k, a) = n \frac{p(p - 1)}{2} + \sum_{k = 0}^{p - 1} \left( S(n k, a) - n k \right)  
 $$
@@ -201,7 +375,7 @@ $$
   \begin{enumerate}
   \item Prove that the $4$ divides $a - 1$ if, and only if, $2$-adic valuation of $S(2, a)$ is equal to~$1$. 
   \item Let $p$ be a prime.
-    Prove that $p$ divides $a - 1$ if, and only if, $p$ divides $S(p, a)$ (hint: Fermat).
+    Prove that $p$ divides $a - 1$ if, and only if, the $p$-adic valuation of $S(p, a)$ is positive (hint: Fermat).
   \end{enumerate}
 \end{exercise}
 
@@ -211,7 +385,7 @@ $$
   The aim of this exercise is to construct proofs for Theorems~\ref{thm:2-adic-S} and~\ref{thm:p-adic-S}
   that strictly follow the line of the original paper \cite{HullDobell62}.
   \begin{enumerate}
-  \item Let $k$, $p \in \bZ_{\ge 2}$.
+  \item Let $k$, $p \in \bNdeux$.
     Prove that the following three assertions are equivalent:
     $p^{k - 1} \le k$, $p^{k - 1}$ divides $k$, and $k = p = 2$. 
   \item Let $a \in \bZ$ and let $n \in \bNast$.
