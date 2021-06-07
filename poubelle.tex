@@ -4,8 +4,329 @@
 %%% TeX-master: "preambule"
 %%% End:
 
+  % Remark that equality 
+  % \begin{equation} \label{eq:interval-slide}
+  %   \sego{n}{n + m} \setminus \{ n \}
+  %   %= \sego{n + 1}{n + m}
+  %   = \sego{n + 1}{n + m + 1} \setminus \{ n + m \}
+  %   %%\,.
+  % \end{equation}
+  % holds true.
+  % Since $g$ induces a bijection from $\sego{n}{n + m}$ onto $X$,
+  % $g$ maps the left-hand side of Equation~\eqref{eq:interval-slide} onto $X \setminus \{ g(n) \}$;
+  % since  $g$ induces a bijection from $\sego{n + 1}{n + m + 1}$ onto $X$,
+  % $g$ maps the right-hand side of Equation~\eqref{eq:interval-slide} onto $X \setminus \{ g(n + m) \}$.
+  % It follows
+  % $$X \setminus \{ g(n) \} = X \setminus \{ g(n + m) \}\,,$$
+  % or equivalently, $g(n) = g(n + m)$.
+  % Therefore, $m$ is a period of $g$,
+  % Since the restriction of $g$ to $\bNast$ is surjective, $P$ is not equal to $\{ 0 \}$.
+  % Since $g(n + 1) = f(g(n))$ for every $n \in \bN$, $P$ is the set of all periods of~$g$.
+  % Let $K$ denote the set of those $n \in \bNast$ such that $g$ is injective on $\sego{0}{n}$.
+  % Let $k$ denote the greatest element of~$K$.
+  % By construction, $g$ is injective on $\sego{0}{k}$ and $g(k)$ is an element of $g(\sego{0}{k})$.
+
+  % If $g(k) \ne g(0)$ then $f(g(\sego{0}{k})) = g(\sego{1}{k + 1}) = g(\sego{1}{k})$.
+  $\ref{ass:def-cyclic-enumeration:surj-f} \implies  \ref{ass:def-cyclic-enumeration:surj-periodic}$.
+   Put
+   $$
+   N = \left\{ n \in \bN : g(n) \in g(\sego{0}{n}) \right\} \, .
+   $$
+   Since $g$ is not injective, $N$ is non-empty;
+   let $s$ denote the least element of~$N$.
+   By construction,
+   there exists $r \in \sego{0}{s}$ such that $g(r) = g(s)$ and 
+   $g$ is injective on $\sego{0}{s}$.
+   Assume that assertion~\ref{ass:def-cyclic-enumeration:surj-f} holds true.
+   Since $g(r)$ is an element of $g(\sego{r}{s})$ and since $g(\sego{r}{s})$ is closed under $f$,
+   a straightforward induction on $n$ shows that $g(n)$ belongs to $g(\sego{r}{s})$ for every $n \in \bZ_{\ge r}$,
+   whence $g(\bZ_{\ge r}) = g(\sego{r}{s})$.
+   Besides, there exists $t \in \bNast$ such that $g(t) = g(0)$.
+    $t$ is larger than $s$, and thus $g(0)$ belongs to $g(\seg{r}{s})$, 
+   $$X = g(\bNast) = g(\sego{1}{r}) \cup g(\bZ_{\ge r}) = g(\sego{1}{r}) \cup g(\sego{r}{s}) $$
+  
+   Moreover, $g$ is surjective by assumption.
+   % Therefore, the restriction of $g$ to $\sego{0}{s}$ is also surjective.
+   Therefore, we have $m = s$ and $g$ induces a bijection from $\sego{0}{m}$ onto~$X$.
+   Besides, there exists $t \in \bNast$ such that $g(t) = g(0)$.
+   Hence, there exists $u \in \sego{0}{m}$ such that $g(u) = g(t - 1)$.
+   Since
+   $$g(u + 1) = f(g(t - 1)) = g(t) = g(0) \, ,$$
+   the injectivity of $g$ on $\sego{0}{m}$ compels $u + 1 = m$,
+   and consequently, $g(m) = g(0)$.
+   Now, a straightforward induction on $m$ shows that $g(n + m) = g(n)$ for every $n \in \bN$,
+   and thus assertion~\ref{ass:def-cyclic-enumeration:surj-periodic} holds true.
+   Put
+   $$
+   N = \left\{ n \in \bN : g(n) \in g(\sego{0}{n}) \right\} \, .
+   $$
+   Since $g$ is not injective, $N$ is non-empty;
+   let $s$ denote the least element of~$N$.  
+   By construction,
+   $g(s)$ belongs to $g(\sego{0}{s})$ and
+   $g$ is injective on $\sego{0}{s}$.
+   Assume that assertion~\ref{ass:def-cyclic-enumeration:surj-f} holds true.
+   Since $g(0)$ is an element of $g(\sego{0}{s})$ and since $g(\sego{0}{s})$ is closed under $f$,
+   a straightforward induction on $n$ show that $g(n)$ belongs to $g(\sego{0}{s})$ for every $n \in \bN$.
+   Moreover, $g$ is surjective by assumption.
+   % Therefore, the restriction of $g$ to $\sego{0}{s}$ is also surjective.
+   Therefore, we have $m = s$ and $g$ induces a bijection from $\sego{0}{m}$ onto~$X$.
+   Besides, there exists $t \in \bNast$ such that $g(t) = g(0)$,
+   and consequently,
+   there exists $u \in \sego{0}{m}$ such that $g(u) = g(t - 1)$.
+   Since
+   $$g(u + 1) = f(g(u)) = f(g(t - 1)) = g(t) = g(0) \, ,$$
+   the injectivity of $g$ on $\sego{0}{m}$ compels $u + 1 = m$,
+   and consequently, $g(m) = g(0)$.
+   Now, a straightforward induction on $m$ shows that $g(n + m) = g(n)$ for every $n \in \bN$,
+   and thus assertion~\ref{ass:def-cyclic-enumeration:surj-periodic} holds true.
+   % Assume that assertion~\ref{ass:def-cyclic-enumeration:surj-f} holds true.
+   % Since $g(1)$ is an element of $g(\seg{1}{s})$ and since $g(\seg{1}{s})$ is closed under $f$,
+   % $g(\seg{1}{s})$ contains $g(\bNast) = X$ as a subset, and thus $s$ is not less than~$m$.
+   % Besides, the opposite inequality holds true because $g$ is injective on $\sego{0}{s}$.
+   % Hence, we have $m = s$.
+   % It follows that 
+   % $g$ is injective on $\sego{0}{m}$ and
+   % the restriction of $g$ to $\seg{1}{m}$ is surjective
+   % It follows $g(m) = g(0)$, and consequently,
+   % a straightforward induction on $m$ shows that $g(n + m) = g(n)$ for every $n \in \bN$.
+   % Hence, assertion~\ref{ass:def-cyclic-enumeration:surj-periodic} holds true.
+ 
+  a straightforward induction on $n$ shows $g(p - n) \in Y$ for every $n \in \seg{0}{p}$.
+  $The set $g(\sego{p}{q})$ contains $g(p)$ as an element and is closed under $f$,
+  therefore
+  $g(\sego{p}{q})$ contains $g(\bZ_{\ge p})$ as a subset.
+  
+   For each $p \in \bN$, we have $\bZ_{\ge p + 1} = \bZ_{\ge p} + 1$,   
+   whence $F_{p + 1} = f(F_p)$.
+   In particular, $f$ maps $F_0$ onto $F_1$.
+   Since the latter set is equal to $X$ by assumption, $f$ is surjective.
+   Therefore, a straightforward, induction on $p$ shows that
+   $F_p = X$ for every $p \in \bN$.
+   Let $n \in \bN$.
+  Since the cardinality of $\seg{n}{n + m}$ is equal to $m + 1$,
+  $g$ is not injective on that set,
+  and thus there exist $p$, $q \in \seg{n}{n + m}$ such that $p < q$ and $g(p) = g(q)$.
+  By construction, $g(p)$ is an element of $g(\sego{p}{q})$ and $g(\sego{p}{q})$ is closed under~$f$.
+  Besides, the closure of $\{ g(p) \}$ under $f$ is equal to 
+  It follows
+  $$X = g(\bZ_{\ge p}) \subseteq g(\sego{p}{q}) \subseteq g(\sego{n}{n + m}) \, ,$$
+  and thus  the restriction $g$ to $\sego{n}{n + m}$ is surjective.
+  Put
+  $$
+  P = \left\{ p \in \bNast : g(p) = g(0) \right\} \, .
+  $$
+  Assume that assertion~\ref{ass:def-cyclic-enumeration:surj-f} holds true.
+  A straightforward induction on $n$ shows that
+  equality $g(n + p) = g(n)$ holds true for every $n \in \bN$ and every $p \in P$.
+  Therefore $P$ is the set of all positive periods of~$g$.
+  Our task is to prove $m \in P$.
+  Let $p \in P$ be such that $p > m$.
+  Since $g$ is not injective on $\seg{1}{p}$,
+  there exist $q$, $q' \in \seg{1}{p}$ such that
+  $q < q'$ and $g(q) = g(q')$.
+ 
+  
+  By assumption, $P$ is non-empty.
+  Moreover, $P$ is closed under addition, whence $P$ is infinite. 
+    
+  Therefore, 
+  
+  Since $g$ is not injective, $N$ is non-empty.
+  Let $s$ denote the least element of $N$.  %and let $r \in \sego{0}{s}$ be such that $g(r) = g(s)$.
+  By construction,
+%  $s$ is not greater than $m$,
+  $g(s)$ is an element of $g(\sego{0}{s})$ and
+  $g$ is injective on $\sego{0}{s}$.
+  %In particular, $s$ is not greater than~$m$.
+  % 
+  % Since $g(0)$ is an element of $g(\sego{0}{s})$ and since $g(\sego{0}{s})$ is closed under $f$ by construction,
+  % $g(\sego{0}{s})$ contains $g(\bN) = X$ as a subset.
+  % It follows that $g$
+  Since $g(1)$ is an element of $g(\seg{1}{s})$ and since $g(\seg{1}{s})$ is closed under $f$,
+  $g(\seg{1}{s})$ contains $g(\bNast) = X$ as a subset, and thus $s$ is not less than~$m$.
+  Besides, the opposite inequality holds true because $g$ is injective on $\sego{0}{s}$.
+  Therefore,
+  $s$ is equal to $m$,
+  $g$ is injective on $\sego{0}{m}$, and
+  $g$ maps $\seg{1}{m}$ onto~$X$.
+  %$g(0)$ is an element of $g(\seg{1}{m})$.
+  It follows $g(m) = g(0)$,
+  and consequently,
+  a straightforward induction on $n$ shows that equality $g(n + m) = g(n)$ holds true for every $n \in \bN$.
+$$
+\sum_{k} S(n_k, a) = \sum_k n_k + \sum_k S(n_k, a) - n_k  
+$$
+
+$$
+ S(n_k, a) - n_k = (a - 1) \sum_{j = 0}^{n_k - 1}  S(j, a) 
+ $$
+
+ $$
+\sum_{k} S(n_k, a) =  \sum_k n_k + (a - 1) \sum_k \sum_{j = 0}^{n_k - 1} S(j, a) 
+ $$
+
+ $$
+ \sum_k \frac{n_k(n_k - 1)}{2} 
+ $$
+   
+   % Let $a \in \bZ$ be fixed.
+   % Put 
+   % $$
+   % D_n = n + \binom{n}{2} (a - 1) - S(n, a) 
+   % %D_n = n + \frac{n(n - 1)}{2} (a - 1) - S(n, a) 
+   % $$
+   % for every $n \in \bN$.
+   % Our task is to prove that
+   % ${(a - 1)}^2$ divides $D_n$ for every $n \in \bN$.
+   % We proceed by induction on~$n$.
+   % Since $D_0 = S(0, a) = 0$,
+   % the basis of our induction holds true.
+   % It remains to check the inductive step.
+   % Straightforward computations yields
+   % \begin{align*}
+   %   D_{n + 1} - a D_n - 1 
+   %   & = n + 1 + \binom{n + 1}{2} (a - 1) - a \left(  n + \binom{n}{2} (a - 1) \right) - 1 \\
+   %   & = - \frac{n(n - 1)}{2}  {(a - 1)}^2 \,,
+   % \end{align*}
+   % \begin{align*}
+   %   D_{n + 1} - a D_n
+   %   & = D_{n + 1} - a D_{n} + \left(  S(n + 1, a) - a S(n, a) - 1 \right)   \\
+   %   & = \left( D_{n + 1} + S(n + 1, a) \right)  - a \left(D_n + S(n, a) \right) - 1 \\
+   %   & = n + 1 + \frac{(n + 1) n}{2} (a - 1) - a \left(  n + \frac{n(n - 1)}{2} (a - 1) \right) - 1 \\
+   %   & = - \frac{n(n - 1)}{2}  {(a - 1)}^2 \,,
+   % \end{align*}
+   % \begin{align*}
+   %   D(n + 1) - a D(n)
+   %   & = T(n + 1) - a T(n) -  \left( S(n + 1, a) - a S(n, a) \right)   \\
+   %   & = T(n + 1) - a T(n) - 1 \\
+   %   & = - \frac{n(n - 1)}{2}  {(a - 1)}^2 \,,
+   % \end{align*}
+   % whence ${(a - 1)}^2$ divides $D_{n + 1} - a D_n$.
+   % Therefore, if ${(a - 1)}^2$ divides $D_n$ then ${(a - 1)}^2$ divides $D_{n + 1}$.
+ \end{proof}
+ %\begin{proof}                  %
+   % Let $B\colon \bZ \to \bZ$ be the univariate polynomial function defined by:
+   % $$
+   % B(x) = \frac{x (x - 1)}{2}
+   % $$
+   % for every $x \in \bZ$.
+ %   Let $T\colon \bZ \times \bZ \to \bZ$ be defined by:
+ %   $$
+ %   T(x, y) = x + \frac{x(x - 1)}{2} (y - 1) 
+ %   $$
+ %   for every $x$, $y \in \bZ$.
+ %   Let $a \in \bZ$ be fixed.
+ %   Our task is to prove that
+ %   ${(a - 1)}^2$ divides $S(n, a) - T(n, a)$ for every $n \in \bN$.
+ %   We proceed by induction on~$n$.
+ %   Since $S(0, a) = 0 = T(0, a)$,
+ %   the basis of our induction holds true.
+ %   It remains to check the inductive step.
+ %   Straightforward computations show that the bivariate polynomial function $T$ satisfy the identity
+ %   $$
+ %   %y T(x, y) -  T(x + 1, y) = \frac{x(x - 1)}{2}  {(y - 1)}^2 - 1 
+ %   T(n + 1, a) = \left( a T(n, a) + 1 \right) - \frac{n(n - 1)}{2}  {(a - 1)}^2 \,, 
+ %   $$
+ %   whence 
+ %   $$
+ %   %D(n + 1) =  a D(n) + \frac{n(n - 1)}{2} {(a - 1)}^2 \, .
+ %   S(n + 1, a) - T(n + 1, a) =  a \left( S(n, a) - T(n, a) \right) + \frac{n(n - 1)}{2} {(a - 1)}^2 \, .
+ %   $$
+
+ %   $$
+ %   S(n, a) - T(n, a) = {(a - 1)}^2 \sum_{k = 0}^{n - 1}  \frac{k(k - 1)}{2} a^{n - k}  
+ %   $$
+ %   %Therefore, if ${(a - 1)}^2$ divides $D(n)$ then ${(a - 1)}^2$ divides $D(n + 1)$.
+ %   Therefore, if ${(a - 1)}^2$ divides $S(n, a) - T(n, a)$ then ${(a - 1)}^2$ divides $S(n + 1, a) - T(n + 1, a)$.
+ % \end{proof}
+$$
+10^9 < 9^{10}
+$$
+
+$$
+\frac{10^9}{9^{10}}
+= \frac{1}{9} \left( \frac{10}{9} \right)^9
+= \frac{1}{9} \left( 1 + \frac{1}{9} \right)^9
+< \frac{1}{9} e < 1
+$$
+
+$$
+100^{99} < 99^{100}
+$$
+
+$$
+\frac{100^{99}}{99^{100}}
+= \frac{1}{99} \left( \frac{100}{99} \right)^{99}
+= \frac{1}{99} \left( 1 + \frac{1}{99} \right)^{99}
+< \frac{1}{99} e < 1
+$$
 
 
+  Theorem~\ref{thm:2-adic-S} trivially holds true in the case $a = 1$ because $S(n, 1) = n$ for every $n \in \bN$.
+  Hence, we may assume $a \ne 1$.
+  For each $n \in \bN$, put $\mu(n) = \nu_2(S(n, a))$ and
+  $t(n)$
+  Let $n \in \bN$.
+  The crux is to prove
+  \begin{equation} \label{eq:nu-S2n-2Sn}
+    \nu_2(S(2n, a)) = \nu_2(S(n, a)) + 1 
+  \end{equation}
+  and that $S(2n + 1, a)$ is odd.
+  % \begin{equation}  \label{eq:nu-S2n+1-0}
+  %   \nu_2(S(2n + 1, a)) = 0 \, .
+  % \end{equation}
+  Put 
+  $$
+  t = 1 + \frac{a - 1}{2} S(n, a) \, . 
+  $$
+  Since Equation~\eqref{eq:ak-1-a-1-Ska} holds true for $k \in \{ n, 2n \}$, straightforward computations yield
+  \begin{align*}
+    (a - 1) \left( S(2 n, a) - 2 S(n, a) \right) & = (a^{2n} - 1) - 2(a^n - 1) \\
+                                                 & = {(a^n - 1)}^2 \\
+                                                 & = {(a - 1)}^2 \left( S(n, a) \right)^2\,.
+  \end{align*}
+  It follows 
+  $$
+  S(2 n, a) - 2 S(n, a) = (a - 1) \left(  S(n, a) \right)^2 \,, 
+  $$
+  or equivalently,
+  $$
+  S(2 n, a) = 2 t S(n, a) \, .
+  $$
+  % S(2 n, a) = 2 \left(1 + \frac{a - 1}{2}  S(n, a)  \right) S(n, a) \, .
+  Besides,  $t$ is an odd integer because $(a - 1) \mathbin{/} 2$ is an even integer.
+  Therefore, Equation~\eqref{eq:nu-S2n-2Sn} holds true.
+%  Let us now prove Equation~\eqref{eq:nu-S2n+1-0}. 
+  In particular, Equation~\eqref{eq:nu-S2n-2Sn} ensures that $S(2n, a)$ is even, whence
+  $$
+  S(2n + 1, a) = 1 + S(2n, a) a
+  $$
+  is odd. %, and thus Equation~\eqref{eq:nu-S2n+1-0} holds true.
+  Let us now conclude the proof of Theorem~\ref{thm:2-adic-S}.
+  Our task is to prove $\nu_2(S(n, a)) = \nu_2(n)$.
+  Since $S(0, a) = 0$, we may assume $n \ne 0$.
+  
+  
+
+
+% the $p$-adic valuation of $p^k q$ is equal to $k$ if, and only if, $p$ does not divide~$q$.
+$$
+\nu_p(nn') = \nu_p(n) + \nu_p(n') 
+$$
+
+$$
+\nu_p(n + n') \ge \inf \left\{ \nu_p(n), \nu_p(n') \right\} 
+$$
+
+$$
+\nu_p(n + n') \ge 1 + \inf \left\{ \nu_p(n), \nu_p(n') \right\} 
+$$
+implies $\nu_p(n) = \nu_p(n')$
+
+$$
+\nu_p(p n ) = \nu_p(n) + 1
+$$
  \begin{proof}
       % Put
    % $$

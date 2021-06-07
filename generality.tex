@@ -1,0 +1,306 @@
+% -*- mode: latex; eval: (flyspell-mode 1); ispell-local-dictionary: "american"; TeX-master: "preambule.tex"; -*-
+
+\begin{theorem} \label{thm:cyclic-iteration}
+  Let $X$ be a finite set,
+  let $E\colon \bN \to X$, and
+  let $\sigma\colon X \to X$ be such that
+  $E(n + 1) = \sigma(E(n))$ for every $n \in \bN$.
+  Let $m$ denote the cardinality of~$X$.
+  The following four assertions are equivalent:
+  \begin{enumerate}
+\item \label{ass:cyclic-iteration:0-m}
+  The restriction of $E$ to $\seg{0}{m - 1}$ is bijective and equality $E(m) = E(0)$ holds true.
+%\item \label{ass:cyclic-iteration:distinct}
+%  For each $n \in \seg{1}{m - 1}$, $E(n)$ is distinct from $E(m)$.
+\item \label{ass:cyclic-iteration:1-m}
+  The restriction of $E$ to $\seg{1}{m}$ is bijective.
+\item \label{ass:cyclic-iteration:surj-bij}
+  $E$ is surjective and $\sigma$ is bijective.
+\item \label{ass:cyclic-iteration:cycl}
+  For every $Y \subseteq X$,
+  $\sigma(Y) = Y$ implies $Y \in \{ \emptyset, X \}$. 
+  \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  Clearly,
+  assertion~\ref{ass:cyclic-iteration:0-m} implies assertion~\ref{ass:cyclic-iteration:distinct}
+  and 
+  assertion~\ref{ass:cyclic-iteration:1-m} implies assertion~\ref{ass:cyclic-iteration:surj-bij}.
+  %assertion~\ref{ass:cyclic-iteration:0-m} implies assertion~\ref{ass:cyclic-iteration:distinct} and 
+  %assertion~\ref{ass:cyclic-iteration:1-m} implies assertion~\ref{ass:cyclic-iteration:surj-bij}.
+  
+  $\ref{ass:cyclic-iteration:distinct} \implies \ref{ass:cyclic-iteration:1-m}$.
+  Assume that  assertion~\ref{ass:cyclic-iteration:1-m} holds false.
+  Then, the restriction of $E$ to $\seg{1}{m}$ is not injective,
+  and thus there exist $p$, $q \in \seg{1}{m}$ such that $p < q$ and $E(p) = E(q)$.
+  A straightforward induction on $n$ shows $E(p + n) = E(q + n)$ for every $n \in \bN$.
+  In the particular case where $n = m - q$,
+  we obtain $E(m + p - q) = E(m)$.
+  Therefore, assertion~\ref{ass:cyclic-iteration:1-m} holds false.
+
+  $\ref{ass:cyclic-iteration:surj-bij} \implies \ref{ass:cyclic-iteration:cycl}$.
+  Assume that assertion~\ref{ass:cyclic-iteration:surj-bij} holds true.
+  Let $Y \subseteq X$ be such that $\sigma(Y) = Y$ and $Y \ne \emptyset$.
+  Our task is to prove $Y = X$. 
+  Since $E$ is surjective, there exists $k \in \bN$ such that $E(k) \in Y$.
+  Since $Y$ is closed under $\sigma$,
+  a straightforward induction on $n$ shows $E{(k + n)} \in Y$ for each $n \in \bN$,
+  whence
+  $$
+  E(\bZ_{\ge k}) \subseteq Y \, .
+  $$
+  Since $Y$ is closed under $\sigma^{-1}$, 
+  a straightforward induction on $n$ shows $E{(k - n)} \in Y$ for each $n \in \seg{0}{k}$,
+  whence
+  $$
+  E(\seg{0}{k}) \subseteq Y \, .
+  $$
+  % Besides, we have 
+  % $$
+  % \bZ_{\ge 0} =  \seg{0}{k} \cup \bZ_{\ge k} \, . 
+  % $$
+  It follows
+  $$
+  X = E(\bN) = E(\seg{0}{k}) \cup E(\bZ_{\ge k}) \subseteq Y \,, 
+  $$
+  and thus assertion~\ref{ass:cyclic-iteration:cycl} holds true.
+
+  $\ref{ass:cyclic-iteration:cycl} \implies \ref{ass:cyclic-iteration:0-m}$.
+  Since the restriction of $E$ to $\seg{0}{m}$ is not injective,
+  there exist $p$, $q \in \seg{0}{m}$ such that $p < q$ and $E(p) = E(q)$.
+  By construction, $\sigma$ maps $E(\seg{p}{q - 1})$ onto itself.
+  Assume that assertion~\ref{ass:cyclic-iteration:cycl} holds true.
+  Then, we have $E(\seg{p}{q - 1}) = X$.
+  In particular, the cardinality of $\seg{p}{q - 1}$ is not less than~$m$.
+  Besides, $\seg{p}{q - 1}$ is a subset of $\seg{0}{m - 1}$.
+  It follows $\seg{p}{q - 1} = \seg{0}{m - 1}$, or equivalently, $(p, q) = (0, m)$.
+  Therefore, assertion~\ref{ass:cyclic-iteration:0-m} holds true. 
+\end{proof}
+
+Let $X$ be a set and let $g\colon\bN \to X$.
+We say that $g$ is an \emph{orbit} if the following two equivalent conditions are met:
+%The following three assertions are equivalent:
+\begin{enumerate}
+\item There exists $f \colon X \to X$  such that $g(n + 1) = f(g(n))$ for every $n \in \bN$.
+%\item For every $p$, $q \in \bN$, $g(p) = g(q)$ implies $g(p + 1) = g(q + 1)$.
+\item For every $n$, $p$, $q \in \bN$, $g(p) = g(q)$ implies $g(n + p) = g(n + q)$.
+\end{enumerate}
+The following theorem summarizes what may happen
+
+
+q + k p + n  = 2 (p + q)
+
+q = 
+$n + jp + q = 2(n + k p + q)$
+
+0 = (2k - j) p + n + q
+k = 0
+j = q
+0 = - q p + n + q
+n = q (p - 1)
+
+q (p - 1) + q p + q = 
+\begin{theorem} \label{thm:eventually-periodic}
+  Let $X$ be a set and let $g\colon \bN \to X$ be non-injective.
+  Let $P$ denote the set of those $p \in \bNast$ for which there exists $n \in \bN$ such that $g(n + p) = g(n)$.
+  Let $Q$ denote the set of those $q \in \bNast$ such that $g(q + p) = g(q)$.
+  There exists $p \in \bNast$ and $q \in \bN$ such that $g$ is injective on $\seg{0}{p + q}$ and $g(p + q) = g(q)$.
+    There exists $f\colon X \to X$ such that $g(n + 1) = f(g(n))$ for every $n \in \bN$ if, and only if,
+   %The function $g$ is  a non-injective orbit if, and only if,
+  there exist $p \in \bNast$ and $q \in \bN$ such that
+  \begin{itemize}
+    \item 
+      $g$ is injective on $\sego{0}{p + q}$ and
+     \item 
+       equality $g(n + p + q) = g(n + q)$ holds true for every $n \in \bN$.
+   \end{itemize}
+     % $g$ is injective on $\sego{0}{p + q}$ and
+  % equality  $g(n + p + q) = g(n + q)$ holds true for every $n \in \bN$.
+%   The following two assertions are equivalent:
+%   \begin{enumerate}
+%   \item \label{ass:eventually-periodic:f}
+%     $g$ is a non-injective orbit.
+% %    there exists $f \colon X \to X$ such that
+%     % \begin{equation} \label{eq:eventually-periodic:fg}
+%     % g(n + 1) = f(g(n))
+%     % \end{equation}  for every $n \in \bN$.
+%     %$g(n + 1) = f(g(n))$ for every $n \in \bN$.
+  % \item \label{ass:eventually-periodic:q}
+  %   There exist $p \in \bNast$ and $q \in \bN$ such that
+  %   $g$ is injective on $\sego{0}{p + q}$ and
+  %   $g(n + p + q) = g(n + q)$ for every $n \in \bN$.
+  % \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+  $\ref{ass:eventually-periodic:f} \implies \ref{ass:eventually-periodic:q}$.
+  Put
+  $$R = \left\{ n \in \bN : g(n) \in g(\sego{0}{n}) \right\} \, .$$
+  Assume that assertion~\ref{ass:eventually-periodic:f} holds true.
+  Since $g$ is not injective, $R$ is non-empty;
+  let $r$ denote the least element of~$R$.
+  On the one hand, $r$ is an element of $R$,
+  whence there exists $q \in \sego{0}{r}$ such that $g(r) = g(q)$.
+  Since Equation~\eqref{eq:eventually-periodic:fg} holds true for every $n \in \bN$,
+  a straightforward induction on $n$ shows that equality $g(n + r) = g(n + q)$ holds true for every $n \in \bN$.
+  On the other hand, $\sego{0}{r}$ does not intersect $R$,
+  so $g$ is injective on $\sego{0}{r}$.
+  Therefore, assertion~\ref{ass:eventually-periodic:f} holds true with $p = r - q$.
+% V  
+%   Since $g$ is not injective on $\seg{0}{m}$, there exist $r$, $s \in \bZ$ such that
+%   $0 \le r < s \le m$ and
+%   $g(r) \ne g(s)$.
+%   Then, a straightforward induction on $n$ shows $g(n + r) = g(n + s)$ for every $n \in \bN$,
+%   and thus assertion~\ref{thm:eventually-periodic:f} holds true with $q = m - s + r$.
+   
+  $\ref{ass:eventually-periodic:q} \implies \ref{ass:eventually-periodic:f}$.
+  Assume that assertion~\ref{ass:eventually-periodic:q} holds true.
+  Since $g(p + q) = g(q)$, $g$ is not injective.
+  Since $g$ is injective on $\sego{0}{p + q}$,
+  there exists $f\colon X \to X$ such that $f(g(n)) = g(n + 1)$ for each $n \in \sego{0}{p + q}$
+  (note that $X \ne g(\sego{0}{p + q})$ may happen, so $f$ is not uniquely defined).
+  Since  $g(n) = g(n - p) $ and $g(n + 1) = g(n - p + 1)$ for each $n \in \bZ_{\ge p + q}$,
+  a straightforward induction on $n$ shows that
+  Equation~\eqref{eq:eventually-periodic:fg} holds true for every $n \in \bZ_{\ge p + q}$.
+  Therefore, assertion~\ref{ass:eventually-periodic:f} holds true.
+ \end{proof} 
+
+Let $X$ be a set, let $p \in \bZ$, and let $F \colon \bZ \to X$.
+We say that $p$ is a \emph{period} of $F$ if equality $F(n + p)  = F(n)$ holds true for every $n \in \bZ$.
+%The set of all periods of $F$ is an additive subgroup of~$\bZ$.
+%If $p$ is period of $F$ 
+In the case where $p$ is non-zero, 
+$p$ is a period of $F$ if, and only if, equality $F(n) = F(n \bmod p)$ holds true for every $n \in \bZ$.
+
+\begin{theorem} \label{thm:def-cyclic-enumeration} 
+  Let $X$ be a finite set and let $F \colon \bZ \to X$.
+  Let $m$ denote the cardinality of~$X$.
+  The following three assertions are equivalent:
+  \begin{enumerate}
+  \item \label{ass:def-cyclic-enumeration:surj-periodic}
+    $F$ is surjective and $m$ is a period of~$F$.
+  \item \label{ass:def-cyclic-enumeration:bij-per}
+    For each $n \in \bZ$, $F$ induces a bijection from $\sego{n}{n + m}$ onto~$X$.
+  \item \label{ass:def-cyclic-enumeration:cong}
+    For every $n$, $n' \in \bZ$ such that $F(n) = F(n')$, $m$ divides $n - n'$.
+  \end{enumerate} 
+\end{theorem}
+
+   %There exists a function $\sigma\colon X \to X$ such that $F(n + 1) = \sigma(F(n))$  for every $n \in \bZ$.
+   %For every $Y \subseteq X$, $\sigma(Y) = Y$ implies $Y \in \{ \emptyset, X \}$.
+
+\begin{proof}
+  $\ref{ass:def-cyclic-enumeration:bij-per} \implies \ref{ass:def-cyclic-enumeration:surj-periodic}$.
+  Assume that assertion~\ref{ass:def-cyclic-enumeration:bij-per} holds true.
+  Let $n \in \bN$.
+  Since the cardinality of $\seg{n}{n + m}$ is equal to $m + 1$,
+  $F$ is not injective on that set,
+  and thus there exist $p$, $q \in \seg{n}{n + m}$ such that $p < q$ and $F(p) = F(q)$.
+  The injectivity of $F$ on $\sego{n}{n + m}$ precludes $\{ p, q \} \subseteq \sego{n}{n + m}$,
+  whence $q = m + n$;
+  the injectivity of $F$ on $\seg{n + 1}{n + m}$ precludes $\{ p, q \} \subseteq \seg{n + 1}{n + m}$,
+  whence $p = n$.
+  It follows $F(n + m) = F(n)$, and thus $m$ is a period of~$F$.
+  Therefore, assertion~\ref{ass:def-cyclic-enumeration:surj-periodic} holds true.
+  
+  
+  $\ref{ass:def-cyclic-enumeration:cong} \implies \ref{ass:def-cyclic-enumeration:bij-per}$.
+  For every $n$, $n' \in \bZ$ such that $m$ divides $n - n'$, $n \ne n'$ is equivalent to $\abs{n - n'} \ge m$.
+  Therefore, assertion~\ref{ass:def-cyclic-enumeration:cong} implies assertion~\ref{ass:def-cyclic-enumeration:bij-per}.
+
+  $\ref{ass:def-cyclic-enumeration:surj-periodic} \implies \ref{ass:def-cyclic-enumeration:cong}$.
+  Assume that assertion~\ref{ass:def-cyclic-enumeration:surj-periodic} holds true.
+  Since $F(n) = F(n \bmod m)$ for every $n \in \bZ$ and since $F$ is surjective,
+  $F$ is induces a bijection from $\sego{0}{m}$ onto~$X$.
+  Hence, for every $n$, $n' \in \bZ$, the following four conditions are equivalent:
+  $F(n) = F(n')$,
+  $F(n \bmod m) = F(n' \bmod m)$,
+  $n \bmod m = n' \bmod m$, and
+  $m$ divides $n - n'$.
+  Therefore, assertion~\ref{ass:def-cyclic-enumeration:cong} holds true.
+\end{proof}
+
+Let the notation be as in Theorem~\ref{thm:def-cyclic-enumeration}.
+We say that $F$ is a \emph{cyclic enumeration} (of $X$)
+if the three equivalent assertions of Theorem~\ref{thm:def-cyclic-enumeration} hold true.
+
+%The restriction to $\bN$ of any cyclic enumeration is also called a cyclic enumeration. 
+
+
+\begin{theorem}
+  Let $X$ be a finite set and let $F\colon \bN \to X$.
+  There exists a cyclic enumeration $F' \colon \bZ \to F(X)$ such that $F$ and $F'$ coincide on $\bN$
+  if, and only if, the following two conditions are met:
+  \begin{enumerate}
+  \item There exists $\sigma \colon X \to X$ such that $F(n + 1) = \sigma(F(n))$ for every $n \in \bN$.
+  \item There exists $n_0 \in \bNast$ such that $F(n_0) = F(0)$.
+  \end{enumerate} 
+\end{theorem} 
+
+
+
+
+
+
+ \begin{theorem}
+   Let the notation be as in Theorem~\ref{thm:def-cyclic-enumeration}.
+   Assume that 
+   there exists $n_0 \in \bNast$ such that $g(n_0) = g(0)$ and 
+   that there exists $f\colon X \to X$ such that $g(n + 1) = f(g(n))$ for every $n \in \bN$.
+   Then, $g$ is a cyclic enumeration. 
+\end{theorem}
+
+
+% \begin{theorem}
+%   In the notation of Theorem~\ref{thm:def-cyclic-enumeration}, 
+    The restriction of $g$ to $\bNast$ is surjective and  
+    there exists $f\colon X \to X$ such that $g(n + 1) = f(g(n))$ for every $n \in \bN$.
+  % \item \label{ass:def-cyclic-enumeration:cong}
+  %   For every $n$, $n' \in \bN$ such that $g(n) = g(n')$, $m$ divides $n - n'$.
+%   $g$ is a cyclic enumeration if and only if, the following two conditions are met:
+%   \begin{enumerate}
+%   \item there exists $n_0 \in \bNast$ such that $g(n_0) = g(0)$ and 
+%   \item there exists $f\colon X \to X$ such that $g(n + 1) = f(g(n))$ for every $n \in \bN$.
+%   \end{enumerate}
+% \end{theorem}
+
+\begin{theorem}
+  Let the notation be as in Theorem~\ref{thm:def-cyclic-enumeration}.
+  Assume that for every $n$, $n' \in \bN$ such that $g(n + n') = g(n')$, $m$ divides $n$.
+  Then, $g$ is a cyclic enumeration.
+\end{theorem}
+% A \emph{cyclic derangement} of $X$ is a function $g \colon X \to X$ such that
+% for every $Y \subseteq X$, $g(Y) = Y$ implies $Y \in \{ \emptyset, X \}$.
+
+\begin{theorem}
+  Let $X$ be a finite set,
+  let $f\colon \bN \to X$, and
+  let $g\colon X \to X$ be such that
+  $f(n + 1) = g(f(n))$ for every $n \in \bN$.
+  The following three assertions are equivalent:
+  \begin{enumerate}
+  \item $f$ is a cyclic enumeration of~$X$.
+  \item $f$ is surjective and $\sigma$ is bijective.
+  \item $g$ is a cyclic derangement of~$X$.
+  \end{enumerate} 
+\end{theorem}
+
+  $\ref{ass:def-cyclic-enumeration:surj-f} \implies  \ref{ass:def-cyclic-enumeration:bij-per}$.
+  Assume that assertion~\ref{ass:def-cyclic-enumeration:surj-f} holds true.
+  Since $\bN + 1 = \bNast$,
+  $f$ maps $g(\bN)$ onto $g(\bN + 1) = g(\bNast) = X$,
+  whence $f$ is bijective.
+  Let $p$, $q \in \bN$ be such that $p < q$ and $g(p) = g(q)$.
+  Put $Y = g(\sego{p}{q})$.
+  By construction, both $f$ and $f^{-1}$ map $Y$ onto itself.
+  Since $g(p) \in Y$ and since
+  $$g(n - 1) = f^{-1}(g(n))$$
+  for every $n \in \bNast$,
+  a straightfoward induction on $n$ shows that 
+  $g(p - n)$ belongs to $Y$ for every $n \in \sego{0}{p}$.
+  In particular, $g(1)$ belongs to $Y$, and thus 
+  a straightfoward induction on $n$ shows that
+  $g(n)$ belongs to $Y$ for every $n \in \bNast$.
+  It follows $Y = X$, and consequently, $q - p \ge m$.
+  Hence, assertion~\ref{ass:def-cyclic-enumeration:bij-per} holds true.

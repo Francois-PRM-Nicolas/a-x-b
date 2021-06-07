@@ -3,15 +3,11 @@
 \documentclass[12pt]{article}
 
 
-\usepackage{hyperref,amsthm,amsmath,amsfonts,enumerate,stmaryrd}
+\usepackage{hyperref,amsthm,amsmath,amsfonts,enumerate}
 
 \newcommand{\bZ}{\mathbb{Z}}
 \newcommand{\bR}{\mathbb{R}}
 \newcommand{\bQ}{\mathbb{Q}}
-\newcommand{\Rpos}{\left]0, \infty \right[}
-
-\newcommand{\ttx}{\mathtt{x}}
-\newcommand{\tty}{\mathtt{y}}
 
 
 \newcommand{\bN}{\bZ_{\ge 0}}%
@@ -21,14 +17,17 @@
 
 
 
-\newcommand{\seg}[2]{\left\llbracket#1, #2 \right\rrbracket}
+\newcommand{\seg}[2]{\left[ #1, #2 \right]}
+\newcommand{\sego}[2]{\left[ #1, #2 \right[}
+\newcommand{\segro}[2]{\left] #1, #2 \right]}
 \newcommand{\floor}[1]{\left\lfloor #1  \right\rfloor}
+\newcommand{\abs}[1]{\left| #1  \right|}
 
 
 
 
 \newtheorem{theorem}{Theorem}
-\newtheorem{lemma}{Lemma}
+%\newtheorem{lemma}{Lemma}
 
  \theoremstyle{definition}
  \newtheorem{exercise}{Exercise}
@@ -37,6 +36,8 @@
 
 \begin{document}
 
+\include{generality}
+\end{document} 
 \begin{theorem}[Hull and Dobell \cite{HullDobell62,Knuth97}] \label{thm:Hull-Dobbel}
   Let $a$, $c \in \bZ$, let $m \in \bNast$, and let $T\colon \bN \to \bZ$ be such that
   $m$ divides $T(n + 1) - a T(n) - c$ for every $n \in \bN$.
